@@ -29,21 +29,21 @@ router.post('/', async (req, res) => {
     if (!req.body.languageName && req.body.languageName.length < 1) {
         return res.status(400).json({
             success: false,
-            message: 'languageName is required and must be at least 1 characters long.',
+            error: 'languageName is required and must be at least 1 characters long.',
         });
     }
 
     if (!req.body.languageNativeSpeakers) {
         return res.status(400).json({
             success: false,
-            message: 'languageNativeSpeakers is required.',
+            error: 'languageNativeSpeakers is required.',
         });
     }
 
     if (!req.body.languageTotalSpeakers) {
         return res.status(400).json({
             success: false,
-            message: 'languageTotalSpeakers is required.',
+            error: 'languageTotalSpeakers is required.',
         });
     }
 
