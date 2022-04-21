@@ -10,6 +10,7 @@ const Language = sequelize.define('language', {
     languageName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     languageNativeSpeakers: {
         type: DataTypes.INTEGER,
