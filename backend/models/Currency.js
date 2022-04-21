@@ -10,6 +10,7 @@ const Currency = sequelize.define('currency', {
     currencyName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     currencySymbol: {
         type: DataTypes.STRING(5),
