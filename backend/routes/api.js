@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+router.use('/currency', require('./currency.routes'));
 router.use('/language', require('./language.routes'));
 
 router.get('/', async (req, res) => {
