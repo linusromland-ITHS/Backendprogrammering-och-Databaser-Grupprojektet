@@ -11,10 +11,12 @@ const MYSQLDB = process.env.MYSQLDB || 'testDB';
 
 exports.getConnection = async () => {
     await createDatabase();
-    sequelize = new Sequelize(`mysql://${MYSQLUSER}:${MYSQLPASS}@${MYSQLHOST}:3306/${MYSQLDB}`);
+    sequelize = new Sequelize(`mysql://${MYSQLUSER}:${MYSQLPASS}@${MYSQLHOST}:3306/${MYSQLDB}`, {
+        logging: false,
+    });
     try {
         await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
+        console.log('Connection has been established successfully to MySQL.');
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
@@ -157,7 +159,7 @@ exports.getConnection = async () => {
     Country.belongsToMany(Language, { through: 'country_language' });
     Language.belongsToMany(Country, { through: 'country_language' });
 
-    sequelize.sync({ force: true });
+    sequelize.sync();
 };
 
 function createDatabase() {
@@ -171,8 +173,6 @@ function createDatabase() {
 
         // Run create database statement
         connection.query(`CREATE DATABASE IF NOT EXISTS ${MYSQLDB}`, function (err, results) {
-            console.log(results);
-            console.log(err);
             resolve();
         });
 
