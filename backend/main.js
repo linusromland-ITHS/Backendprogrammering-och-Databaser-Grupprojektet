@@ -4,7 +4,7 @@ require('dotenv').config();
 //Dependencies
 const express = require('express');
 const { sequelize, createDatabase } = require('./config/mysqlConnection');
-const { addContinents } = require('./config/baseData');
+//const { addContinents } = require('./config/baseData');
 
 //Variable declaration
 const app = express();
