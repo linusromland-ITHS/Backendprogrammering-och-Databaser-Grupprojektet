@@ -23,5 +23,10 @@
         "eslint": "^8.13.0",
         "nodemon": "^2.0.15",
         "prettier": "^2.6.2"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "mysql2": "^2.3.3",
+        "sequelize": "^6.19.0"
     }
 }
