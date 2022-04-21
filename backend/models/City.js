@@ -10,6 +10,7 @@ const City = sequelize.define('city', {
     cityName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     cityPopulation: {
         type: DataTypes.INTEGER,
