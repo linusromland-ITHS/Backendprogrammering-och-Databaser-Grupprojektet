@@ -2,12 +2,12 @@ const { sequelize } = require('../config/mysqlConnection');
 const { DataTypes } = require('sequelize');
 
 const Religion = sequelize.define('religion', {
-    religion_id: {
+    religionID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    religion_name: {
+    religionName: {
         type: DataTypes.STRING,
         allowNull: false,
     },

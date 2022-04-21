@@ -2,16 +2,16 @@ const { sequelize } = require('../config/mysqlConnection');
 const { DataTypes } = require('sequelize');
 
 const Currency = sequelize.define('currency', {
-    currency_id: {
+    currencyID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    currency_name: {
+    currencyName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    currency_symbol: {
+    currencySymbol: {
         type: DataTypes.STRING,
         allowNull: false,
     },

@@ -2,16 +2,16 @@ const { sequelize } = require('../config/mysqlConnection');
 const { DataTypes } = require('sequelize');
 
 const City = sequelize.define('city', {
-    city_id: {
+    cityID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    city_name: {
+    cityName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    city_population: {
+    cityPopulation: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
