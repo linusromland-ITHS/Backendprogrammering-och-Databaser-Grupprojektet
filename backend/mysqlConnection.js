@@ -163,7 +163,7 @@ exports.getConnection = async () => {
 };
 
 function createDatabase() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         // Open the connection to MySQL server
         const connection = mysql.createConnection({
             host: MYSQLHOST,
@@ -172,7 +172,7 @@ function createDatabase() {
         });
 
         // Run create database statement
-        connection.query(`CREATE DATABASE IF NOT EXISTS ${MYSQLDB}`, function (err, results) {
+        connection.query(`CREATE DATABASE IF NOT EXISTS ${MYSQLDB}`, () => {
             resolve();
         });
 
