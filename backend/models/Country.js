@@ -27,7 +27,7 @@ const Country = sequelize.define('country', {
         allowNull: false,
     },
     countryDomain: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(25),
         allowNull: false,
     },
     countryFlagURL: {
