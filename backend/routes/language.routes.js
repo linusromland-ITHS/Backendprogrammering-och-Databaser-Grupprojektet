@@ -26,24 +26,14 @@ router.get('/', async (req, res) => {
  * @api {post} /api/language/ Create a new language
  */
 router.post('/', async (req, res) => {
-    if (!req.body.languageName && req.body.languageName.length < 1) {
+    if (
+        (!req.body.languageName && req.body.languageName.length < 1) ||
+        !req.body.languageNativeSpeakers ||
+        req.body.languageTotalSpeakers
+    ) {
         return res.status(400).json({
             success: false,
-            error: 'languageName is required and must be at least 1 characters long.',
-        });
-    }
-
-    if (!req.body.languageNativeSpeakers) {
-        return res.status(400).json({
-            success: false,
-            error: 'languageNativeSpeakers is required.',
-        });
-    }
-
-    if (!req.body.languageTotalSpeakers) {
-        return res.status(400).json({
-            success: false,
-            error: 'languageTotalSpeakers is required.',
+            error: 'Please provide a valid languageName, languageNativeSpeakers and languageTotalSpeakers.',
         });
     }
 
@@ -63,7 +53,7 @@ router.post('/', async (req, res) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: 'languageName already exists.',
+                error: `The language ${req.body.languageName} already exists.`,
             });
         }
 
