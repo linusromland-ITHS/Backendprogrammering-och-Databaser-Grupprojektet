@@ -43,7 +43,7 @@ const init = async () => {
         await sequelize.sync();
 
         // Add data
-        await addContinents();
+        // await addContinents();
 
         app.listen(port, () => {
             console.log(`Server is running on port ${port}\nAccess it on http://localhost:${port}`);
