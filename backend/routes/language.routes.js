@@ -4,6 +4,25 @@ const router = express.Router();
 const LanguageModel = require('../models/Language');
 
 /**
+ * @api {get} /api/language/ Returns all languages
+ */
+router.get('/', async (req, res) => {
+    try {
+        const languages = await LanguageModel.findAll();
+        res.json({
+            success: true,
+            error: '',
+            data: languages,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
+/**
  * @api {post} /api/language/ Create a new language
  */
 router.post('/', async (req, res) => {
