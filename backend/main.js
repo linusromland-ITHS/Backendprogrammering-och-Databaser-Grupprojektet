@@ -15,6 +15,7 @@ const ContinentModel = require('./models/Continent');
 const LanguageModel = require('./models/Language');
 const CountryModel = require('./models/Country');
 
+app.use(express.json());
 app.use('/api', require('./routes/api.js'));
 
 const init = async () => {
