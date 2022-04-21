@@ -5,47 +5,47 @@ const City = require('./City');
 const Currency = require('./Currency');
 
 const Country = sequelize.define('country', {
-    country_id: {
+    countryID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    country_name: {
+    countryName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    country_population: {
+    countryPopulation: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    country_size: {
+    countrySize: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    country_description: {
+    countryDescription: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    country_domain: {
+    countryDomain: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    country_flag_image: {
+    countryFlagURL: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    country_capital_id: {
+    countryCapitalID: {
         type: DataTypes.INTEGER,
         references: {
             model: City,
-            key: 'city_id',
+            key: 'cityID',
         },
     },
-    country_currency_id: {
+    countryCurrencyID: {
         type: DataTypes.INTEGER,
         references: {
             model: Currency,
-            key: 'currency_id',
+            key: 'currencyID',
         },
     },
 });

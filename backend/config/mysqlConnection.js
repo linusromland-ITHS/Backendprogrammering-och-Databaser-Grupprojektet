@@ -1,14 +1,14 @@
+//Dependencies import
 const { Sequelize } = require('sequelize');
 const mysql = require('mysql2');
 
+//MySQL Login Credintials
 const MYSQLHOST = process.env.MYSQLHOST || 'localhost';
 const MYSQLUSER = process.env.MYSQLUSER || 'root';
 const MYSQLPASS = process.env.MYSQLPASS || '1234';
 const MYSQLDB = process.env.MYSQLDB || 'testDB';
 
-exports.sequelize = new Sequelize(`mysql://${MYSQLUSER}:${MYSQLPASS}@${MYSQLHOST}:3306/${MYSQLDB}`, {
-    logging: false,
-});
+exports.sequelize = new Sequelize(`mysql://${MYSQLUSER}:${MYSQLPASS}@${MYSQLHOST}:3306/${MYSQLDB}`, { logging: false });
 
 exports.createDatabase = () => {
     return new Promise((resolve) => {
@@ -21,7 +21,7 @@ exports.createDatabase = () => {
 
         // Run create database statement
         connection.query(`CREATE DATABASE IF NOT EXISTS ${MYSQLDB}`, () => {
-            console.log('Created database');
+            console.log(`Database "${MYSQLDB}" was created successfully.`);
             resolve();
         });
 

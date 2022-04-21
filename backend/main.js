@@ -1,13 +1,15 @@
 //import dotenv
 require('dotenv').config();
 
+//Dependencies
 const express = require('express');
-const app = express();
-
-const port = process.env.PORT || 3000;
-
 const { sequelize, createDatabase } = require('./config/mysqlConnection');
 
+//Variable declaration
+const app = express();
+const port = process.env.PORT || 3000;
+
+//Models Import
 const ReligionModel = require('./models/Religion');
 const ContinentModel = require('./models/Continent');
 const LanguageModel = require('./models/Language');
@@ -39,7 +41,7 @@ const init = async () => {
         sequelize.sync();
 
         app.listen(port, () => {
-            console.log(`Server is running on port: ${port}`);
+            console.log(`Server is running on port ${port}\nAccess it on http://localhost:${port}`);
         });
     } catch (error) {
         console.log(error);

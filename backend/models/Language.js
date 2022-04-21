@@ -2,20 +2,20 @@ const { sequelize } = require('../config/mysqlConnection');
 const { DataTypes } = require('sequelize');
 
 const Language = sequelize.define('language', {
-    language_id: {
+    languageID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    language_name: {
+    languageName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    language_native_speakers: {
+    languageNativeSpeakers: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    language_total_speakers: {
+    languageTotalSpeakers: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },

@@ -2,20 +2,20 @@ const { sequelize } = require('../config/mysqlConnection');
 const { DataTypes } = require('sequelize');
 
 const Continent = sequelize.define('continent', {
-    continent_id: {
+    continentID: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    continent_name: {
+    continentName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    continent_population: {
+    continentPopulation: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    continent_size: {
+    continentSize: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
