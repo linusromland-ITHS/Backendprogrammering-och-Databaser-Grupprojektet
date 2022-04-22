@@ -10,13 +10,14 @@ const Continent = sequelize.define('continent', {
     continentName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     continentPopulation: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
     },
     continentSize: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
     },
 });

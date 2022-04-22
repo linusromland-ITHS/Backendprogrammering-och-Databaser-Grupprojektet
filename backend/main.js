@@ -4,6 +4,7 @@ require('dotenv').config();
 //Dependencies
 const express = require('express');
 const { sequelize, createDatabase } = require('./config/mysqlConnection');
+//const { addContinents } = require('./config/baseData');
 
 //Variable declaration
 const app = express();
@@ -39,7 +40,10 @@ const init = async () => {
         LanguageModel.belongsToMany(CountryModel, { through: 'country_language' });
 
         // Sync models
-        sequelize.sync();
+        await sequelize.sync();
+
+        // Add data
+        // await addContinents();
 
         app.listen(port, () => {
             console.log(`Server is running on port ${port}\nAccess it on http://localhost:${port}`);
