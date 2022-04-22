@@ -7,7 +7,7 @@ const ReligionModel = require('../models/Religion');
  * @api {get} /api/religion/ Get all religions
  */
 router.get('/', async (req, res) => {
-    const allReligions = await ReligionModel.findAll({})
+    const allReligions = await ReligionModel.findAll({});
     res.json({
         religions: allReligions,
     });
