@@ -64,4 +64,47 @@ router.post('/', async (req, res) => {
     }
 });
 
+/**
+ * @api {put} /api/language/ Edits the language with the specified id
+ */
+router.put('/', async (req, res) => {
+    const language = await LanguageModel.findByPk(req.body.languageID);
+    if (!language) {
+        return res.status(404).json({
+            success: false,
+            error: 'Language not found.',
+        });
+    }
+
+    if (
+        !req.body.languageName &&
+        req.body.languageName.length < 1 &&
+        !req.body.languageNativeSpeakers &&
+        !req.body.languageTotalSpeakers
+    ) {
+        return res.status(400).json({
+            success: false,
+            error: 'Please provide a valid languageName, languageNativeSpeakers or languageTotalSpeakers.',
+        });
+    }
+
+    try {
+        const updatedLanguage = await language.update({
+            languageName: req.body.languageName,
+            languageNativeSpeakers: req.body.languageNativeSpeakers,
+            languageTotalSpeakers: req.body.languageTotalSpeakers,
+        });
+        res.json({
+            success: true,
+            error: '',
+            data: updatedLanguage,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
 module.exports = router;
