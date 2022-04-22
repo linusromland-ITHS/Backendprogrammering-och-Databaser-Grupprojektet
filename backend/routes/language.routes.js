@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     if (
         (!req.body.languageName && req.body.languageName.length < 1) ||
         !req.body.languageNativeSpeakers ||
-        req.body.languageTotalSpeakers
+        !req.body.languageTotalSpeakers
     ) {
         return res.status(400).json({
             success: false,
