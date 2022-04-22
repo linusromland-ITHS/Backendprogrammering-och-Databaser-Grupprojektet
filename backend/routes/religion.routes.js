@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
  */
 router.post('/', async (req, res) => {
     const { name } = req.body;
-    if (!name && name.length < 1) {
+    if (!name || name.length < 1) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a name',
