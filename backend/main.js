@@ -40,7 +40,7 @@ const init = async () => {
         LanguageModel.belongsToMany(CountryModel, { through: 'country_language' });
 
         // Sync models
-        await sequelize.sync();
+        await sequelize.sync({ alter: true });
 
         // Add data
         // await addContinents();
