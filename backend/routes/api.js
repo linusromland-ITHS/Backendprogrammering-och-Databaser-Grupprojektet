@@ -3,6 +3,7 @@ const router = express.Router();
 
 router.use('/currency', require('./currency.routes'));
 router.use('/language', require('./language.routes'));
+router.use('/religion', require('./religion.routes'))
 
 router.get('/', async (req, res) => {
     res.json({

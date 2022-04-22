@@ -10,6 +10,7 @@ const Religion = sequelize.define('religion', {
     religionName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
     },
 });
 
