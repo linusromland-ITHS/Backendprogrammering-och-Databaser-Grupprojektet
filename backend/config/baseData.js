@@ -11,10 +11,14 @@ const continentsJSON = [
 ];
 
 exports.addContinents = async () => {
-    await Continent.bulkCreate(continentsJSON);
-};
+    // Get all data from continents table
+    const continents = await Continent.findAll();
 
-// return lenght of continentsJSON
-exports.getContinents = () => {
-    return continentsJSON.length;
+    // Extract only continent names
+    const continentNames = continents.map((continent) => continent.continentName);
+
+    if (continentsJSON.length !== continentNames.length) {
+        // Add continents
+        await Continent.bulkCreate(continentsJSON);
+    }
 };

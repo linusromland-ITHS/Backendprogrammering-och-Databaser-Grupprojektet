@@ -4,7 +4,7 @@ require('dotenv').config();
 //Dependencies
 const express = require('express');
 const { sequelize, createDatabase } = require('./config/mysqlConnection');
-const baseData = require('./config/baseData');
+const { addContinents } = require('./config/baseData');
 
 //Variable declaration
 const app = express();
@@ -42,16 +42,7 @@ const init = async () => {
         // Sync models
         await sequelize.sync({ alter: true });
 
-        // Get all data from continents table
-        const continents = await ContinentModel.findAll();
-
-        // Extract only continent names
-        const continentNames = continents.map((continent) => continent.continentName);
-
-        if (baseData.getContinents() !== continentNames.length) {
-            // Add continents
-            await baseData.addContinents();
-        }
+        await addContinents();
 
         app.listen(port, () => {
             console.log(`Server is running on port ${port}\nAccess it on http://localhost:${port}`);
