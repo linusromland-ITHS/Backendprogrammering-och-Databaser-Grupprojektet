@@ -100,6 +100,13 @@ router.put('/', async (req, res) => {
             data: updatedLanguage,
         });
     } catch (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            return res.status(400).json({
+                success: false,
+                error: `The language ${req.body.languageName} already exists.`,
+            });
+        }
+
         res.status(500).json({
             success: false,
             error: error.message,
