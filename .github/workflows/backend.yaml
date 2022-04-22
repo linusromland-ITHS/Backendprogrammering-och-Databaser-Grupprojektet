@@ -4,7 +4,6 @@ defaults:
 
 name: Check code with ESLint and Prettier on Backend
 on:
-    pull_request:
     push:
 jobs:
     lint:
