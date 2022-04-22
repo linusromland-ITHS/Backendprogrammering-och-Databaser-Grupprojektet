@@ -3,6 +3,9 @@ const router = express.Router();
 
 const ReligionModel = require('../models/Religion');
 
+/**
+ * @api {get} /api/religion/ Get all religions
+ */
 router.get('/', async (req, res) => {
     const allReligions = await ReligionModel.findAll({});
     res.json({
@@ -10,6 +13,9 @@ router.get('/', async (req, res) => {
     });
 });
 
+/**
+ * @api {post} /api/religion/ Create a new religion
+ */
 router.post('/', async (req, res) => {
     const { name } = req.body;
     if (!name && name.length < 1) {
