@@ -13,6 +13,7 @@ const Country = sequelize.define('country', {
     countryName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     countryPopulation: {
         type: DataTypes.INTEGER,
