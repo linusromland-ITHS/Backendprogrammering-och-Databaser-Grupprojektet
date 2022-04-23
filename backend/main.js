@@ -3,7 +3,8 @@ require('dotenv').config();
 
 //Dependencies
 const express = require('express');
-const { sequelize, createDatabase } = require('./config/mysqlConnection');
+const { sequelize, connectToMySQL } = require('./config/mysqlConnection');
+const { connectToMongoDB } = require('./config/mongoConnection');
 const { addContinents } = require('./config/baseData');
 
 //Variable declaration
@@ -19,17 +20,20 @@ const CountryModel = require('./models/Country');
 app.use(express.json());
 app.use('/api', require('./routes/api.js'));
 
-const init = async () => {
+(async () => {
     try {
-        // Create db if it doesn't exist
-        await createDatabase();
+        // Connects to MySQL
+        await connectToMySQL();
+
+        // Connects to MongoDB
+        await connectToMongoDB();
 
         // Validate connection
         await sequelize.authenticate();
 
         console.log('Connection has been established successfully to MySQL.');
 
-        // // Establish relations
+        // Establish relations
         CountryModel.belongsToMany(ReligionModel, { through: 'country_religion' });
         ReligionModel.belongsToMany(CountryModel, { through: 'country_religion' });
 
@@ -50,6 +54,4 @@ const init = async () => {
     } catch (error) {
         console.log(error);
     }
-};
-
-init();
+})();
