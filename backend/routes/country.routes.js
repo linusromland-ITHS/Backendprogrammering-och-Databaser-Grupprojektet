@@ -89,7 +89,6 @@ router.post('/', async (req, res) => {
  * @api {delete} /api/country Delete a country
  */
 router.delete('/', async (req, res) => {
-    console.log(req.body.countryID);
     if (!req.body.countryID) {
         return res.status(400).json({
             success: false,
