@@ -114,4 +114,40 @@ router.put('/', async (req, res) => {
     }
 });
 
+/**
+ * @api {delete} /api/language/ Delete a language
+ */
+router.delete('/', async (req, res) => {
+    if (!req.body.languageID) {
+        return res.status(400).json({
+            success: false,
+            error: 'Please provide a language ID',
+        });
+    }
+
+    try {
+        // Delete country from database
+        const language = await LanguageModel.destroy({
+            where: { languageID: req.body.languageID },
+        });
+
+        if (language === 0) {
+            return res.status(404).json({
+                success: false,
+                error: 'Language not found',
+            });
+        } else {
+            return res.status(200).json({
+                success: true,
+                error: 'Language deleted',
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
 module.exports = router;
