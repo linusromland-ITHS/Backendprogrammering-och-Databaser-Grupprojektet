@@ -85,4 +85,40 @@ router.post('/', async (req, res) => {
     }
 });
 
+/**
+ * @api {delete} /api/country Delete a country
+ */
+router.delete('/', async (req, res) => {
+    if (!req.body.countryID) {
+        return res.status(400).json({
+            success: false,
+            error: 'Please provide a country ID',
+        });
+    }
+
+    try {
+        // Delete country from database
+        const country = await CountryModel.destroy({
+            where: { countryID: req.body.countryID },
+        });
+
+        if (country === 0) {
+            return res.status(404).json({
+                success: false,
+                error: 'Country not found',
+            });
+        } else {
+            return res.status(200).json({
+                success: true,
+                error: 'Country deleted',
+            });
+        }
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
 module.exports = router;
