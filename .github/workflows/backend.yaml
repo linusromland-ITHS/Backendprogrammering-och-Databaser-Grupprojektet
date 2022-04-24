@@ -2,11 +2,11 @@ defaults:
     run:
         working-directory: ./backend
 
-name: Check code with ESLint and Prettier on Backend
+name: ESLint and Prettier CI
 on:
     push:
 jobs:
-    lint:
+    beckend-check:
         runs-on: ubuntu-latest
         steps:
             - name: Checks out the latest Git commit

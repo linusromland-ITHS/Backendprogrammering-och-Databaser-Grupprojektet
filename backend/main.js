@@ -3,6 +3,8 @@ require('dotenv').config();
 
 //Dependencies
 const express = require('express');
+const history = require('connect-history-api-fallback');
+const path = require('path');
 const { sequelize, connectToMySQL } = require('./config/mysqlConnection');
 const { connectToMongoDB } = require('./config/mongoConnection');
 const { addContinents } = require('./config/baseData');
@@ -17,8 +19,15 @@ const ContinentModel = require('./models/Continent');
 const LanguageModel = require('./models/Language');
 const CountryModel = require('./models/Country');
 
+// Middleware
 app.use(express.json());
+
+// Routes
 app.use('/api', require('./routes/api.js'));
+
+// Serve static files from the Vue app
+app.use(history());
+app.use('/', express.static(path.join(path.resolve(), '../frontend/dist')));
 
 (async () => {
     try {
