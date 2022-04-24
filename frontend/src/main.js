@@ -4,6 +4,7 @@ import { createApp } from 'vue';
 //Internal Dependencies import:
 import App from './App.vue';
 import router from './router';
+import './styles/tailwind.css';
 
 //Creats the Vue app
 const app = createApp(App);
