@@ -80,6 +80,78 @@ router.post('/', async (req, res) => {
 });
 
 /**
+ * @api {put} /api/planets/ Edit a planet
+ */
+router.put('/', async (req, res) => {
+    const {
+        id,
+        name,
+        surfaceAreaInSquareKm,
+        distanceFromSunInKm,
+        moons,
+        averageTemperatureInCelsius,
+        radiusInKm,
+        massInKg,
+        orbitalPeriodInDays,
+    } = req.body;
+
+    if (!id) {
+        return res.status(422).json({
+            success: false,
+            error: 'Please include planet id',
+        });
+    }
+
+    if (
+        !name &&
+        !surfaceAreaInSquareKm &&
+        !distanceFromSunInKm &&
+        !moons &&
+        !averageTemperatureInCelsius &&
+        !radiusInKm &&
+        !massInKg &&
+        !orbitalPeriodInDays
+    ) {
+        return res.status(422).json({
+            success: false,
+            error: 'Please include a field to update',
+        });
+    }
+
+    try {
+        let planet = await PlanetModel.findById(id);
+
+        if (!planet) {
+            return res.status(404).json({
+                success: false,
+                error: `Planet with id ${id} could not be found`,
+            });
+        }
+
+        if (name) planet.name = name;
+        if (surfaceAreaInSquareKm) planet.surfaceAreaInSquareKm = surfaceAreaInSquareKm;
+        if (distanceFromSunInKm) planet.distanceFromSunInKm = distanceFromSunInKm;
+        if (moons) planet.moons = moons;
+        if (averageTemperatureInCelsius) planet.averageTemperatureInCelsius = averageTemperatureInCelsius;
+        if (radiusInKm) planet.radiusInKm = radiusInKm;
+        if (massInKg) planet.massInKg = massInKg;
+        if (orbitalPeriodInDays) planet.orbitalPeriodInDays = orbitalPeriodInDays;
+
+        planet = await planet.save();
+
+        res.status(200).json({
+            success: true,
+            data: planet,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
+/**
  * @api {delete} /api/planets/ Delete a planet
  */
 router.delete('/', async (req, res) => {
