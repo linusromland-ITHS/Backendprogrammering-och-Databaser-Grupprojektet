@@ -141,11 +141,14 @@ router.put('/', async (req, res) => {
         !req.body.countryDomain &&
         !req.body.countryFlagURL &&
         !req.body.countryCapitalID &&
-        !req.body.countryCurrencyID
+        !req.body.countryCurrencyID &&
+        !req.body.countryReligionIDs &&
+        !req.body.countryLanguageIDs &&
+        !req.body.countryContinentIDs
     ) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a valid countryName, countryPopulation, countrySize, countryDescription, countryDomain, countryFlagURL, countryCapitalID or countryCurrencyID',
+            error: 'Please provide a valid countryName, countryPopulation, countrySize, countryDescription, countryDomain, countryFlagURL, countryCapitalID, countryCurrencyID, countryReligionIDs, countryLanguageIDs or countryContinentIDs',
         });
     }
 
@@ -160,6 +163,46 @@ router.put('/', async (req, res) => {
             countryCapitalID: req.body.countryCapitalID,
             countryCurrencyID: req.body.countryCurrencyID,
         });
+
+        if (req.body.countryReligionIDs) {
+            // Remove country's religions (M:N relationship)
+            const religions = await updatedCountry.getReligions();
+            updatedCountry.removeReligion(religions);
+
+            // Add country's religions (M:N relationship)
+            await updatedCountry.addReligion(
+                await ReligionModel.findAll({
+                    where: { religionID: req.body.countryReligionIDs },
+                }),
+            );
+        }
+
+        if (req.body.countryLanguageIDs) {
+            // Remove country's languages (M:N relationship)
+            const languages = await updatedCountry.getLanguages();
+            updatedCountry.removeLanguage(languages);
+
+            // Add country's languages (M:N relationship)
+            await updatedCountry.addLanguage(
+                await LanguageModel.findAll({
+                    where: { languageID: req.body.countryLanguageIDs },
+                }),
+            );
+        }
+
+        if (req.body.countryContinentIDs) {
+            // Remove country's continents (M:N relationship)
+            const continents = await updatedCountry.getContinents();
+            updatedCountry.removeContinent(continents);
+
+            // Add country's continents (M:N relationship)
+            await updatedCountry.addContinent(
+                await ContinentModel.findAll({
+                    where: { continentID: req.body.countryContinentIDs },
+                }),
+            );
+        }
+
         res.json({
             success: true,
             error: '',
