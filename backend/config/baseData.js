@@ -155,11 +155,9 @@ const addContinents = async () => {
     // Get all data from continents table
     const continents = await Continent.findAll();
 
-    // Extract only continent names
-    const continentNames = continents.map((continent) => continent.continentName);
-
-    if (continentsJSON.length > continentNames.length) {
-        // Add continents
+    // Check if there is any data in the table
+    if (continents.length === 0) {
+        // If there is no data, then add data
         await Continent.bulkCreate(continentsJSON);
     }
 };
@@ -168,11 +166,9 @@ const addCurrencies = async () => {
     // Get all data from currencies table
     const currencies = await Currency.findAll();
 
-    // Extract only currency names
-    const currencyNames = currencies.map((currency) => currency.currencyName);
-
-    if (currenciesJSON.length > currencyNames.length) {
-        // Add currencies
+    // Check if there is any data in the table
+    if (currencies.length === 0) {
+        // If there is no data, then add data
         await Currency.bulkCreate(currenciesJSON);
     }
 };
@@ -181,11 +177,9 @@ const addLanguages = async () => {
     // Get all data from languages table
     const languages = await Language.findAll();
 
-    // Extract only language names
-    const languageNames = languages.map((language) => language.languageName);
-
-    if (LanguageJSON.length > languageNames.length) {
-        // Add languages
+    // Check if there is any data in the table
+    if (languages.length === 0) {
+        // If there is no data, then add data
         await Language.bulkCreate(LanguageJSON);
     }
 };
@@ -194,11 +188,9 @@ const addReligions = async () => {
     // Get all data from religions table
     const religions = await Religion.findAll();
 
-    // Extract only religion names
-    const religionNames = religions.map((religion) => religion.religionName);
-
-    if (religionJSON.length > religionNames.length) {
-        // Add religions
+    // Check if there is any data in the table
+    if (religions.length === 0) {
+        // If there is no data, then add data
         await Religion.bulkCreate(religionJSON);
     }
 };
@@ -207,11 +199,9 @@ const addCities = async () => {
     // Get all data from cities table
     const cities = await City.findAll();
 
-    // Extract only city names
-    const cityNames = cities.map((city) => city.cityName);
-
-    if (cityJSON.length > cityNames.length) {
-        // Add cities
+    // Check if there is any data in the table
+    if (cities.length === 0) {
+        // If there is no data, then add data
         await City.bulkCreate(cityJSON);
     }
 };
@@ -219,7 +209,7 @@ const addCities = async () => {
 const addCountries = async () => {
     const countryNames = await Country.findAll();
 
-    if (countryJSON.length > countryNames.length) {
+    if (countryNames.length === 0) {
         // Add countries
         countryJSON.forEach(async (Element) => {
             const country = await Country.create({
