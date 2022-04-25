@@ -203,7 +203,7 @@ router.put('/', async (req, res) => {
             );
         }
 
-        res.json({
+        res.status(200).json({
             success: true,
             error: '',
             data: updatedCountry,
