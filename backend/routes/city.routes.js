@@ -80,4 +80,42 @@ router.put('/', async (req, res) => {
     }
 });
 
+/**
+ * @api {delete} /api/city/ Delete a city
+ */
+router.delete('/', async (req, res) => {
+    const { cityID } = req.body;
+
+    if (!cityID) {
+        return res.status(400).json({
+            success: false,
+            error: 'Please provide a city id.',
+        });
+    }
+
+    try {
+        const deletedCity = await CityModel.destroy({ where: { cityID } });
+
+        if (!deletedCity) {
+            return res.status(404).json({
+                success: false,
+                error: `City with id ${cityID} could not be found`,
+            });
+        }
+
+        res.json({ success: true, error: '', data: deletedCity });
+    } catch (error) {
+        if (error.name === 'SequelizeForeignKeyConstraintError') {
+            return res.status(400).json({
+                success: false,
+                error: `City with id ${cityID} could not be deleted because it is being used as a capital in a country.`,
+            });
+        }
+        res.status(500).json({
+            success: false,
+            error: error.message || `Could not delete city with id ${cityID}`,
+        });
+    }
+});
+
 module.exports = router;
