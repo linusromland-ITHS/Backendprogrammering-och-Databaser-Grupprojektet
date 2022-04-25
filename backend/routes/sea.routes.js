@@ -40,9 +40,6 @@ router.post('/', async (req, res) => {
 
         res.status(201).json({ success: true, error: '', data: savedSea });
     } catch (error) {
-        console.log('error', error.message.includes('duplicate'));
-        console.log('error.name', error.name);
-
         if (error.message.includes('duplicate')) {
             return res.status(400).json({
                 success: false,
