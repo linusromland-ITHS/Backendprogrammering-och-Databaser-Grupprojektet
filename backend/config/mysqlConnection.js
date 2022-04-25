@@ -21,6 +21,7 @@ exports.connectToMySQL = () => {
 
         // Run create database statement
         connection.query(`CREATE DATABASE IF NOT EXISTS ${MYSQLDB}`, () => {
+            // eslint-disable-next-line
             console.log(`Database "${MYSQLDB}" was created successfully.`);
             resolve();
         });

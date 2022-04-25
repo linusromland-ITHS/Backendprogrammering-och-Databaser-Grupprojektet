@@ -39,7 +39,7 @@ app.use('/', express.static(path.join(path.resolve(), '../frontend/dist')));
 
         // Validate connection
         await sequelize.authenticate();
-
+        // eslint-disable-next-line
         console.log('Connection has been established successfully to MySQL.');
 
         // Establish relations
@@ -58,9 +58,11 @@ app.use('/', express.static(path.join(path.resolve(), '../frontend/dist')));
         await addContinents();
 
         app.listen(port, () => {
+            // eslint-disable-next-line
             console.log(`Server is running on port ${port}\nAccess it on http://localhost:${port}`);
         });
     } catch (error) {
+        // eslint-disable-next-line
         console.log(error);
     }
 })();

@@ -19,12 +19,14 @@ exports.connectToMongoDB = async () => {
     const db = mongoose.connection;
     db.on(
         'error',
+        // eslint-disable-next-line
         console.error.bind(
             console,
             'Error while connecting to MongoDB using the following mongoURL: "' + mongoURI + '"',
         ),
     );
     db.once('open', function () {
+        // eslint-disable-next-line
         console.log('Connection has been established successfully to MongoDB.');
     });
 };
