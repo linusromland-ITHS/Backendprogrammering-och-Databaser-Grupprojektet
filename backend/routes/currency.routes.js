@@ -83,7 +83,7 @@ router.put('/', async (req, res) => {
 });
 
 /**
- * @api {delete} /api/city/ Delete a city
+ * @api {delete} /api/currency/ Delete a currency
  */
 router.delete('/', async (req, res) => {
     const { currencyID } = req.body;
