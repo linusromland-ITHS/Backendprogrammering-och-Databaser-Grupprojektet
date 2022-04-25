@@ -99,12 +99,11 @@ router.delete('/', async (req, res) => {
             });
         }
 
-
-        res.json({ success: true, error: '', data: deletedReligionID });
+        res.json({ success: true, error: 'Religion deleted' });
     } catch (error) {
         res.status(500).json({
             success: false,
-            error: error.message || `Could not delete religion with id ${religionID}`
+            error: error.message || `Could not delete religion with id ${religionID}`,
         });
     }
 });
