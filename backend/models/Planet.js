@@ -15,8 +15,8 @@ const Planet = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    numberOfMoons: {
-        type: Number,
+    moons: {
+        type: Array,
         required: true,
     },
     averageTemperatureInCelsius: {
