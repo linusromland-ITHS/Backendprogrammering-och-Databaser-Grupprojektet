@@ -51,4 +51,41 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/', async (req, res) => {
+    const { seaID, name, sizeInSquareKm, averageDepthInMeters, species } = req.body;
+
+    if (!seaID) {
+        return res.status(422).json({ success: false, error: 'Please include seaID' });
+    }
+
+    if (!name && !sizeInSquareKm && !averageDepthInMeters && !species) {
+        return res.status(422).json({ success: false, error: 'Please include a field to update' });
+    }
+
+    try {
+        const sea = await SeaModel.findById(seaID);
+
+        if (!sea) {
+            return res.status(404).json({
+                success: false,
+                error: `Sea with id ${seaID} could not be found`,
+            });
+        }
+
+        if (name) sea.name = name;
+        if (sizeInSquareKm) sea.sizeInSquareKm = sizeInSquareKm;
+        if (averageDepthInMeters) sea.averageDepthInMeters = averageDepthInMeters;
+        if (species) sea.species = species;
+
+        const savedSea = await sea.save();
+
+        res.status(200).json({ success: true, error: '', data: savedSea });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
 module.exports = router;
