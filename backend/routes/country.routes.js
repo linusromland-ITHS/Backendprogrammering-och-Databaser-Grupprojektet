@@ -121,4 +121,63 @@ router.delete('/', async (req, res) => {
     }
 });
 
+/**
+ * @api {put} /api/country/ Edits the country with the specified id
+ */
+router.put('/', async (req, res) => {
+    const country = await CountryModel.findByPk(req.body.countryID);
+    if (!country) {
+        return res.status(404).json({
+            success: false,
+            error: 'Country not found.',
+        });
+    }
+
+    if (
+        !req.body.countryName &&
+        !req.body.countryPopulation &&
+        !req.body.countrySize &&
+        !req.body.countryDescription &&
+        !req.body.countryDomain &&
+        !req.body.countryFlagURL &&
+        !req.body.countryCapitalID &&
+        !req.body.countryCurrencyID
+    ) {
+        return res.status(400).json({
+            success: false,
+            error: 'Please provide a valid countryName, countryPopulation, countrySize, countryDescription, countryDomain, countryFlagURL, countryCapitalID or countryCurrencyID',
+        });
+    }
+
+    try {
+        const updatedCountry = await country.update({
+            countryName: req.body.countryName,
+            countryPopulation: req.body.countryPopulation,
+            countrySize: req.body.countrySize,
+            countryDescription: req.body.countryDescription,
+            countryDomain: req.body.countryDomain,
+            countryFlagURL: req.body.countryFlagURL,
+            countryCapitalID: req.body.countryCapitalID,
+            countryCurrencyID: req.body.countryCurrencyID,
+        });
+        res.json({
+            success: true,
+            error: '',
+            data: updatedCountry,
+        });
+    } catch (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            return res.status(400).json({
+                success: false,
+                error: `The country ${req.body.countryName} already exists.`,
+            });
+        }
+
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
 module.exports = router;
