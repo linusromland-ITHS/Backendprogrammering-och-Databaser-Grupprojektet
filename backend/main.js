@@ -7,7 +7,7 @@ const history = require('connect-history-api-fallback');
 const path = require('path');
 const { sequelize, connectToMySQL } = require('./config/mysqlConnection');
 const { connectToMongoDB } = require('./config/mongoConnection');
-const { addContinents } = require('./config/baseData');
+const { createBaseData } = require('./config/baseData');
 
 //Variable declaration
 const app = express();
@@ -55,7 +55,7 @@ app.use('/', express.static(path.join(path.resolve(), '../frontend/dist')));
         // Sync models
         await sequelize.sync({ alter: true });
 
-        await addContinents();
+        await createBaseData();
 
         app.listen(port, () => {
             // eslint-disable-next-line
