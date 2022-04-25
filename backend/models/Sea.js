@@ -5,6 +5,7 @@ const Sea = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        unique: true
     },
     sizeInSquareKm: {
         type: Number,
@@ -20,4 +21,4 @@ const Sea = new mongoose.Schema({
     },
 });
 
-module.exports = Sea;
+module.exports = mongoose.model('sea', Sea);

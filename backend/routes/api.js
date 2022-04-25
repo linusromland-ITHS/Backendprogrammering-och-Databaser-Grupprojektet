@@ -6,6 +6,7 @@ router.use('/country', require('./country.routes'));
 router.use('/currency', require('./currency.routes'));
 router.use('/language', require('./language.routes'));
 router.use('/religion', require('./religion.routes'));
+router.use('/sea', require('./sea.routes'));
 
 router.get('/', async (req, res) => {
     res.json({
