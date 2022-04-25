@@ -88,4 +88,27 @@ router.put('/', async (req, res) => {
     }
 });
 
+router.delete('/', async (req, res) => {
+    const { seaID } = req.body;
+
+    if (!seaID) {
+        return res.status(422).json({
+            success: false,
+            error: 'Please include seaID',
+        });
+    }
+
+    try {
+        const deletedSea = await SeaModel.findByIdAndDelete(seaID);
+
+        if (!deletedSea) {
+            return res.status(404).json({ success: false, error: `Sea with id ${seaID} not found` });
+        }
+
+        res.status(200).json({ success: true, error: '' });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 module.exports = router;
