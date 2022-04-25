@@ -4,7 +4,7 @@ require('dotenv').config();
 //Dependencies
 const express = require('express');
 const { sequelize, createDatabase } = require('./config/mysqlConnection');
-const { addContinents } = require('./config/baseData');
+const { createBaseData } = require('./config/baseData');
 
 //Variable declaration
 const app = express();
@@ -42,7 +42,7 @@ const init = async () => {
         // Sync models
         await sequelize.sync({ alter: true });
 
-        await addContinents();
+        await createBaseData();
 
         app.listen(port, () => {
             console.log(`Server is running on port ${port}\nAccess it on http://localhost:${port}`);
