@@ -60,7 +60,7 @@ router.put('/', async (req, res) => {
         const foundReligion = await ReligionModel.findOne({ where: { religionID } });
 
         if (!foundReligion) {
-            res.status(404).json({
+            return res.status(404).json({
                 success: false,
                 error: `Religion with id ${religionID} could not be found`,
             });
@@ -79,6 +79,32 @@ router.put('/', async (req, res) => {
         res.status(500).json({
             success: false,
             error: error.message,
+        });
+    }
+});
+
+/**
+ * @api {delete} /api/religion/ Delete a religion
+ */
+router.delete('/', async (req, res) => {
+    const { religionID } = req.body;
+
+    try {
+        const deletedReligionID = await ReligionModel.destroy({ where: { religionID } });
+
+        if (!deletedReligionID) {
+            return res.status(404).json({
+                success: false,
+                error: `Religion with id ${religionID} could not be found`,
+            });
+        }
+
+
+        res.json({ success: true, error: '', data: deletedReligionID });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message || `Could not delete religion with id ${religionID}`
         });
     }
 });
