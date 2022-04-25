@@ -3,6 +3,9 @@ const router = express.Router();
 
 const PlanetModel = require('../models/Planet');
 
+/**
+ * @api {get} /api/planets/ Get all planets
+ */
 router.get('/', async (req, res) => {
     try {
         const allPlanets = await PlanetModel.find();
@@ -18,6 +21,9 @@ router.get('/', async (req, res) => {
     }
 });
 
+/**
+ * @api {post} /api/planets/ Create a planet
+ */
 router.post('/', async (req, res) => {
     const {
         name,
@@ -70,6 +76,41 @@ router.post('/', async (req, res) => {
         }
 
         res.status(500).json({ error: error.message });
+    }
+});
+
+/**
+ * @api {delete} /api/planets/ Delete a planet
+ */
+router.delete('/', async (req, res) => {
+    const { planetID } = req.body;
+
+    if (!planetID) {
+        return res.status(422).json({
+            success: false,
+            error: 'Please include planetID in the request body',
+        });
+    }
+
+    try {
+        const planet = await PlanetModel.findByIdAndDelete(planetID);
+
+        if (!planet) {
+            return res.status(404).json({
+                success: false,
+                error: `Planet with id ${planetID} not found`,
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: planet,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
     }
 });
 
