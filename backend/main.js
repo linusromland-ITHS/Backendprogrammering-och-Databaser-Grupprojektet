@@ -3,7 +3,10 @@ require('dotenv').config();
 
 //Dependencies
 const express = require('express');
-const { sequelize, createDatabase } = require('./config/mysqlConnection');
+const history = require('connect-history-api-fallback');
+const path = require('path');
+const { sequelize, connectToMySQL } = require('./config/mysqlConnection');
+const { connectToMongoDB } = require('./config/mongoConnection');
 const { createBaseData } = require('./config/baseData');
 
 //Variable declaration
@@ -16,20 +19,30 @@ const ContinentModel = require('./models/Continent');
 const LanguageModel = require('./models/Language');
 const CountryModel = require('./models/Country');
 
+// Middleware
 app.use(express.json());
+
+// Routes
 app.use('/api', require('./routes/api.js'));
 
-const init = async () => {
+// Serve static files from the Vue app
+app.use(history());
+app.use('/', express.static(path.join(path.resolve(), '../frontend/dist')));
+
+(async () => {
     try {
-        // Create db if it doesn't exist
-        await createDatabase();
+        // Connects to MySQL
+        await connectToMySQL();
+
+        // Connects to MongoDB
+        await connectToMongoDB();
 
         // Validate connection
         await sequelize.authenticate();
 
         console.log('Connection has been established successfully to MySQL.');
 
-        // // Establish relations
+        // Establish relations
         CountryModel.belongsToMany(ReligionModel, { through: 'country_religion' });
         ReligionModel.belongsToMany(CountryModel, { through: 'country_religion' });
 
@@ -50,6 +63,4 @@ const init = async () => {
     } catch (error) {
         console.log(error);
     }
-};
-
-init();
+})();

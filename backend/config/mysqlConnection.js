@@ -10,7 +10,7 @@ const MYSQLDB = process.env.MYSQLDB || 'testDB';
 
 exports.sequelize = new Sequelize(`mysql://${MYSQLUSER}:${MYSQLPASS}@${MYSQLHOST}:3306/${MYSQLDB}`, { logging: false });
 
-exports.createDatabase = () => {
+exports.connectToMySQL = () => {
     return new Promise((resolve) => {
         // Open the connection to MySQL server
         const connection = mysql.createConnection({
