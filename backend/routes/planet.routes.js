@@ -155,9 +155,9 @@ router.put('/', async (req, res) => {
  * @api {delete} /api/planets/ Delete a planet
  */
 router.delete('/', async (req, res) => {
-    const { planetID } = req.body;
+    const { id } = req.body;
 
-    if (!planetID) {
+    if (!id) {
         return res.status(422).json({
             success: false,
             error: 'Please include planetID in the request body',
@@ -165,12 +165,12 @@ router.delete('/', async (req, res) => {
     }
 
     try {
-        const planet = await PlanetModel.findByIdAndDelete(planetID);
+        const planet = await PlanetModel.findByIdAndDelete(id);
 
         if (!planet) {
             return res.status(404).json({
                 success: false,
-                error: `Planet with id ${planetID} not found`,
+                error: `Planet with id ${id} not found`,
             });
         }
 
