@@ -7,8 +7,7 @@ ESLint is used to enforce the style guide.
 
 ### Casing
 
--   SQL uses snake_case.
--   JS uses camelCase.
+-   camelCase.
 
 ## Language
 
@@ -18,9 +17,9 @@ English is the default language for all comments, variables, and code.
 
 Follow the following structure for .vue files:
 
-```
-<script></script>
+```vue
 <template></template>
+<script></script>
 <style></style>
 ```
 
