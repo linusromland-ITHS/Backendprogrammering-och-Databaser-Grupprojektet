@@ -158,7 +158,7 @@ const addContinents = async () => {
     // Extract only continent names
     const continentNames = continents.map((continent) => continent.continentName);
 
-    if (continentsJSON.length !== continentNames.length) {
+    if (continentsJSON.length > continentNames.length) {
         // Add continents
         await Continent.bulkCreate(continentsJSON);
     }
@@ -171,7 +171,7 @@ const addCurrencies = async () => {
     // Extract only currency names
     const currencyNames = currencies.map((currency) => currency.currencyName);
 
-    if (currenciesJSON.length !== currencyNames.length) {
+    if (currenciesJSON.length > currencyNames.length) {
         // Add currencies
         await Currency.bulkCreate(currenciesJSON);
     }
@@ -184,7 +184,7 @@ const addLanguages = async () => {
     // Extract only language names
     const languageNames = languages.map((language) => language.languageName);
 
-    if (LanguageJSON.length !== languageNames.length) {
+    if (LanguageJSON.length > languageNames.length) {
         // Add languages
         await Language.bulkCreate(LanguageJSON);
     }
@@ -197,7 +197,7 @@ const addReligions = async () => {
     // Extract only religion names
     const religionNames = religions.map((religion) => religion.religionName);
 
-    if (religionJSON.length !== religionNames.length) {
+    if (religionJSON.length > religionNames.length) {
         // Add religions
         await Religion.bulkCreate(religionJSON);
     }
@@ -210,44 +210,49 @@ const addCities = async () => {
     // Extract only city names
     const cityNames = cities.map((city) => city.cityName);
 
-    if (cityJSON.length !== cityNames.length) {
+    if (cityJSON.length > cityNames.length) {
         // Add cities
         await City.bulkCreate(cityJSON);
     }
 };
 
 const addCountries = async () => {
-    countryJSON.forEach(async (Element) => {
-        const country = await Country.create({
-            countryName: Element.countryName,
-            countryPopulation: Element.countryPopulation,
-            countrySize: Element.countrySize,
-            countryDescription: Element.countryDescription,
-            countryDomain: Element.countryDomain,
-            countryFlagURL: Element.countryFlagURL,
-            countryCapitalID: Element.countryCapitalID,
-            countryCurrencyID: Element.countryCurrencyID,
+    const countryNames = await Country.findAll();
+
+    if (countryJSON.length > countryNames.length) {
+        // Add countries
+        countryJSON.forEach(async (Element) => {
+            const country = await Country.create({
+                countryName: Element.countryName,
+                countryPopulation: Element.countryPopulation,
+                countrySize: Element.countrySize,
+                countryDescription: Element.countryDescription,
+                countryDomain: Element.countryDomain,
+                countryFlagURL: Element.countryFlagURL,
+                countryCapitalID: Element.countryCapitalID,
+                countryCurrencyID: Element.countryCurrencyID,
+            });
+
+            // Add country to religion
+            await country.addReligion(
+                await Religion.findAll({
+                    where: { religionID: Element.religionTMP },
+                }),
+            );
+
+            // Add country to language
+            await country.addLanguage(
+                await Language.findAll({
+                    where: { languageID: Element.languageTMP },
+                }),
+            );
+
+            // Add country to continent
+            await country.addContinent(
+                await Continent.findAll({
+                    where: { continentID: Element.continentTMP },
+                }),
+            );
         });
-
-        // Add country to religion
-        await country.addReligion(
-            await Religion.findAll({
-                where: { religionID: Element.religionTMP },
-            }),
-        );
-
-        // Add country to language
-        await country.addLanguage(
-            await Language.findAll({
-                where: { languageID: Element.languageTMP },
-            }),
-        );
-
-        // Add country to continent
-        await country.addContinent(
-            await Continent.findAll({
-                where: { continentID: Element.continentTMP },
-            }),
-        );
-    });
+    }
 };
