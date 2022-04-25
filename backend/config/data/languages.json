@@ -1,0 +1,32 @@
+[
+    {
+        "languageName": "Standard Chinese",
+        "languageNativeSpeakers": 929000000,
+        "languageTotalSpeakers": 1118000000
+    },
+    {
+        "languageName": "Hindi",
+        "languageNativeSpeakers": 343900000,
+        "languageTotalSpeakers": 602200000
+    },
+    {
+        "languageName": "English",
+        "languageNativeSpeakers": 372900000,
+        "languageTotalSpeakers": 1452000000
+    },
+    {
+        "languageName": "Indonesian",
+        "languageNativeSpeakers": 43600000,
+        "languageTotalSpeakers": 199000000
+    },
+    {
+        "languageName": "Punjabi",
+        "languageNativeSpeakers": 12000000,
+        "languageTotalSpeakers": 32000000
+    },
+    {
+        "languageName": "Swedish",
+        "languageNativeSpeakers": 9000000,
+        "languageTotalSpeakers": 20000000
+    }
+]

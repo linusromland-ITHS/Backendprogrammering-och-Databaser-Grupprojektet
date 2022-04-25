@@ -1,0 +1,14 @@
+[
+    { "currencyName": "Renminbi", "currencySymbol": "CNY" },
+    { "currencyName": "Indian rupee", "currencySymbol": "INR" },
+    { "currencyName": "US dollar", "currencySymbol": "USD" },
+    { "currencyName": "Indonesian rupiah", "currencySymbol": "IDR" },
+    { "currencyName": "Pakistani rupee", "currencySymbol": "PKR" },
+    { "currencyName": "Swedish Crown", "currencySymbol": "SEK" },
+    { "currencyName": "Mexican peso", "currencySymbol": "MXN" },
+    { "currencyName": "Brazilian real", "currencySymbol": "BRL" },
+    { "currencyName": "Russian ruble", "currencySymbol": "RUB" },
+    { "currencyName": "Japanese yen", "currencySymbol": "JPY" },
+    { "currencyName": "South Korean won", "currencySymbol": "KRW" },
+    { "currencyName": "Turkish lira", "currencySymbol": "TRY" }
+]

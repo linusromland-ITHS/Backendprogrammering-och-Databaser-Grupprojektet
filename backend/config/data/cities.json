@@ -1,0 +1,26 @@
+[
+    {
+        "cityName": "Beijing",
+        "cityPopulation": "210000000"
+    },
+    {
+        "cityName": "New Delhi",
+        "cityPopulation": "160000000"
+    },
+    {
+        "cityName": "New York",
+        "cityPopulation": "80000000"
+    },
+    {
+        "cityName": "Jakarta",
+        "cityPopulation": "20000000"
+    },
+    {
+        "cityName": "Islamabad",
+        "cityPopulation": "12000000"
+    },
+    {
+        "cityName": "Stockholm",
+        "cityPopulation": "8000000"
+    }
+]
