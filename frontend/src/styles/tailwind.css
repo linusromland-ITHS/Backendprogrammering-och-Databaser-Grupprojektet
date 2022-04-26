@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-sea {
+	@apply bg-sky-500;
+}
+
+.bg-land {
+	@apply bg-emerald-500;
+}
+
+.bg-space {
+	@apply bg-purple-500;
+}
