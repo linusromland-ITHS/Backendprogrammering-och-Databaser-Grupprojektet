@@ -9,7 +9,7 @@ const CityModel = require('../models/City');
 router.post('/', async (req, res) => {
     const { name, population } = req.body;
 
-    if ((!name && name.length < 1) || !population) {
+    if (!name || !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid city name and city population.',
@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
     const { id, name, population } = req.body;
 
-    if (!name && !name.length < 1 && !population) {
+    if (!name && !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a name and/or population.',
