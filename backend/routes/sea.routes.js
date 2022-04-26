@@ -52,10 +52,10 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-    const { seaID, name, sizeInSquareKm, averageDepthInMeters, species } = req.body;
+    const { id, name, sizeInSquareKm, averageDepthInMeters, species } = req.body;
 
-    if (!seaID) {
-        return res.status(422).json({ success: false, error: 'Please include seaID' });
+    if (!id) {
+        return res.status(422).json({ success: false, error: 'Please include id' });
     }
 
     if (!name && !sizeInSquareKm && !averageDepthInMeters && !species) {
@@ -63,12 +63,12 @@ router.put('/', async (req, res) => {
     }
 
     try {
-        const sea = await SeaModel.findById(seaID);
+        const sea = await SeaModel.findById(id);
 
         if (!sea) {
             return res.status(404).json({
                 success: false,
-                error: `Sea with id ${seaID} could not be found`,
+                error: `Sea with id ${id} could not be found`,
             });
         }
 
@@ -89,20 +89,20 @@ router.put('/', async (req, res) => {
 });
 
 router.delete('/', async (req, res) => {
-    const { seaID } = req.body;
+    const { id } = req.body;
 
-    if (!seaID) {
+    if (!id) {
         return res.status(422).json({
             success: false,
-            error: 'Please include seaID',
+            error: 'Please include id',
         });
     }
 
     try {
-        const deletedSea = await SeaModel.findByIdAndDelete(seaID);
+        const deletedSea = await SeaModel.findByIdAndDelete(id);
 
         if (!deletedSea) {
-            return res.status(404).json({ success: false, error: `Sea with id ${seaID} not found` });
+            return res.status(404).json({ success: false, error: `Sea with id ${id} not found` });
         }
 
         res.status(200).json({ success: true, error: '' });

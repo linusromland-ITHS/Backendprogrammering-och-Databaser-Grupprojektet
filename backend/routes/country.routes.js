@@ -10,21 +10,35 @@ const ReligionModel = require('../models/Religion');
  * @api {post} /api/country Create a new country
  */
 router.post('/', async (req, res) => {
+    const {
+        name,
+        population,
+        size,
+        description,
+        domain,
+        flagURL,
+        capitalID,
+        currencyID,
+        religionIDs,
+        languageIDs,
+        continentIDs,
+    } = req.body;
+
     if (
-        !req.body.countryName ||
-        !req.body.countryPopulation ||
-        !req.body.countrySize ||
-        !req.body.countryDescription ||
-        !req.body.countryDomain ||
-        !req.body.countryFlagURL ||
-        !req.body.countryCapitalID ||
-        !req.body.countryCurrencyID ||
-        !req.body.countryReligionIDs ||
-        req.body.countryReligionIDs.length < 1 ||
-        !req.body.countryLanguageIDs ||
-        req.body.countryLanguageIDs.length < 1 ||
-        !req.body.countryContinentIDs ||
-        req.body.countryContinentIDs.length < 1
+        !name ||
+        !population ||
+        !size ||
+        !description ||
+        !domain ||
+        !flagURL ||
+        !capitalID ||
+        !currencyID ||
+        !religionIDs ||
+        religionIDs.length < 1 ||
+        !languageIDs ||
+        languageIDs.length < 1 ||
+        !continentIDs ||
+        continentIDs.length < 1
     ) {
         return res.status(400).json({
             success: false,
@@ -35,34 +49,34 @@ router.post('/', async (req, res) => {
     try {
         // Insert new country into database
         const country = await CountryModel.create({
-            countryName: req.body.countryName,
-            countryPopulation: req.body.countryPopulation,
-            countrySize: req.body.countrySize,
-            countryDescription: req.body.countryDescription,
-            countryDomain: req.body.countryDomain,
-            countryFlagURL: req.body.countryFlagURL,
-            countryCapitalID: req.body.countryCapitalID,
-            countryCurrencyID: req.body.countryCurrencyID,
+            countryName: name,
+            countryPopulation: population,
+            countrySize: size,
+            countryDescription: description,
+            countryDomain: domain,
+            countryFlagURL: flagURL,
+            countryCapitalID: capitalID,
+            countryCurrencyID: currencyID,
         });
 
         // Add country's religions (M:N relationship)
         await country.addReligion(
             await ReligionModel.findAll({
-                where: { religionID: req.body.countryReligionIDs },
+                where: { religionID: religionIDs },
             }),
         );
 
         // Add country's languages (M:N relationship)
         await country.addLanguage(
             await LanguageModel.findAll({
-                where: { languageID: req.body.countryLanguageIDs },
+                where: { languageID: languageIDs },
             }),
         );
 
         // Add country's continents (M:N relationship)
         await country.addContinent(
             await ContinentModel.findAll({
-                where: { continentID: req.body.countryContinentIDs },
+                where: { continentID: continentIDs },
             }),
         );
 
@@ -89,7 +103,9 @@ router.post('/', async (req, res) => {
  * @api {delete} /api/country Delete a country
  */
 router.delete('/', async (req, res) => {
-    if (!req.body.countryID) {
+    const { id } = req.body;
+
+    if (!id) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a country ID',
@@ -99,7 +115,7 @@ router.delete('/', async (req, res) => {
     try {
         // Delete country from database
         const country = await CountryModel.destroy({
-            where: { countryID: req.body.countryID },
+            where: { countryID: id },
         });
 
         if (country === 0) {
@@ -125,7 +141,22 @@ router.delete('/', async (req, res) => {
  * @api {put} /api/country/ Edits the country with the specified id
  */
 router.put('/', async (req, res) => {
-    const country = await CountryModel.findByPk(req.body.countryID);
+    const {
+        id,
+        name,
+        population,
+        size,
+        description,
+        domain,
+        flagURL,
+        capitalID,
+        currencyID,
+        religionIDs,
+        languageIDs,
+        continentIDs,
+    } = req.body;
+
+    const country = await CountryModel.findByPk(id);
     if (!country) {
         return res.status(404).json({
             success: false,
@@ -134,37 +165,37 @@ router.put('/', async (req, res) => {
     }
 
     if (
-        !req.body.countryName &&
-        !req.body.countryPopulation &&
-        !req.body.countrySize &&
-        !req.body.countryDescription &&
-        !req.body.countryDomain &&
-        !req.body.countryFlagURL &&
-        !req.body.countryCapitalID &&
-        !req.body.countryCurrencyID &&
-        !req.body.countryReligionIDs &&
-        !req.body.countryLanguageIDs &&
-        !req.body.countryContinentIDs
+        !name &&
+        !population &&
+        !size &&
+        !description &&
+        !domain &&
+        !flagURL &&
+        !capitalID &&
+        !currencyID &&
+        !religionIDs &&
+        !languageIDs &&
+        !continentIDs
     ) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a valid countryName, countryPopulation, countrySize, countryDescription, countryDomain, countryFlagURL, countryCapitalID, countryCurrencyID, countryReligionIDs, countryLanguageIDs or countryContinentIDs',
+            error: 'Please provide a valid name, population, size, description, domain, flagURL, capitalID, currencyID, religionIDs, languageIDs or continentIDs',
         });
     }
 
     try {
         const updatedCountry = await country.update({
-            countryName: req.body.countryName,
-            countryPopulation: req.body.countryPopulation,
-            countrySize: req.body.countrySize,
-            countryDescription: req.body.countryDescription,
-            countryDomain: req.body.countryDomain,
-            countryFlagURL: req.body.countryFlagURL,
-            countryCapitalID: req.body.countryCapitalID,
-            countryCurrencyID: req.body.countryCurrencyID,
+            countryName: name,
+            countryPopulation: population,
+            countrySize: size,
+            countryDescription: description,
+            countryDomain: domain,
+            countryFlagURL: flagURL,
+            countryCapitalID: capitalID,
+            countryCurrencyID: currencyID,
         });
 
-        if (req.body.countryReligionIDs) {
+        if (religionIDs) {
             // Remove country's religions (M:N relationship)
             const religions = await updatedCountry.getReligions();
             updatedCountry.removeReligion(religions);
@@ -172,12 +203,12 @@ router.put('/', async (req, res) => {
             // Add country's religions (M:N relationship)
             await updatedCountry.addReligion(
                 await ReligionModel.findAll({
-                    where: { religionID: req.body.countryReligionIDs },
+                    where: { religionID: religionIDs },
                 }),
             );
         }
 
-        if (req.body.countryLanguageIDs) {
+        if (languageIDs) {
             // Remove country's languages (M:N relationship)
             const languages = await updatedCountry.getLanguages();
             updatedCountry.removeLanguage(languages);
@@ -185,12 +216,12 @@ router.put('/', async (req, res) => {
             // Add country's languages (M:N relationship)
             await updatedCountry.addLanguage(
                 await LanguageModel.findAll({
-                    where: { languageID: req.body.countryLanguageIDs },
+                    where: { languageID: languageIDs },
                 }),
             );
         }
 
-        if (req.body.countryContinentIDs) {
+        if (continentIDs) {
             // Remove country's continents (M:N relationship)
             const continents = await updatedCountry.getContinents();
             updatedCountry.removeContinent(continents);
@@ -198,7 +229,7 @@ router.put('/', async (req, res) => {
             // Add country's continents (M:N relationship)
             await updatedCountry.addContinent(
                 await ContinentModel.findAll({
-                    where: { continentID: req.body.countryContinentIDs },
+                    where: { continentID: continentIDs },
                 }),
             );
         }
@@ -212,7 +243,7 @@ router.put('/', async (req, res) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `The country ${req.body.countryName} already exists.`,
+                error: `The country ${name} already exists.`,
             });
         }
 
