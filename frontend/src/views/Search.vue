@@ -13,7 +13,7 @@
 				/><input
 					type="submit"
 					value="Search"
-					class="bg-sky-500 py-2 px-4 rounded-r-md text-white focus:bg-sky-600 focus:outline-none hover:bg-sky-400 cursor-pointer"
+					:class="`bg-${type} py-2 px-4 rounded-r-md text-white focus:brightness-90 focus:outline-none hover:brightness-110 cursor-pointer transition ease-out duration-150`"
 				/>
 			</formset>
 		</form>
