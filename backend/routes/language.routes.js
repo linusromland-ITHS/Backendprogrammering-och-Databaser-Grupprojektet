@@ -26,22 +26,20 @@ router.get('/', async (req, res) => {
  * @api {post} /api/language/ Create a new language
  */
 router.post('/', async (req, res) => {
-    if (
-        (!req.body.languageName && req.body.languageName.length < 1) ||
-        !req.body.languageNativeSpeakers ||
-        !req.body.languageTotalSpeakers
-    ) {
+    const { name, nativeSpeakers, totalSpeakers } = req.body;
+
+    if ((!name && name.length < 1) || !nativeSpeakers || !totalSpeakers) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a valid languageName, languageNativeSpeakers and languageTotalSpeakers.',
+            error: 'Please provide a valid name, nativeSpeakers and totalSpeakers.',
         });
     }
 
     try {
         const language = await LanguageModel.create({
-            languageName: req.body.languageName,
-            languageNativeSpeakers: req.body.languageNativeSpeakers,
-            languageTotalSpeakers: req.body.languageTotalSpeakers,
+            languageName: name,
+            languageNativeSpeakers: nativeSpeakers,
+            languageTotalSpeakers: totalSpeakers,
         });
         res.status(201).json({
             success: true,
@@ -53,7 +51,7 @@ router.post('/', async (req, res) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `The language ${req.body.languageName} already exists.`,
+                error: `The language ${name} already exists.`,
             });
         }
 
@@ -68,7 +66,9 @@ router.post('/', async (req, res) => {
  * @api {put} /api/language/ Edits the language with the specified id
  */
 router.put('/', async (req, res) => {
-    const language = await LanguageModel.findByPk(req.body.languageID);
+    const { id, name, nativeSpeakers, totalSpeakers } = req.body;
+
+    const language = await LanguageModel.findByPk(id);
     if (!language) {
         return res.status(404).json({
             success: false,
@@ -76,23 +76,18 @@ router.put('/', async (req, res) => {
         });
     }
 
-    if (
-        !req.body.languageName &&
-        req.body.languageName.length < 1 &&
-        !req.body.languageNativeSpeakers &&
-        !req.body.languageTotalSpeakers
-    ) {
+    if (!name && name.length < 1 && !nativeSpeakers && !totalSpeakers) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a valid languageName, languageNativeSpeakers or languageTotalSpeakers.',
+            error: 'Please provide a valid name, nativeSpeakers or totalSpeakers.',
         });
     }
 
     try {
         const updatedLanguage = await language.update({
-            languageName: req.body.languageName,
-            languageNativeSpeakers: req.body.languageNativeSpeakers,
-            languageTotalSpeakers: req.body.languageTotalSpeakers,
+            languageName: name,
+            languageNativeSpeakers: nativeSpeakers,
+            languageTotalSpeakers: totalSpeakers,
         });
         res.json({
             success: true,
@@ -103,7 +98,7 @@ router.put('/', async (req, res) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `The language ${req.body.languageName} already exists.`,
+                error: `The language ${name} already exists.`,
             });
         }
 
@@ -118,7 +113,9 @@ router.put('/', async (req, res) => {
  * @api {delete} /api/language/ Delete a language
  */
 router.delete('/', async (req, res) => {
-    if (!req.body.languageID) {
+    const { id } = req.body;
+
+    if (!id) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a language ID',
@@ -128,7 +125,7 @@ router.delete('/', async (req, res) => {
     try {
         // Delete country from database
         const language = await LanguageModel.destroy({
-            where: { languageID: req.body.languageID },
+            where: { languageID: id },
         });
 
         if (language === 0) {

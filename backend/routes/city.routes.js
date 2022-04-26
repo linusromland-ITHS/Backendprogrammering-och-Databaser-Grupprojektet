@@ -7,7 +7,9 @@ const CityModel = require('../models/City');
  * @api {post} /api/city/ Create a new City
  */
 router.post('/', async (req, res) => {
-    if ((!req.body.cityName && req.body.cityName.length < 1) || !req.body.cityPopulation) {
+    const { name, population } = req.body;
+
+    if ((!name && name.length < 1) || !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid city name and city population.',
@@ -16,8 +18,8 @@ router.post('/', async (req, res) => {
 
     try {
         const city = await CityModel.create({
-            cityName: req.body.cityName,
-            cityPopulation: req.body.cityPopulation,
+            cityName: name,
+            cityPopulation: population,
         });
         res.status(201).json({
             success: true,
@@ -29,7 +31,7 @@ router.post('/', async (req, res) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `The city ${req.body.cityName} already exists.`,
+                error: `The city ${name} already exists.`,
             });
         }
 
@@ -44,8 +46,9 @@ router.post('/', async (req, res) => {
  * @api {put} /api/city/ Change a city based on id
  */
 router.put('/', async (req, res) => {
-    const { cityID, cityName, cityPopulation } = req.body;
-    if (!cityName && !cityName.length < 1 && !cityPopulation) {
+    const { id, name, population } = req.body;
+
+    if (!name && !name.length < 1 && !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a name and/or population.',
@@ -53,23 +56,23 @@ router.put('/', async (req, res) => {
     }
 
     try {
-        const foundCity = await CityModel.findOne({ where: { cityID } });
+        const foundCity = await CityModel.findOne({ where: { id } });
 
         if (!foundCity) {
             res.status(404).json({
                 success: false,
-                error: `City with id ${cityID} could not be found`,
+                error: `City with id  could not be found`,
             });
         }
 
-        const updatedCity = await foundCity.update({ cityName: cityName, cityPopulation: cityPopulation });
+        const updatedCity = await foundCity.update({ cityName: name, cityPopulation: population });
 
         res.json({ success: true, error: '', data: updatedCity });
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `The city ${cityName} already exists.`,
+                error: `The city ${name} already exists.`,
             });
         }
         res.status(500).json({
@@ -83,9 +86,9 @@ router.put('/', async (req, res) => {
  * @api {delete} /api/city/ Delete a city
  */
 router.delete('/', async (req, res) => {
-    const { cityID } = req.body;
+    const { id } = req.body;
 
-    if (!cityID) {
+    if (!id) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a city id.',
@@ -93,12 +96,12 @@ router.delete('/', async (req, res) => {
     }
 
     try {
-        const deletedCity = await CityModel.destroy({ where: { cityID } });
+        const deletedCity = await CityModel.destroy({ where: { id } });
 
         if (!deletedCity) {
             return res.status(404).json({
                 success: false,
-                error: `City with id ${cityID} could not be found`,
+                error: `City with id ${id} could not be found`,
             });
         }
 
@@ -107,12 +110,12 @@ router.delete('/', async (req, res) => {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `City with id ${cityID} could not be deleted because it is being used as a capital in a country.`,
+                error: `City with id ${id} could not be deleted because it is being used as a capital in a country.`,
             });
         }
         res.status(500).json({
             success: false,
-            error: error.message || `Could not delete city with id ${cityID}`,
+            error: error.message || `Could not delete city with id ${id}`,
         });
     }
 });

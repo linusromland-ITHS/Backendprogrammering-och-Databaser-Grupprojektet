@@ -7,7 +7,9 @@ const CurrencyModel = require('../models/Currency');
  * @api {post} /api/currency Create a new currency
  */
 router.post('/', async (req, res) => {
-    if (!req.body.currencyName || !req.body.currencySymbol) {
+    const { name, symbol } = req.body;
+
+    if (!name || !symbol) {
         return res.status(400).json({
             success: false,
             error: 'Please provide currency name and currency symbol',
@@ -16,8 +18,8 @@ router.post('/', async (req, res) => {
 
     try {
         const currency = await CurrencyModel.create({
-            currencyName: req.body.currencyName,
-            currencySymbol: req.body.currencySymbol,
+            currencyName: name,
+            currencySymbol: symbol,
         });
 
         return res.status(201).json({
@@ -43,7 +45,9 @@ router.post('/', async (req, res) => {
  * @api {put} /api/currency/ Edits the currency with the given id
  */
 router.put('/', async (req, res) => {
-    const currency = await CurrencyModel.findByPk(req.body.currencyID);
+    const { id, name, symbol } = req.body;
+
+    const currency = await CurrencyModel.findByPk(id);
     if (!currency) {
         return res.status(404).json({
             success: false,
@@ -51,7 +55,7 @@ router.put('/', async (req, res) => {
         });
     }
 
-    if (!req.body.currencyName && !req.body.currencySymbol) {
+    if (!name && !symbol) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid currencyName or currencySymbol.',
@@ -60,8 +64,8 @@ router.put('/', async (req, res) => {
 
     try {
         const updatedCurrency = await currency.update({
-            currencyName: req.body.currencyName,
-            currencySymbol: req.body.currencySymbol,
+            currencyName: name,
+            currencySymbol: symbol,
         });
         res.json({
             success: true,
@@ -86,9 +90,9 @@ router.put('/', async (req, res) => {
  * @api {delete} /api/currency/ Delete a currency
  */
 router.delete('/', async (req, res) => {
-    const { currencyID } = req.body;
+    const { id } = req.body;
 
-    if (!currencyID) {
+    if (!id) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a currency id.',
@@ -96,12 +100,12 @@ router.delete('/', async (req, res) => {
     }
 
     try {
-        const deletedCurrency = await CurrencyModel.destroy({ where: { currencyID } });
+        const deletedCurrency = await CurrencyModel.destroy({ where: { id } });
 
         if (!deletedCurrency) {
             return res.status(404).json({
                 success: false,
-                error: `Currency with id ${currencyID} could not be found`,
+                error: `Currency with id ${id} could not be found`,
             });
         }
 
@@ -110,12 +114,12 @@ router.delete('/', async (req, res) => {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `Currency with id ${currencyID} could not be deleted because it is being used as a currency in a country.`,
+                error: `Currency with id ${id} could not be deleted because it is being used as a currency in a country.`,
             });
         }
         res.status(500).json({
             success: false,
-            error: error.message || `Could not delete currency with id ${currencyID}`,
+            error: error.message || `Could not delete currency with id ${id}`,
         });
     }
 });

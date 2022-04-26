@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
  */
 router.post('/', async (req, res) => {
     const { name } = req.body;
+
     if (!name || name.length < 1) {
         return res.status(400).json({
             success: false,
@@ -48,7 +49,8 @@ router.post('/', async (req, res) => {
  * @api {put} /api/religion/ Change a religion based on id
  */
 router.put('/', async (req, res) => {
-    const { religionID, name } = req.body;
+    const { id, name } = req.body;
+
     if (!name || name.trim().length < 1) {
         return res.status(400).json({
             success: false,
@@ -57,12 +59,12 @@ router.put('/', async (req, res) => {
     }
 
     try {
-        const foundReligion = await ReligionModel.findOne({ where: { religionID } });
+        const foundReligion = await ReligionModel.findOne({ where: { id } });
 
         if (!foundReligion) {
             return res.status(404).json({
                 success: false,
-                error: `Religion with id ${religionID} could not be found`,
+                error: `Religion with id ${id} could not be found`,
             });
         }
 
@@ -87,15 +89,15 @@ router.put('/', async (req, res) => {
  * @api {delete} /api/religion/ Delete a religion
  */
 router.delete('/', async (req, res) => {
-    const { religionID } = req.body;
+    const { id } = req.body;
 
     try {
-        const deletedReligionID = await ReligionModel.destroy({ where: { religionID } });
+        const deletedReligionID = await ReligionModel.destroy({ where: { id } });
 
         if (!deletedReligionID) {
             return res.status(404).json({
                 success: false,
-                error: `Religion with id ${religionID} could not be found`,
+                error: `Religion with id ${id} could not be found`,
             });
         }
 
@@ -103,7 +105,7 @@ router.delete('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            error: error.message || `Could not delete religion with id ${religionID}`,
+            error: error.message || `Could not delete religion with id ${id}`,
         });
     }
 });
