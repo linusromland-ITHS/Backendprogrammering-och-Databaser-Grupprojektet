@@ -59,7 +59,7 @@ router.put('/', async (req, res) => {
     }
 
     try {
-        const foundReligion = await ReligionModel.findOne({ where: { id } });
+        const foundReligion = await ReligionModel.findOne({ where: { religionID: id } });
 
         if (!foundReligion) {
             return res.status(404).json({
@@ -92,7 +92,7 @@ router.delete('/', async (req, res) => {
     const { id } = req.body;
 
     try {
-        const deletedReligionID = await ReligionModel.destroy({ where: { id } });
+        const deletedReligionID = await ReligionModel.destroy({ where: { religionID: id } });
 
         if (!deletedReligionID) {
             return res.status(404).json({

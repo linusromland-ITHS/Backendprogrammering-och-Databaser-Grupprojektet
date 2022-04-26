@@ -100,7 +100,7 @@ router.delete('/', async (req, res) => {
     }
 
     try {
-        const deletedCurrency = await CurrencyModel.destroy({ where: { id } });
+        const deletedCurrency = await CurrencyModel.destroy({ where: { currencyID: id } });
 
         if (!deletedCurrency) {
             return res.status(404).json({

@@ -56,7 +56,7 @@ router.put('/', async (req, res) => {
     }
 
     try {
-        const foundCity = await CityModel.findOne({ where: { id } });
+        const foundCity = await CityModel.findOne({ where: { cityID: id } });
 
         if (!foundCity) {
             res.status(404).json({
@@ -96,7 +96,7 @@ router.delete('/', async (req, res) => {
     }
 
     try {
-        const deletedCity = await CityModel.destroy({ where: { id } });
+        const deletedCity = await CityModel.destroy({ where: { cityID: id } });
 
         if (!deletedCity) {
             return res.status(404).json({
