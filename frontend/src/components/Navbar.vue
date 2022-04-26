@@ -1,6 +1,6 @@
 <template>
 	<!-- Navbar Component -->
-	<nav :class="`pt-8 flex justify-center bg-${activeTheme}`">
+	<nav :class="`pt-8 flex justify-center transition ease-out duration-150 bg-${activeTheme}`">
 		<router-link to="/land" :class="`link link-${activeTheme}  ${activeTheme == 'land' ? 'active-link' : ''}`">
 			<span class="material-icons mr-1">flag</span>Land
 		</router-link>
@@ -17,10 +17,21 @@
 <script>
 	export default {
 		name: 'Navbar',
+		afterRouteUpdate() {
+			this.activeTheme = this.$route.params.type;
+		},
 		data() {
 			return {
-				activeTheme: 'sea',
+				activeTheme: '',
 			};
+		},
+		watch: {
+			$route() {
+				this.activeTheme = this.$route.params.type;
+			},
+		},
+		created() {
+			this.activeTheme = this.$route.params.type;
 		},
 	};
 </script>
