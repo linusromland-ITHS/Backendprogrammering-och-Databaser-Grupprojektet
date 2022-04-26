@@ -83,21 +83,21 @@ const addCountries = async () => {
             // Add country to religion
             await createdCountry.addReligion(
                 await ReligionModel.findAll({
-                    where: { religionID: country.religionTableName },
+                    where: { religionName: country.religionTableName },
                 }),
             );
 
             // Add country to language
             await createdCountry.addLanguage(
                 await LanguageModel.findAll({
-                    where: { languageID: country.languageTableName },
+                    where: { languageName: country.languageTableName },
                 }),
             );
 
             // Add country to continent
             await createdCountry.addContinent(
                 await ContinentModel.findAll({
-                    where: { continentID: country.continentTableName },
+                    where: { continentName: country.continentTableName },
                 }),
             );
         });
