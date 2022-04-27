@@ -5,7 +5,6 @@ const CurrencyModel = require('../models/Currency');
 
 /**
  * @api {get} /api/currency Gets all currencies
- * @param {Number[]} IDs - Optional id of the currency
  */
 router.get('/', async (req, res) => {
     try {
