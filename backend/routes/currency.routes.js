@@ -4,6 +4,36 @@ const router = express.Router();
 const CurrencyModel = require('../models/Currency');
 
 /**
+ * @api {get} /api/currency Gets all currencies
+ */
+router.get('/', async (req, res) => {
+    try {
+        if (req.body.IDs) {
+            const currencies = await CurrencyModel.findAll({
+                where: { currencyID: req.body.IDs },
+            });
+            res.status(200).json({
+                success: true,
+                error: '',
+                data: currencies,
+            });
+        } else {
+            const currencies = await CurrencyModel.findAll();
+            res.status(200).json({
+                success: true,
+                error: '',
+                data: currencies,
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
+/**
  * @api {post} /api/currency Create a new currency
  */
 router.post('/', async (req, res) => {

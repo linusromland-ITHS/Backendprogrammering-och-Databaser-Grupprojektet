@@ -2,6 +2,110 @@
 
 # API Documentation for Currency
 
+## GET `/api/currency/`
+
+Get all currency from the database.
+
+| Required | Parameter | Description                                   | Datatype   |
+| -------- | --------- | --------------------------------------------- | ---------- |
+|          | IDs       | The IDs of the currency you want to retrieve. | Number [ ] |
+
+**Note**: If you don't specify any IDs, all currencies will be returned.
+
+<details>
+<summary>Show/Hide Example</summary>
+
+Send a GET request to `/api/language/`:
+
+Response:
+
+```json
+{
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"currencyID": 3,
+			"currencyName": "US dollar",
+			"currencySymbol": "USD",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"currencyID": 4,
+			"currencyName": "Indonesian rupiah",
+			"currencySymbol": "IDR",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"currencyID": 5,
+			"currencyName": "Pakistani rupee",
+			"currencySymbol": "PKR",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"currencyID": 6,
+			"currencyName": "Swedish Crown",
+			"currencySymbol": "SEK",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"currencyID": 12,
+			"currencyName": "Turkish lira",
+			"currencySymbol": "TRY",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		}
+	]
+}
+```
+
+Send a GET request to `/api/currency/` with the following body:
+
+```json
+{
+	"IDs": [3, 6, 12]
+}
+```
+
+Response:
+
+```json
+{
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"currencyID": 3,
+			"currencyName": "US dollar",
+			"currencySymbol": "USD",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"currencyID": 6,
+			"currencyName": "Swedish Crown",
+			"currencySymbol": "SEK",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"currencyID": 12,
+			"currencyName": "Turkish lira",
+			"currencySymbol": "TRY",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		}
+	]
+}
+```
+
+</details>
+<br>
+
 ## POST `/api/currency/`
 
 Create a new currency from the given data.
