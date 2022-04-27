@@ -19,7 +19,7 @@ const router = createRouter({
 			// Result Route
 			name: 'Result',
 			component: () => import('./views/Result.vue'),
-			path: '/result/:type',
+			path: '/:type/result',
 		},
 	],
 });
