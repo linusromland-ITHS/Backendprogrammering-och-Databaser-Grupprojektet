@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const { name, sizeInSquareKm, averageDepthInMeters, species } = req.body;
 
-    if (!name || !sizeInSquareKm || !averageDepthInMeters || !species) {
+    if (!name || name.trim().length < 1 || !sizeInSquareKm || !averageDepthInMeters || !species) {
         return res.status(400).json({
             success: false,
             message: 'Please provide all required fields',
@@ -58,7 +58,7 @@ router.put('/', async (req, res) => {
         return res.status(422).json({ success: false, error: 'Please include id' });
     }
 
-    if (!name && !sizeInSquareKm && !averageDepthInMeters && !species) {
+    if ((!name || name.trim().length < 1) && !sizeInSquareKm && !averageDepthInMeters && !species) {
         return res.status(422).json({ success: false, error: 'Please include a field to update' });
     }
 

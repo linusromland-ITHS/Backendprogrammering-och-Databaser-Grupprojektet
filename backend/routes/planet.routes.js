@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
 
     if (
         !name ||
+        name.trim().length < 1 ||
         !surfaceAreaInSquareKm ||
         !distanceFromSunInKm ||
         !moons ||
@@ -103,7 +104,7 @@ router.put('/', async (req, res) => {
     }
 
     if (
-        !name &&
+        (!name || name.trim().length < 1) &&
         !surfaceAreaInSquareKm &&
         !distanceFromSunInKm &&
         !moons &&

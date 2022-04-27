@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const { name, population } = req.body;
 
-    if (!name || !population) {
+    if (!name || name.trim().length < 1 || !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid city name and city population.',
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
     const { id, name, population } = req.body;
 
-    if (!name && !population) {
+    if ((!name || name.trim().length < 1) && !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a name and/or population.',

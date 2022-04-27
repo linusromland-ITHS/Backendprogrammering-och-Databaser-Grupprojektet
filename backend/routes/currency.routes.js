@@ -9,7 +9,7 @@ const CurrencyModel = require('../models/Currency');
 router.post('/', async (req, res) => {
     const { name, symbol } = req.body;
 
-    if (!name || !symbol) {
+    if (!name || name.trim().length < 1 || !symbol) {
         return res.status(400).json({
             success: false,
             error: 'Please provide currency name and currency symbol',
@@ -55,7 +55,7 @@ router.put('/', async (req, res) => {
         });
     }
 
-    if (!name && !symbol) {
+    if ((!name || name.trim().length < 1) && !symbol) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid currencyName or currencySymbol.',

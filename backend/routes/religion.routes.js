@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const { name } = req.body;
 
-    if (!name || name.length < 1) {
+    if (!name || name.trim().length < 1) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a name',
@@ -50,6 +50,13 @@ router.post('/', async (req, res) => {
  */
 router.put('/', async (req, res) => {
     const { id, name } = req.body;
+
+    if (!id) {
+        return res.status(400).json({
+            success: false,
+            error: 'Please provide a id',
+        });
+    }
 
     if (!name || name.trim().length < 1) {
         return res.status(400).json({
