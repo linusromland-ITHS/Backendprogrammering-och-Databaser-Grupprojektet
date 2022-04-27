@@ -77,84 +77,12 @@
 			<h2 class="text-2xl font-semibold">Results:</h2>
 
 			<ul class="grow overflow-y-scroll my-3">
-				<!-- Add when ResultComponent is ready -->
-				<!-- <ResultComponent v-for="result in results" :key="result.id ? result.id : result._id" :result="result" /> -->
-
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Sweden</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Norway</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Finland</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Iceland</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Spain</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Germany</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">United Kingdom</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">United States</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Canada</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Australia</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Japan</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Ukraine</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">Poland</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">China</h3>
-				</li>
-				<li
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
-				>
-					<h3 class="text-lg font-bold">India</h3>
-				</li>
+				<ResultComponent
+					v-for="result in results"
+					:key="result.id ? result.id : result._id"
+					:result-item="result"
+					@on-click="goToResult"
+				/>
 			</ul>
 			<p class="">Showing 15 out of 196 results</p>
 		</div>
@@ -163,21 +91,24 @@
 
 <script>
 	import Navbar from '../components/Navbar.vue';
+	import ResultComponent from '../components/ResultComponent.vue';
 	export default {
-		components: { Navbar },
+		components: { Navbar, ResultComponent },
 		data() {
 			return {
 				type: '',
+				// Mock data
+				results: [{ name: 'Sweden', countryFlagURL: 'https://countryflagsapi.com/svg/se' }],
 			};
-		},
-		computed: {
-			// Return results from store based on type
-			results() {
-				return [];
-			},
 		},
 		created() {
 			this.type = this.$route.params.type;
+			// Fetch and place in this.results
+		},
+		methods: {
+			goToResult(resultItem) {
+				this.$router.push(`/${this.type}/${resultItem.id}`);
+			},
 		},
 	};
 </script>
