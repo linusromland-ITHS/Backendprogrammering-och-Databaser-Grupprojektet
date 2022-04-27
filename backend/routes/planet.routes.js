@@ -160,7 +160,7 @@ router.delete('/', async (req, res) => {
     if (!id) {
         return res.status(422).json({
             success: false,
-            error: 'Please include planetID in the request body',
+            error: 'Please provide a planet ID',
         });
     }
 
@@ -170,13 +170,13 @@ router.delete('/', async (req, res) => {
         if (!planet) {
             return res.status(404).json({
                 success: false,
-                error: `Planet with id ${id} not found`,
+                error: `Planet with id ${id} could not be found`,
             });
         }
 
         res.status(200).json({
             success: true,
-            data: planet,
+            error: 'Planet deleted',
         });
     } catch (error) {
         res.status(500).json({

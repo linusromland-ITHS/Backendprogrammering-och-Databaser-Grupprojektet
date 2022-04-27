@@ -94,7 +94,7 @@ router.delete('/', async (req, res) => {
     if (!id) {
         return res.status(422).json({
             success: false,
-            error: 'Please include id',
+            error: 'Please provide a sea ID',
         });
     }
 
@@ -102,10 +102,10 @@ router.delete('/', async (req, res) => {
         const deletedSea = await SeaModel.findByIdAndDelete(id);
 
         if (!deletedSea) {
-            return res.status(404).json({ success: false, error: `Sea with id ${id} not found` });
+            return res.status(404).json({ success: false, error: `Sea with id ${id} could not be found` });
         }
 
-        res.status(200).json({ success: true, error: '' });
+        res.status(200).json({ success: true, error: 'Sea deleted' });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
