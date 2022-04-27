@@ -16,7 +16,7 @@ const router = createRouter({
 			path: '/:type',
 		},
 		{
-			// Search Route
+			// Result Route
 			name: 'Result',
 			component: () => import('./views/Result.vue'),
 			path: '/result/:type',
