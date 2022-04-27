@@ -6,6 +6,12 @@
 
 Get all religions from the database.
 
+| Required | Parameter | Description                                    | Datatype  |
+| -------- | --------- | ---------------------------------------------- | --------- |
+|          | ids       | The ids of the religions you want to retrieve. | Number[ ] |
+
+**Note**: If you don't specify any ids, all religions will be returned.
+
 <details>
 <summary>Show/Hide Example</summary>
 
@@ -30,6 +36,37 @@ Response:
 			"createdAt": "1970-01-01T00:00:00.000Z",
 			"updatedAt": "1970-01-01T00:00:00.000Z"
 		},
+		{
+			"religionID": 3,
+			"religionName": "Christianity",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"religionID": 4,
+			"religionName": "Islam",
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		}
+	]
+}
+```
+
+Send a GET request to `/api/religion/` with the following body:
+
+```json
+{
+	"ids": [3, 4]
+}
+```
+
+Response:
+
+```json
+{
+	"success": true,
+	"error": "",
+	"data": [
 		{
 			"religionID": 3,
 			"religionName": "Christianity",
