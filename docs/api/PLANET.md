@@ -16,6 +16,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": [
 		{
 			"name": "Mars",
@@ -139,6 +140,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": {
 		"name": "Mars",
 		"surfaceAreaInSquareKm": 1448000000,
@@ -180,6 +182,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": {
 		"_id": "6268481074fd7ab3f2cfeb8d",
 		"name": "Earth",

@@ -132,6 +132,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": {
 		"currencyID": 1,
 		"currencyName": "United States Dollar",
@@ -172,6 +173,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": {
 		"currencyID": 1,
 		"currencyName": "US Dollar",

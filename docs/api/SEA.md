@@ -16,6 +16,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": [
 		{
 			"_id": "6268440574fd7ab3f2cfeb8a",
