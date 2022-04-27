@@ -46,6 +46,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": {
 		"countryID": 1,
 		"countryName": "Sweden",

@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const { name, nativeSpeakers, totalSpeakers } = req.body;
 
-    if ((!name && name.length < 1) || !nativeSpeakers || !totalSpeakers) {
+    if (!name || name.trim().length < 1 || !nativeSpeakers || !totalSpeakers) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid name, nativeSpeakers and totalSpeakers.',
@@ -86,7 +86,7 @@ router.put('/', async (req, res) => {
         });
     }
 
-    if (!name && name.length < 1 && !nativeSpeakers && !totalSpeakers) {
+    if ((!name || name.trim().length < 1) && !nativeSpeakers && !totalSpeakers) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid name, nativeSpeakers or totalSpeakers.',
@@ -99,7 +99,7 @@ router.put('/', async (req, res) => {
             languageNativeSpeakers: nativeSpeakers,
             languageTotalSpeakers: totalSpeakers,
         });
-        res.json({
+        res.status(200).json({
             success: true,
             error: '',
             data: updatedLanguage,
