@@ -4,7 +4,7 @@ const router = express.Router();
 const ReligionModel = require('../models/Religion');
 
 /**
- * @api {get} /api/religion Gets all religion
+ * @api {get} /api/religion Get all religions
  */
 router.get('/', async (req, res) => {
     const { ids } = req.body;
