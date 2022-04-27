@@ -7,10 +7,12 @@ const CurrencyModel = require('../models/Currency');
  * @api {get} /api/currency Gets all currencies
  */
 router.get('/', async (req, res) => {
+    const { ids } = req.body;
+
     try {
-        if (req.body.IDs) {
+        if (ids) {
             const currencies = await CurrencyModel.findAll({
-                where: { currencyID: req.body.IDs },
+                where: { currencyID: ids },
             });
             res.status(200).json({
                 success: true,
@@ -39,7 +41,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const { name, symbol } = req.body;
 
-    if (!name || !symbol) {
+    if (!name || name.trim().length < 1 || !symbol) {
         return res.status(400).json({
             success: false,
             error: 'Please provide currency name and currency symbol',
@@ -54,6 +56,7 @@ router.post('/', async (req, res) => {
 
         return res.status(201).json({
             success: true,
+            error: '',
             data: currency,
         });
     } catch (error) {
@@ -85,7 +88,7 @@ router.put('/', async (req, res) => {
         });
     }
 
-    if (!name && !symbol) {
+    if ((!name || name.trim().length < 1) && !symbol) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid currencyName or currencySymbol.',
@@ -97,8 +100,9 @@ router.put('/', async (req, res) => {
             currencyName: name,
             currencySymbol: symbol,
         });
-        res.json({
+        res.status(200).json({
             success: true,
+            error: '',
             data: updatedCurrency,
         });
     } catch (error) {
@@ -139,7 +143,11 @@ router.delete('/', async (req, res) => {
             });
         }
 
-        res.json({ success: true, error: '', data: deletedCurrency });
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: deletedCurrency,
+        });
     } catch (error) {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(400).json({
