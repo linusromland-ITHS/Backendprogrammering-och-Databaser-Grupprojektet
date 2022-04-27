@@ -29,48 +29,48 @@ Response:
       "languageName": "Standard Chinese",
       "languageNativeSpeakers": 929000000,
       "languageTotalSpeakers": 1118000000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     {
       "languageID": 2,
       "languageName": "Hindi",
       "languageNativeSpeakers": 343900000,
       "languageTotalSpeakers": 602200000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     {
       "languageID": 3,
       "languageName": "English",
       "languageNativeSpeakers": 372900000,
       "languageTotalSpeakers": 1452000000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     {
       "languageID": 4,
       "languageName": "Indonesian",
       "languageNativeSpeakers": 43600000,
       "languageTotalSpeakers": 199000000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     {
       "languageID": 5,
       "languageName": "Punjabi",
       "languageNativeSpeakers": 12000000,
       "languageTotalSpeakers": 32000000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     {
       "languageID": 6,
       "languageName": "Swedish",
       "languageNativeSpeakers": 9000000,
       "languageTotalSpeakers": 20000000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     }
   ]
 }
@@ -96,16 +96,16 @@ Response:
       "languageName": "Standard Chinese",
       "languageNativeSpeakers": 929000000,
       "languageTotalSpeakers": 1118000000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     {
       "languageID": 4,
       "languageName": "Indonesian",
       "languageNativeSpeakers": 43600000,
       "languageTotalSpeakers": 199000000,
-      "createdAt": "2022-04-25T13:46:50.000Z",
-      "updatedAt": "2022-04-25T13:46:50.000Z"
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     }
   ]
 }
