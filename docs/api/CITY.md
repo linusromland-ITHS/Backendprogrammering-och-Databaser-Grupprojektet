@@ -2,6 +2,45 @@
 
 # API Documentation for City
 
+## GET `/api/city/`
+
+Get cities from filter.
+
+| Required | Parameter | Description                   | Datatype |
+| -------- | --------- | ----------------------------- | -------- |
+|          | ids       | The ids of the cities to get. | Number   |
+
+<details>
+<summary>Show/Hide Example</summary>
+
+Send a POST request to `/api/city/` with the following body:
+
+```json
+{
+  "name": "Gothenburg",
+  "population": 579000
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "error": "",
+  "data": {
+    "cityID": 1,
+    "cityName": "Gothenburg",
+    "cityPopulation": 579000,
+    "updatedAt": "1970-01-01T00:00:00.000Z",
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  }
+}
+```
+
+</details>
+<br>
+
 ## POST `/api/city/`
 
 Create a new city from the given data.
@@ -18,8 +57,8 @@ Send a POST request to `/api/city/` with the following body:
 
 ```json
 {
-	"name": "Gothenburg",
-	"population": 579000
+  "name": "Gothenburg",
+  "population": 579000
 }
 ```
 
@@ -27,15 +66,15 @@ Response:
 
 ```json
 {
-	"success": true,
-	"error": "",
-	"data": {
-		"cityID": 1,
-		"cityName": "Gothenburg",
-		"cityPopulation": 579000,
-		"updatedAt": "1970-01-01T00:00:00.000Z",
-		"createdAt": "1970-01-01T00:00:00.000Z"
-	}
+  "success": true,
+  "error": "",
+  "data": {
+    "cityID": 1,
+    "cityName": "Gothenburg",
+    "cityPopulation": 579000,
+    "updatedAt": "1970-01-01T00:00:00.000Z",
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  }
 }
 ```
 
@@ -59,9 +98,9 @@ Send a PUT request to `/api/city/` with the following body:
 
 ```json
 {
-	"id": 1,
-	"name": "Gothenburg",
-	"population": 615000
+  "id": 1,
+  "name": "Gothenburg",
+  "population": 615000
 }
 ```
 
@@ -69,15 +108,15 @@ Response:
 
 ```json
 {
-	"success": true,
-	"error": "",
-	"data": {
-		"cityID": 1,
-		"cityName": "Gothenburg",
-		"cityPopulation": 615000,
-		"createdAt": "1970-01-01T00:00:00.000Z",
-		"updatedAt": "1970-01-01T00:00:00.000Z"
-	}
+  "success": true,
+  "error": "",
+  "data": {
+    "cityID": 1,
+    "cityName": "Gothenburg",
+    "cityPopulation": 615000,
+    "createdAt": "1970-01-01T00:00:00.000Z",
+    "updatedAt": "1970-01-01T00:00:00.000Z"
+  }
 }
 ```
 
@@ -99,7 +138,7 @@ Send a DELETE request to `/api/city/` with the following body:
 
 ```json
 {
-	"id": 1
+  "id": 1
 }
 ```
 
@@ -107,9 +146,9 @@ Response:
 
 ```json
 {
-	"success": true,
-	"error": "",
-	"data": 1
+  "success": true,
+  "error": "",
+  "data": 1
 }
 ```
 
