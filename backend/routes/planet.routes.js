@@ -7,17 +7,100 @@ const PlanetModel = require('../models/Planet');
  * @api {get} /api/planets/ Get all planets
  */
 router.get('/', async (req, res) => {
+    const {
+        name,
+        surfaceAreaMin,
+        surfaceAreaMax,
+        distanceFromSunMin,
+        distanceFromSunMax,
+        averageTemperatureMin,
+        averageTemperatureMax,
+        radiusMin,
+        radiusMax,
+        massMin,
+        massMax,
+        orbitalPeriodMin,
+        orbitalPeriodMax,
+    } = req.body;
+
+    const conditions = {};
+
+    if (name && name.trim().length > 0) {
+        conditions.name = {
+            $regex: new RegExp(name.trim(), 'i'),
+        };
+    }
+
+    if (isFinite(surfaceAreaMin) || isFinite(surfaceAreaMax)) {
+        const min = isFinite(surfaceAreaMin) && surfaceAreaMin > 0 ? surfaceAreaMin : 0;
+        const max = isFinite(surfaceAreaMax) ? surfaceAreaMax : Number.MAX_SAFE_INTEGER;
+        conditions.surfaceAreaInSquareKm = {
+            $gte: min,
+            $lte: max,
+        };
+    }
+
+    if (isFinite(distanceFromSunMin) || isFinite(distanceFromSunMax)) {
+        const min = isFinite(distanceFromSunMin) && distanceFromSunMin > 0 ? distanceFromSunMin : 0;
+        const max = isFinite(distanceFromSunMax) ? distanceFromSunMax : Number.MAX_SAFE_INTEGER;
+        conditions.distanceFromSunInKm = {
+            $gte: min,
+            $lte: max,
+        };
+    }
+
+    if (isFinite(averageTemperatureMin) || isFinite(averageTemperatureMax)) {
+        const min = isFinite(averageTemperatureMin) ? averageTemperatureMin : Number.MIN_SAFE_INTEGER;
+        const max = isFinite(averageTemperatureMax) ? averageTemperatureMax : Number.MAX_SAFE_INTEGER;
+        conditions.averageTemperatureInCelsius = {
+            $gte: min,
+            $lte: max,
+        };
+    }
+
+    if (isFinite(radiusMin) || isFinite(radiusMax)) {
+        const min = isFinite(radiusMin) ? radiusMin : 0;
+        const max = isFinite(radiusMax) ? radiusMax : Number.MAX_SAFE_INTEGER;
+        conditions.radiusInKm = {
+            $gte: min,
+            $lte: max,
+        };
+    }
+
+    if (isFinite(massMin) || isFinite(massMax)) {
+        const min = isFinite(massMin) ? massMin : 0;
+        const max = isFinite(massMax) ? massMax : Number.MAX_SAFE_INTEGER;
+        conditions.massInKg = {
+            $gte: min,
+            $lte: max,
+        };
+    }
+
+    if (isFinite(orbitalPeriodMin) || isFinite(orbitalPeriodMax)) {
+        const min = isFinite(orbitalPeriodMin) ? orbitalPeriodMin : 0;
+        const max = isFinite(orbitalPeriodMax) ? orbitalPeriodMax : Number.MAX_SAFE_INTEGER;
+        conditions.orbitalPeriodInDays = {
+            $gte: min,
+            $lte: max,
+        };
+    }
+
     try {
-        const allPlanets = await PlanetModel.find();
+        let planets = await PlanetModel.find(conditions);
+
+        if (planets.length === 0 && name && name.trim().length > 0) {
+            planets = await PlanetModel.find({ moons: new RegExp(name.trim(), 'i') });
+        }
+
         res.status(200).json({
             success: true,
             error: '',
-            data: allPlanets,
+            data: planets,
         });
     } catch (error) {
         res.status(500).json({
             success: false,
-            error: error.message || 'Something went wrong retrieving all planets',
+            error: error.message,
         });
     }
 });
