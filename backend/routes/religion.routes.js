@@ -8,8 +8,10 @@ const ReligionModel = require('../models/Religion');
  */
 router.get('/', async (req, res) => {
     const allReligions = await ReligionModel.findAll({});
-    res.json({
-        religions: allReligions,
+    res.status(200).json({
+        success: true,
+        error: '',
+        data: allReligions,
     });
 });
 
@@ -29,7 +31,11 @@ router.post('/', async (req, res) => {
         const savedReligion = await ReligionModel.create({
             religionName: name,
         });
-        res.status(201).json({ success: true, error: '', data: savedReligion });
+        res.status(201).json({
+            success: true,
+            error: '',
+            data: savedReligion,
+        });
     } catch (error) {
         //If error is same name, return error
         if (error.name === 'SequelizeUniqueConstraintError') {
@@ -77,7 +83,11 @@ router.put('/', async (req, res) => {
 
         const updatedReligion = await foundReligion.update({ religionName: name });
 
-        res.json({ success: true, error: '', data: updatedReligion });
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: updatedReligion,
+        });
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
@@ -108,7 +118,10 @@ router.delete('/', async (req, res) => {
             });
         }
 
-        res.json({ success: true, error: 'Religion deleted' });
+        res.status(200).json({
+            success: true,
+            error: 'Religion deleted',
+        });
     } catch (error) {
         res.status(500).json({
             success: false,

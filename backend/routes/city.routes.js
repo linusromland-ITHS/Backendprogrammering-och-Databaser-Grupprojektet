@@ -86,7 +86,11 @@ router.put('/', async (req, res) => {
 
         const updatedCity = await foundCity.update({ cityName: name, cityPopulation: population });
 
-        res.json({ success: true, error: '', data: updatedCity });
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: updatedCity,
+        });
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
@@ -124,7 +128,11 @@ router.delete('/', async (req, res) => {
             });
         }
 
-        res.json({ success: true, error: '', data: deletedCity });
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: deletedCity,
+        });
     } catch (error) {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(400).json({

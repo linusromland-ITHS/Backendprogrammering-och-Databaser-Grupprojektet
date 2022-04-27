@@ -9,8 +9,9 @@ const PlanetModel = require('../models/Planet');
 router.get('/', async (req, res) => {
     try {
         const allPlanets = await PlanetModel.find();
-        res.json({
+        res.status(200).json({
             success: true,
+            error: '',
             data: allPlanets,
         });
     } catch (error) {
@@ -67,7 +68,11 @@ router.post('/', async (req, res) => {
 
         const savedPlanet = await planet.save();
 
-        res.status(201).json({ success: true, error: '', data: savedPlanet });
+        res.status(201).json({
+            success: true,
+            error: '',
+            data: savedPlanet,
+        });
     } catch (error) {
         if (error.message.includes('duplicate')) {
             return res.status(400).json({
@@ -142,6 +147,7 @@ router.put('/', async (req, res) => {
 
         res.status(200).json({
             success: true,
+            error: '',
             data: planet,
         });
     } catch (error) {
@@ -177,6 +183,7 @@ router.delete('/', async (req, res) => {
 
         res.status(200).json({
             success: true,
+            error: '',
             data: planet,
         });
     } catch (error) {

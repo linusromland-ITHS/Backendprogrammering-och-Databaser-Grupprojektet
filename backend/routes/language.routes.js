@@ -9,7 +9,7 @@ const LanguageModel = require('../models/Language');
 router.get('/', async (req, res) => {
     try {
         const languages = await LanguageModel.findAll();
-        res.json({
+        res.status(200).json({
             success: true,
             error: '',
             data: languages,
@@ -89,7 +89,7 @@ router.put('/', async (req, res) => {
             languageNativeSpeakers: nativeSpeakers,
             languageTotalSpeakers: totalSpeakers,
         });
-        res.json({
+        res.status(200).json({
             success: true,
             error: '',
             data: updatedLanguage,

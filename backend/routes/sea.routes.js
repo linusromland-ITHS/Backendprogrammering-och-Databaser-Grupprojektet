@@ -6,8 +6,9 @@ const SeaModel = require('../models/Sea');
 router.get('/', async (req, res) => {
     try {
         const allSeas = await SeaModel.find();
-        res.json({
+        res.status(200).json({
             success: true,
+            error: '',
             data: allSeas,
         });
     } catch (error) {
@@ -38,7 +39,11 @@ router.post('/', async (req, res) => {
 
         const savedSea = await sea.save();
 
-        res.status(201).json({ success: true, error: '', data: savedSea });
+        res.status(201).json({
+            success: true,
+            error: '',
+            data: savedSea,
+        });
     } catch (error) {
         if (error.message.includes('duplicate')) {
             return res.status(400).json({
@@ -79,7 +84,11 @@ router.put('/', async (req, res) => {
 
         const savedSea = await sea.save();
 
-        res.status(200).json({ success: true, error: '', data: savedSea });
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: savedSea,
+        });
     } catch (error) {
         res.status(500).json({
             success: false,
