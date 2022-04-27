@@ -8,7 +8,7 @@ Get all cities from the database.
 
 | Required | Parameter | Description                                 | Datatype   |
 | -------- | --------- | ------------------------------------------- | ---------- |
-|          | IDs       | The IDs of the cities you want to retrieve. | Number [ ] |
+|          | ids       | The ids of the cities you want to retrieve. | Number[ ] |
 
 **Note**: If you don't specify any ids, all cities will be returned.
 
