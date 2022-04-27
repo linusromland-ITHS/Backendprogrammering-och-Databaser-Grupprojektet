@@ -176,7 +176,8 @@ router.delete('/', async (req, res) => {
 
         res.status(200).json({
             success: true,
-            error: 'Planet deleted',
+            error: '',
+            data: 1,
         });
     } catch (error) {
         res.status(500).json({

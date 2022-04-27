@@ -105,7 +105,7 @@ router.delete('/', async (req, res) => {
             return res.status(404).json({ success: false, error: `Sea with id ${id} could not be found` });
         }
 
-        res.status(200).json({ success: true, error: 'Sea deleted' });
+        res.status(200).json({ success: true, error: '', data: 1 });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
