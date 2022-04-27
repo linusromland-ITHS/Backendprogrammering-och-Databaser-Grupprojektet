@@ -8,6 +8,7 @@ const CityModel = require('../models/City');
  */
 router.get('/', async (req, res) => {
     const { ids } = req.body;
+
     try {
         if (ids) {
             // Find all cities matching array of IDs
@@ -40,7 +41,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const { name, population } = req.body;
 
-    if (!name || !population) {
+    if (!name || name.trim().length < 1 || !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a valid city name and city population.',
@@ -79,7 +80,7 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
     const { id, name, population } = req.body;
 
-    if (!name && !population) {
+    if ((!name || name.trim().length < 1) && !population) {
         return res.status(400).json({
             success: false,
             error: 'Please provide a name and/or population.',
@@ -98,7 +99,11 @@ router.put('/', async (req, res) => {
 
         const updatedCity = await foundCity.update({ cityName: name, cityPopulation: population });
 
-        res.json({ success: true, error: '', data: updatedCity });
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: updatedCity,
+        });
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
@@ -136,7 +141,11 @@ router.delete('/', async (req, res) => {
             });
         }
 
-        res.json({ success: true, error: '', data: deletedCity });
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: deletedCity,
+        });
     } catch (error) {
         if (error.name === 'SequelizeForeignKeyConstraintError') {
             return res.status(400).json({
