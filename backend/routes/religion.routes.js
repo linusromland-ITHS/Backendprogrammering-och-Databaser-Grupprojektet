@@ -4,15 +4,35 @@ const router = express.Router();
 const ReligionModel = require('../models/Religion');
 
 /**
- * @api {get} /api/religion/ Get all religions
+ * @api {get} /api/religion Gets all religion
  */
 router.get('/', async (req, res) => {
-    const allReligions = await ReligionModel.findAll({});
-    res.status(200).json({
-        success: true,
-        error: '',
-        data: allReligions,
-    });
+    const { ids } = req.body;
+
+    try {
+        if (ids) {
+            const religions = await ReligionModel.findAll({
+                where: { religionID: ids },
+            });
+            res.status(200).json({
+                success: true,
+                error: '',
+                data: religions,
+            });
+        } else {
+            const religions = await ReligionModel.findAll();
+            res.status(200).json({
+                success: true,
+                error: '',
+                data: religions,
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
 });
 
 /**
