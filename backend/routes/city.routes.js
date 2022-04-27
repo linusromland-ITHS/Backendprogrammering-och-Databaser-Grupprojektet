@@ -4,6 +4,25 @@ const router = express.Router();
 const CityModel = require('../models/City');
 
 /**
+ * @api {get} /api/city/ Returns all cities
+ */
+router.get('/', async (req, res) => {
+    try {
+        const languages = await CityModel.findAll();
+        res.json({
+            success: true,
+            error: '',
+            data: languages,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
+
+/**
  * @api {post} /api/city/ Create a new City
  */
 router.post('/', async (req, res) => {
