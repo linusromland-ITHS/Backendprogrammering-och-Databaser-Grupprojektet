@@ -4,21 +4,77 @@
 
 ## GET `/api/city/`
 
-Get cities from filter.
+Get all cities from the database.
 
-| Required | Parameter | Description                   | Datatype |
-| -------- | --------- | ----------------------------- | -------- |
-|          | ids       | The ids of the cities to get. | Number   |
+| Required | Parameter | Description                                 | Datatype   |
+| -------- | --------- | ------------------------------------------- | ---------- |
+|          | ids       | The ids of the cities you want to retrieve. | Number[ ] |
+
+**Note**: If you don't specify any ids, all cities will be returned.
 
 <details>
 <summary>Show/Hide Example</summary>
 
-Send a POST request to `/api/city/` with the following body:
+Send a GET request to `/api/city/`:
+
+Response:
 
 ```json
 {
-  "name": "Gothenburg",
-  "population": 579000
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"cityID": 1,
+			"cityName": "Beijing",
+			"cityPopulation": 210000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"cityID": 2,
+			"cityName": "New Delhi",
+			"cityPopulation": 160000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"cityID": 3,
+			"cityName": "New York",
+			"cityPopulation": 80000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"cityID": 4,
+			"cityName": "Jakarta",
+			"cityPopulation": 20000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"cityID": 5,
+			"cityName": "Islamabad",
+			"cityPopulation": 12000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"cityID": 6,
+			"cityName": "Stockholm",
+			"cityPopulation": 8000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		}
+	]
+}
+```
+
+Send a GET request to `/api/city/` with the following body:
+
+```json
+{
+	"ids": [3, 6]
 }
 ```
 
@@ -26,15 +82,24 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": {
-    "cityID": 1,
-    "cityName": "Gothenburg",
-    "cityPopulation": 579000,
-    "updatedAt": "1970-01-01T00:00:00.000Z",
-    "createdAt": "1970-01-01T00:00:00.000Z"
-  }
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"cityID": 3,
+			"cityName": "New York",
+			"cityPopulation": 80000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"cityID": 6,
+			"cityName": "Stockholm",
+			"cityPopulation": 8000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		}
+	]
 }
 ```
 
@@ -57,8 +122,8 @@ Send a POST request to `/api/city/` with the following body:
 
 ```json
 {
-  "name": "Gothenburg",
-  "population": 579000
+	"name": "Gothenburg",
+	"population": 579000
 }
 ```
 
@@ -66,15 +131,15 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": {
-    "cityID": 1,
-    "cityName": "Gothenburg",
-    "cityPopulation": 579000,
-    "updatedAt": "1970-01-01T00:00:00.000Z",
-    "createdAt": "1970-01-01T00:00:00.000Z"
-  }
+	"success": true,
+	"error": "",
+	"data": {
+		"cityID": 1,
+		"cityName": "Gothenburg",
+		"cityPopulation": 579000,
+		"updatedAt": "1970-01-01T00:00:00.000Z",
+		"createdAt": "1970-01-01T00:00:00.000Z"
+	}
 }
 ```
 
@@ -98,9 +163,9 @@ Send a PUT request to `/api/city/` with the following body:
 
 ```json
 {
-  "id": 1,
-  "name": "Gothenburg",
-  "population": 615000
+	"id": 1,
+	"name": "Gothenburg",
+	"population": 615000
 }
 ```
 
@@ -108,15 +173,15 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": {
-    "cityID": 1,
-    "cityName": "Gothenburg",
-    "cityPopulation": 615000,
-    "createdAt": "1970-01-01T00:00:00.000Z",
-    "updatedAt": "1970-01-01T00:00:00.000Z"
-  }
+	"success": true,
+	"error": "",
+	"data": {
+		"cityID": 1,
+		"cityName": "Gothenburg",
+		"cityPopulation": 615000,
+		"createdAt": "1970-01-01T00:00:00.000Z",
+		"updatedAt": "1970-01-01T00:00:00.000Z"
+	}
 }
 ```
 
@@ -138,7 +203,7 @@ Send a DELETE request to `/api/city/` with the following body:
 
 ```json
 {
-  "id": 1
+	"id": 1
 }
 ```
 
@@ -146,9 +211,9 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": 1
+	"success": true,
+	"error": "",
+	"data": 1
 }
 ```
 
