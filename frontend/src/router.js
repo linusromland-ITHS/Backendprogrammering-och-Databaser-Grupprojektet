@@ -15,6 +15,12 @@ const router = createRouter({
 			component: () => import('./views/Search.vue'),
 			path: '/:type',
 		},
+		{
+			// Search Route
+			name: 'Result',
+			component: () => import('./views/Result.vue'),
+			path: '/result/:type',
+		},
 	],
 });
 
