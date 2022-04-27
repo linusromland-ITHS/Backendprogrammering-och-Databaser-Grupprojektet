@@ -4,13 +4,13 @@
 
 ## GET `/api/currency/`
 
-Get all currency from the database.
+Get all currencies from the database.
 
-| Required | Parameter | Description                                   | Datatype   |
-| -------- | --------- | --------------------------------------------- | ---------- |
-|          | IDs       | The IDs of the currency you want to retrieve. | Number [ ] |
+| Required | Parameter | Description                                   | Datatype  |
+| -------- | --------- | --------------------------------------------- | --------- |
+|          | ids       | The ids of the currency you want to retrieve. | Number[ ] |
 
-**Note**: If you don't specify any IDs, all currencies will be returned.
+**Note**: If you don't specify any ids, all currencies will be returned.
 
 <details>
 <summary>Show/Hide Example</summary>
@@ -67,7 +67,7 @@ Send a GET request to `/api/currency/` with the following body:
 
 ```json
 {
-	"IDs": [3, 6, 12]
+	"ids": [3, 6, 12]
 }
 ```
 
@@ -132,6 +132,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": {
 		"currencyID": 1,
 		"currencyName": "United States Dollar",
@@ -172,6 +173,7 @@ Response:
 ```json
 {
 	"success": true,
+	"error": "",
 	"data": {
 		"currencyID": 1,
 		"currencyName": "US Dollar",

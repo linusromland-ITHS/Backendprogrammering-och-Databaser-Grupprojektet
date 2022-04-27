@@ -15,7 +15,9 @@ Response:
 
 ```json
 {
-	"religions": [
+	"success": true,
+	"error": "",
+	"data": [
 		{
 			"religionID": 1,
 			"religionName": "Atheist",
