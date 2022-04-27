@@ -8,11 +8,12 @@ const CityModel = require('../models/City');
  */
 router.get('/', async (req, res) => {
     try {
-        const languages = await CityModel.findAll();
+        // Find all cities matching array of IDs
+        const cities = await CityModel.findAll({ where: { cityID: req.body.IDs } });
         res.json({
             success: true,
             error: '',
-            data: languages,
+            data: cities,
         });
     } catch (error) {
         res.status(500).json({
