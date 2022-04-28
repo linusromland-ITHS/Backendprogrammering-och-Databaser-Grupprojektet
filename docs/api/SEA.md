@@ -12,15 +12,18 @@ Get all seas from the database.
 Send a GET request to `/api/sea/`:
 
 | Required | Parameter               | Description                                                                | Datatype  |
-| -------- | --------------------    | -------------------------------------------------------------------------- | --------- |
-|          | ids                     | The id of the sea(s) you want to fetch.                                    | String[]  |
+| -------- | ----------------------- | -------------------------------------------------------------------------- | --------- |
+|          | ids                     | The id of the sea(s) you want to fetch.                                    | String[ ] |
 |          | name                    | The name of the sea or species you want to fetch.                          | String    |
 |          | minSizeInSquareKm       | The minimum size of the sea you want to fetch. In square kilometers (km²). | Number    |
 |          | maxSizeInSquareKm       | The maximum size of the sea you want to fetch. In square kilometers (km²). | Number    |
 |          | minAverageDepthInMeters | The minimum average depth of the sea you want to fetch. In meters (m).     | Number    |
 |          | maxAverageDepthInMeters | The maximum average depth of the sea you want to fetch. In meters (m).     | Number    |
 
-If no parameters are present, all existing seas are returned.
+**Note**:
+
+-   If you don't include any parameters in your request, all seas will be returned.
+-   When using any of the interval parameters, you **do not** need to include both the minimum and maximum value.
 
 Response:
 
@@ -43,6 +46,34 @@ Response:
 			"sizeInSquareKm": 162500000,
 			"averageDepthInMeters": 4280,
 			"species": ["Humpback whale", "Orca"],
+			"__v": 0
+		}
+	]
+}
+```
+
+Send a GET request to `/api/sea/` with the following body:
+
+```json
+{
+	"name": "Atlantic",
+	"minSizeInSquareKm": 96500000
+}
+```
+
+Response:
+
+```json
+{
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"_id": "6268440574fd7ab3f2cfeb8a",
+			"name": "Atlantic Ocean",
+			"sizeInSquareKm": 106500000,
+			"averageDepthInMeters": 3642,
+			"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
 			"__v": 0
 		}
 	]
