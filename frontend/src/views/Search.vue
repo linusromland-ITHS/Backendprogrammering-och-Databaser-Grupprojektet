@@ -1,10 +1,10 @@
 <template>
 	<Navbar />
 	<main class="w-full md:w-2/3 mx-auto">
-		<form class="flex flex-col items-center text-center">
+		<form class="flex flex-col items-center text-center" @submit="search">
 			<h2 class="text-4xl md:text-5xl font-semibold m-10">{{ title }}</h2>
 			<p class="text-lg md:text-xl text-gray-500 mb-10">{{ subtitle }}</p>
-			<formset class="w-5/6 md:w-2/3 lg:w-1/2 flex justify-center">
+			<div class="w-5/6 md:w-2/3 lg:w-1/2 flex justify-center">
 				<input
 					type="text"
 					placeholder="Search..."
@@ -15,7 +15,7 @@
 					value="Search"
 					:class="`bg-${type} py-2 px-4 rounded-r-md text-white focus:brightness-90 focus:outline-none hover:brightness-110 cursor-pointer transition ease-out duration-150`"
 				/>
-			</formset>
+			</div>
 		</form>
 	</main>
 </template>
@@ -62,12 +62,15 @@
 		created() {
 			this.type = this.$route.params.type;
 		},
-
 		methods: {
-			submit() {
-				// TODO: Search
+			search(e) {
+				e.preventDefault();
+				const query = this.query.trim();
+
+				if (query != '') {
+					this.$router.push(`/${this.type}/result/${query}`);
+				}
 			},
 		},
 	};
 </script>
-<style></style>
