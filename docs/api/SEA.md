@@ -6,11 +6,6 @@
 
 Get all seas from the database.
 
-<details>
-<summary>Show/Hide Example</summary>
-
-Send a GET request to `/api/sea/`:
-
 | Required | Parameter               | Description                                                                | Datatype  |
 | -------- | ----------------------- | -------------------------------------------------------------------------- | --------- |
 |          | ids                     | The id of the sea(s) you want to fetch.                                    | String[ ] |
@@ -24,6 +19,11 @@ Send a GET request to `/api/sea/`:
 
 -   If you don't include any parameters in your request, all seas will be returned.
 -   When using any of the interval parameters, you **do not** need to include both the minimum and maximum value.
+
+<details>
+<summary>Show/Hide Example</summary>
+
+Send a GET request to `/api/sea/`:
 
 Response:
 
