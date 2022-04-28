@@ -11,7 +11,7 @@ const ReligionModel = require('../models/Religion');
  * @api {get} /countries Get all countries
  */
 router.get('/', async (req, res) => {
-    const { name, capital, populationMin, populationMax, sizeMin, sizeMax, religion, continent, language, currency } =
+    const { name, capital, populationMin, populationMax, sizeMin, sizeMax, religion, continent, language, currencyID } =
         req.body;
 
     const conditions = {};
@@ -66,12 +66,7 @@ router.get('/', async (req, res) => {
         };
     }
 
-    //TODO: fix currency check
-    if (currency && currency.trim().length > 0) {
-        conditions.currency = {
-            $regex: new RegExp(currency.trim(), 'i'),
-        };
-    }
+    if (currencyID) conditions.countryCurrencyID = currencyID;
 
     try {
         const countries = await CountryModel.findAll({
