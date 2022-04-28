@@ -2,6 +2,8 @@
 const express = require('express');
 const { Op } = require('sequelize');
 const router = express.Router();
+const CityModel = require('../models/City');
+const CurrencyModel = require('../models/Currency');
 const CountryModel = require('../models/Country');
 const ContinentModel = require('../models/Continent');
 const LanguageModel = require('../models/Language');
@@ -71,6 +73,7 @@ router.get('/', async (req, res) => {
     try {
         const countries = await CountryModel.findAll({
             where: conditions,
+            include: [CityModel, CurrencyModel, ContinentModel, LanguageModel, ReligionModel],
         });
 
         res.status(200).json({
