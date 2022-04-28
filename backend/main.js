@@ -69,7 +69,7 @@ app.use('/', express.static(path.join(path.resolve(), '../frontend/dist')));
         CountryModel.belongsTo(CityModel, { foreignKey: 'countryCapitalID' });
 
         // Sync models
-        await sequelize.sync({ alter: true });
+        await sequelize.sync();
 
         await createBaseData();
 

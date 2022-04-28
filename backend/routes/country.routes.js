@@ -13,21 +13,15 @@ const ReligionModel = require('../models/Religion');
  * @api {get} /countries Get all countries
  */
 router.get('/', async (req, res) => {
-    const { name, capital, populationMin, populationMax, sizeMin, sizeMax, religion, continent, language, currencyID } =
+    const { name, populationMin, populationMax, sizeMin, sizeMax, religionID, continentID, languageID, currencyID } =
         req.body;
 
     const conditions = {};
+    const associationsConditions = [];
 
     if (name && name.trim().length > 0) {
         conditions.countryName = {
-            [Op.substring]: name,
-        };
-    }
-
-    //TODO: fix capital check
-    if (capital && capital.trim().length > 0) {
-        conditions.countryCapitalID = {
-            $regex: new RegExp(capital.trim(), 'i'),
+            [Op.substring]: name.trim(),
         };
     }
 
@@ -47,34 +41,62 @@ router.get('/', async (req, res) => {
         };
     }
 
-    //TODO: fix religion check
-    if (religion && religion.trim().length > 0) {
-        conditions.religion = {
-            $regex: new RegExp(religion.trim(), 'i'),
-        };
+    if (languageID) {
+        associationsConditions.push({
+            model: LanguageModel,
+            where: {
+                languageID,
+            },
+        });
     }
 
-    //TODO: fix continent check
-    if (continent && continent.trim().length > 0) {
-        conditions.continent = {
-            $regex: new RegExp(continent.trim(), 'i'),
-        };
+    if (religionID) {
+        associationsConditions.push({
+            model: ReligionModel,
+            where: {
+                religionID,
+            },
+        });
     }
 
-    //TODO: fix language check
-    if (language && language.trim().length > 0) {
-        conditions.language = {
-            $regex: new RegExp(language.trim(), 'i'),
-        };
+    if (continentID) {
+        associationsConditions.push({
+            model: ContinentModel,
+            where: {
+                continentID,
+            },
+        });
     }
 
     if (currencyID) conditions.countryCurrencyID = currencyID;
 
     try {
-        const countries = await CountryModel.findAll({
+        let countries = await CountryModel.findAll({
             where: conditions,
-            include: [CityModel, CurrencyModel, ContinentModel, LanguageModel, ReligionModel],
+            include: [
+                CityModel,
+                CurrencyModel,
+                ContinentModel,
+                ReligionModel,
+                LanguageModel,
+                ...associationsConditions,
+            ],
         });
+
+        if (countries.length === 0 && name && name.trim().length > 0) {
+            countries = await CountryModel.findAll({
+                include: [
+                    {
+                        model: CityModel,
+                        where: {
+                            cityName: {
+                                [Op.substring]: name.trim(),
+                            },
+                        },
+                    },
+                ],
+            });
+        }
 
         res.status(200).json({
             success: true,
