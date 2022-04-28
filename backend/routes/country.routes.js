@@ -1,10 +1,95 @@
 // Dependencies
 const express = require('express');
+const { Op } = require('sequelize');
 const router = express.Router();
 const CountryModel = require('../models/Country');
 const ContinentModel = require('../models/Continent');
 const LanguageModel = require('../models/Language');
 const ReligionModel = require('../models/Religion');
+
+/**
+ * @api {get} /countries Get all countries
+ */
+router.get('/', async (req, res) => {
+    const { name, capital, populationMin, populationMax, sizeMin, sizeMax, religion, continent, language, currency } =
+        req.body;
+
+    const conditions = {};
+
+    if (name && name.trim().length > 0) {
+        conditions.countryName = {
+            [Op.substring]: name,
+        };
+    }
+
+    //TODO: fix capital check
+    if (capital && capital.trim().length > 0) {
+        conditions.countryCapitalID = {
+            $regex: new RegExp(capital.trim(), 'i'),
+        };
+    }
+
+    if (isFinite(populationMin) || isFinite(populationMax)) {
+        const min = isFinite(populationMin) && populationMin > 0 ? populationMin : 0;
+        const max = isFinite(populationMax) ? populationMax : Number.MAX_SAFE_INTEGER;
+        conditions.countryPopulation = {
+            [Op.between]: [min, max],
+        };
+    }
+
+    if (isFinite(sizeMin) || isFinite(sizeMax)) {
+        const min = isFinite(sizeMin) && sizeMin > 0 ? sizeMin : 0;
+        const max = isFinite(sizeMax) ? sizeMax : Number.MAX_SAFE_INTEGER;
+        conditions.countrySize = {
+            [Op.between]: [min, max],
+        };
+    }
+
+    //TODO: fix religion check
+    if (religion && religion.trim().length > 0) {
+        conditions.religion = {
+            $regex: new RegExp(religion.trim(), 'i'),
+        };
+    }
+
+    //TODO: fix continent check
+    if (continent && continent.trim().length > 0) {
+        conditions.continent = {
+            $regex: new RegExp(continent.trim(), 'i'),
+        };
+    }
+
+    //TODO: fix language check
+    if (language && language.trim().length > 0) {
+        conditions.language = {
+            $regex: new RegExp(language.trim(), 'i'),
+        };
+    }
+
+    //TODO: fix currency check
+    if (currency && currency.trim().length > 0) {
+        conditions.currency = {
+            $regex: new RegExp(currency.trim(), 'i'),
+        };
+    }
+
+    try {
+        const countries = await CountryModel.findAll({
+            where: conditions,
+        });
+
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: countries,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
 
 /**
  * @api {post} /api/country Create a new country
