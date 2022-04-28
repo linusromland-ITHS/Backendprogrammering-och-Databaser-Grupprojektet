@@ -21,6 +21,14 @@ const CountryModel = require('./models/Country');
 
 // Middleware
 app.use(express.json());
+/* eslint-disable no-unused-vars */
+app.use((err, req, res, next) => {
+    res.status(400).json({
+        success: false,
+        error: err.message,
+    });
+});
+/* eslint-enable no-unused-vars */
 
 // Routes
 app.use('/api', require('./routes/api.js'));

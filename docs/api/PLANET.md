@@ -6,6 +6,27 @@
 
 Get all planets from the database.
 
+| Required | Parameter             | Description                                                                                                                            | Datatype |
+| -------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+|          | name                  | The name of the planet(s) you want to retrieve. If the name do not match any planets, a search of all planets moons will be performed. | String   |
+|          | surfaceAreaMin        | The minimum surface area of the planet(s) you want to retrieve. In square kilometers (km²).                                            | Number   |
+|          | surfaceAreaMax        | The maximum surface area of the planet(s) you want to retrieve. In square kilometers (km²).                                            | Number   |
+|          | distanceFromSunMin    | The planet(s) you want to retrieve's minimum distance from the sun. In kilometers (km).                                                | Number   |
+|          | distanceFromSunMax    | The planet(s) you want to retrieve's maximum distance from the sun. In kilometers (km).                                                | Number   |
+|          | averageTemperatureMin | The minimum average temperature of the planet(s) you want to retrieve. In celsius (°C).                                                | Number   |
+|          | averageTemperatureMax | The maximum average temperature of the planet(s) you want to retrieve. In celsius (°C).                                                | Number   |
+|          | radiusMin             | The minimum radius of the planet(s) you want to retrieve. In kilometers (km).                                                          | Number   |
+|          | radiusMax             | The maximum radius of the planet(s) you want to retrieve. In kilometers (km).                                                          | Number   |
+|          | massMin               | The minimum mass of the planet(s) you want to retrieve. In kilograms (kg).                                                             | Number   |
+|          | massMax               | The maximum mass of the planet(s) you want to retrieve. In kilograms (kg).                                                             | Number   |
+|          | orbitalPeriodMin      | The planet(s) you want to retrieve's minimum orbital period. In days.                                                                  | Number   |
+|          | orbitalPeriodMax      | The planet(s) you want to retrieve's maximum orbital period. In days.                                                                  | Number   |
+
+**Note**:
+
+-   If you don't include any parameters in your request, all planets will be returned.
+-   When using any of the interval parameters, you **do not** need to include both the minimum and maximum value.
+
 <details>
 <summary>Show/Hide Example</summary>
 
@@ -19,6 +40,18 @@ Response:
 	"error": "",
 	"data": [
 		{
+			"_id": "6268481074fd7ab3f2cfeb8d",
+			"name": "Earth",
+			"surfaceAreaInSquareKm": 510100000,
+			"distanceFromSunInKm": 150550000,
+			"moons": ["Luna"],
+			"averageTemperatureInCelsius": 15,
+			"radiusInKm": 6378,
+			"massInKg": 5.9722e24,
+			"orbitalPeriodInDays": 365,
+			"__v": 0
+		},
+		{
 			"name": "Mars",
 			"surfaceAreaInSquareKm": 1448000000,
 			"distanceFromSunInKm": 211130000,
@@ -29,17 +62,37 @@ Response:
 			"orbitalPeriodInDays": 686,
 			"_id": "6268416474fd7ab3f2cfeb85",
 			"__v": 0
-		},
+		}
+	]
+}
+```
+
+Send a GET request to `/api/planet/` with the following body:
+
+```json
+{
+	"name": "Mars",
+	"radiusMin": 3300
+}
+```
+
+Response:
+
+```json
+{
+	"success": true,
+	"error": "",
+	"data": [
 		{
-			"_id": "6268481074fd7ab3f2cfeb8d",
-			"name": "Earth",
-			"surfaceAreaInSquareKm": 510100000,
-			"distanceFromSunInKm": 150550000,
-			"moons": ["Luna"],
-			"averageTemperatureInCelsius": 15,
-			"radiusInKm": 6378,
-			"massInKg": 5.9722e24,
-			"orbitalPeriodInDays": 365,
+			"_id": "6268416474fd7ab3f2cfeb85",
+			"name": "Mars",
+			"surfaceAreaInSquareKm": 6787,
+			"distanceFromSunInKm": 22794,
+			"moons": ["Phobos", "Deimos"],
+			"averageTemperatureInCelsius": -88,
+			"radiusInKm": 3389,
+			"massInKg": 32,
+			"orbitalPeriodInDays": 686,
 			"__v": 0
 		}
 	]
