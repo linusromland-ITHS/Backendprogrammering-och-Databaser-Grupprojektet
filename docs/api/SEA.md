@@ -11,6 +11,17 @@ Get all seas from the database.
 
 Send a GET request to `/api/sea/`:
 
+| Required | Parameter               | Description                                                                | Datatype  |
+| -------- | --------------------    | -------------------------------------------------------------------------- | --------- |
+|          | ids                     | The id of the sea(s) you want to fetch.                                    | String[]  |
+|          | name                    | The name of the sea or species you want to fetch.                          | String    |
+|          | minSizeInSquareKm       | The minimum size of the sea you want to fetch. In square kilometers (km²). | Number    |
+|          | maxSizeInSquareKm       | The maximum size of the sea you want to fetch. In square kilometers (km²). | Number    |
+|          | minAverageDepthInMeters | The minimum average depth of the sea you want to fetch. In meters (m).     | Number    |
+|          | maxAverageDepthInMeters | The maximum average depth of the sea you want to fetch. In meters (m).     | Number    |
+
+If no parameters are present, all existing seas are returned.
+
 Response:
 
 ```json

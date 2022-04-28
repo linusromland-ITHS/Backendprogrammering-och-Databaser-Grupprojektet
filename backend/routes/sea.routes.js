@@ -3,9 +3,34 @@ const router = express.Router();
 
 const SeaModel = require('../models/Sea');
 
+/**
+ * @api {get} /api/sea/ Get all seas
+ */
 router.get('/', async (req, res) => {
+    const { ids, name, minSizeInSquareKm, maxSizeInSquareKm, minAverageDepthInMeters, maxAverageDepthInMeters } =
+        req.body;
+
+    let query = {};
+    if (ids) query._id = ids;
+    if (name && name.trim()) query.name = { $regex: name, $options: 'i' };
+    if (minSizeInSquareKm) query.sizeInSquareKm = { $gte: minSizeInSquareKm };
+    if (maxSizeInSquareKm)
+        query.sizeInSquareKm = query.sizeInSquareKm
+            ? { $lte: maxSizeInSquareKm, ...query.sizeInSquareKm }
+            : { $lte: maxSizeInSquareKm };
+    if (minAverageDepthInMeters) query.averageDepthInMeters = { $gte: minAverageDepthInMeters };
+    if (maxAverageDepthInMeters)
+        query.averageDepthInMeters = query.averageDepthInMeters
+            ? { ...query.averageDepthInMeters, $lte: maxAverageDepthInMeters }
+            : { $lte: maxAverageDepthInMeters };
+
     try {
-        const allSeas = await SeaModel.find();
+        let allSeas = await SeaModel.find(query);
+
+        if (allSeas.length < 1) {
+            allSeas = await SeaModel.find({ species: { $regex: name, $options: 'i' } });
+        }
+
         res.status(200).json({
             success: true,
             error: '',
