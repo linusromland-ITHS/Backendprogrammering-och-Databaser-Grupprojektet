@@ -7,7 +7,7 @@ const ReligionModel = require('../models/Religion');
  * @api {get} /api/religion/ Get all religions
  */
 router.get('/', async (req, res) => {
-    const { ids } = req.body;
+    const { ids } = req.query;
 
     try {
         if (ids) {

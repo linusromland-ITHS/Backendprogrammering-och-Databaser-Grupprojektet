@@ -14,7 +14,7 @@ const ReligionModel = require('../models/Religion');
  */
 router.get('/', async (req, res) => {
     const { name, populationMin, populationMax, sizeMin, sizeMax, religionID, continentID, languageID, currencyID } =
-        req.body;
+        req.query;
 
     const conditions = {};
     const associationsConditions = [];
