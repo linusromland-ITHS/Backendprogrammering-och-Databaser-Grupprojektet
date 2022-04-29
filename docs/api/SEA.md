@@ -10,10 +10,10 @@ Get all seas from the database.
 | -------- | ----------------------- | -------------------------------------------------------------------------- | --------- |
 |          | ids                     | The id of the sea(s) you want to fetch.                                    | String[ ] |
 |          | name                    | The name of the sea or species you want to fetch.                          | String    |
-|          | minSizeInSquareKm       | The minimum size of the sea you want to fetch. In square kilometers (km²). | Number    |
-|          | maxSizeInSquareKm       | The maximum size of the sea you want to fetch. In square kilometers (km²). | Number    |
-|          | minAverageDepthInMeters | The minimum average depth of the sea you want to fetch. In meters (m).     | Number    |
-|          | maxAverageDepthInMeters | The maximum average depth of the sea you want to fetch. In meters (m).     | Number    |
+|          | sizeInSquareKmMin       | The minimum size of the sea you want to fetch. In square kilometers (km²). | Number    |
+|          | sizeInSquareKmMax       | The maximum size of the sea you want to fetch. In square kilometers (km²). | Number    |
+|          | averageDepthInMetersMin | The minimum average depth of the sea you want to fetch. In meters (m).     | Number    |
+|          | averageDepthInMetersMax | The maximum average depth of the sea you want to fetch. In meters (m).     | Number    |
 
 **Note**:
 
@@ -57,7 +57,7 @@ Send a GET request to `/api/sea/` with the following body:
 ```json
 {
 	"name": "Atlantic",
-	"minSizeInSquareKm": 96500000
+	"sizeInSquareKmMin": 96500000
 }
 ```
 
