@@ -8,7 +8,7 @@ const SeaModel = require('../models/Sea');
  */
 router.get('/', async (req, res) => {
     const { ids, name, minSizeInSquareKm, maxSizeInSquareKm, minAverageDepthInMeters, maxAverageDepthInMeters } =
-        req.body;
+        req.query;
 
     let query = {};
     if (ids) query._id = ids;
