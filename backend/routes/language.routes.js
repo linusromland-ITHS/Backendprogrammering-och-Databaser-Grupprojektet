@@ -8,7 +8,7 @@ const LanguageModel = require('../models/Language');
  */
 router.get('/', async (req, res) => {
     try {
-        const { ids } = req.body;
+        const { ids } = req.query;
         if (ids) {
             const languages = await LanguageModel.findAll({ where: { languageID: ids } });
             res.status(200).json({

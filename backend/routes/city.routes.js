@@ -7,7 +7,7 @@ const CityModel = require('../models/City');
  * @api {get} /api/city/ Returns all cities
  */
 router.get('/', async (req, res) => {
-    const { ids } = req.body;
+    const { ids } = req.query;
 
     try {
         if (ids) {

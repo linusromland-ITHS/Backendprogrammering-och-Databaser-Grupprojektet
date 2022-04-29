@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         massMax,
         orbitalPeriodMin,
         orbitalPeriodMax,
-    } = req.body;
+    } = req.query;
 
     const conditions = {};
 
