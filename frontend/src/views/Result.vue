@@ -3,6 +3,7 @@
 	<div class="w-2/3 site-height mx-auto flex justify-between">
 		<SeaFilterComponent v-if="type === 'sea'" @search-sea="fetchSea" />
 		<SpaceFilterComponent v-if="type === 'space'" @search-space="fetchSpace" />
+		<LandFilterComponent v-if="type === 'land'" @search-land="fetchLand" />
 		<div class="w-9/12 h-full p-3 flex flex-col">
 			<h2 class="text-2xl font-semibold">Results:</h2>
 
@@ -26,8 +27,9 @@
 	import ResultComponent from '../components/ResultComponent.vue';
 	import SeaFilterComponent from '../components/SeaFilterComponent.vue';
 	import SpaceFilterComponent from '../components/SpaceFilterComponent.vue';
+	import LandFilterComponent from '../components/LandFilterComponent.vue';
 	export default {
-		components: { Navbar, ResultComponent, SeaFilterComponent, SpaceFilterComponent },
+		components: { Navbar, ResultComponent, SeaFilterComponent, SpaceFilterComponent, LandFilterComponent },
 		data() {
 			return {
 				type: '',
@@ -47,11 +49,16 @@
 				const response = await axios.get('/api/sea', {
 					params: { ...query },
 				});
-
 				this.results = response.data.data;
 			},
 			async fetchSpace(query) {
 				const response = await axios.get('/api/planet', {
+					params: { ...query },
+				});
+				this.results = response.data.data;
+			},
+			async fetchLand(query) {
+				const response = await axios.get('/api/country', {
 					params: { ...query },
 				});
 				this.results = response.data.data;
