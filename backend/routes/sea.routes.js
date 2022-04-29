@@ -7,22 +7,22 @@ const SeaModel = require('../models/Sea');
  * @api {get} /api/sea/ Get all seas
  */
 router.get('/', async (req, res) => {
-    const { ids, name, minSizeInSquareKm, maxSizeInSquareKm, minAverageDepthInMeters, maxAverageDepthInMeters } =
+    const { ids, name, sizeInSquareKmMin, sizeInSquareKmMax, averageDepthInMetersMin, averageDepthInMetersMax } =
         req.query;
 
     let query = {};
     if (ids) query._id = ids;
     if (name && name.trim()) query.name = { $regex: name, $options: 'i' };
-    if (minSizeInSquareKm) query.sizeInSquareKm = { $gte: minSizeInSquareKm };
-    if (maxSizeInSquareKm)
+    if (sizeInSquareKmMin) query.sizeInSquareKm = { $gte: sizeInSquareKmMin };
+    if (sizeInSquareKmMax)
         query.sizeInSquareKm = query.sizeInSquareKm
-            ? { $lte: maxSizeInSquareKm, ...query.sizeInSquareKm }
-            : { $lte: maxSizeInSquareKm };
-    if (minAverageDepthInMeters) query.averageDepthInMeters = { $gte: minAverageDepthInMeters };
-    if (maxAverageDepthInMeters)
+            ? { $lte: sizeInSquareKmMax, ...query.sizeInSquareKm }
+            : { $lte: sizeInSquareKmMax };
+    if (averageDepthInMetersMin) query.averageDepthInMeters = { $gte: averageDepthInMetersMin };
+    if (averageDepthInMetersMax)
         query.averageDepthInMeters = query.averageDepthInMeters
-            ? { ...query.averageDepthInMeters, $lte: maxAverageDepthInMeters }
-            : { $lte: maxAverageDepthInMeters };
+            ? { ...query.averageDepthInMeters, $lte: averageDepthInMetersMax }
+            : { $lte: averageDepthInMetersMax };
 
     try {
         let allSeas = await SeaModel.find(query);
