@@ -1,6 +1,6 @@
 # Backendprogrammering-och-Databaser-Grupprojektet
 
-The Group Project in the course `Backendprogramming and Databases`.
+The Group Project in the course `Backend programming and Databases`.
 
 ## Group Members
 
@@ -11,11 +11,15 @@ The Group Project in the course `Backendprogramming and Databases`.
 
 ## Setup and running
 
-To see how you setup and run the project, click [here](/docs/SETUPGUIDE.md)
+Project setup and running instructions are available [here](/docs/SETUPGUIDE.md).
+
+## API Documentation
+
+The API documentation is available [here](/docs/api/README.md)
 
 ## Style guide
 
-To see our style guide, click [here](/docs/STYLEGUIDE.md).
+The style guide is available [here](/docs/STYLEGUIDE.md).
 
 ## License
 
