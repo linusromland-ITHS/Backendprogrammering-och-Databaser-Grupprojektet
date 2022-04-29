@@ -2,7 +2,7 @@
 	<Navbar />
 	<div class="w-2/3 site-height mx-auto flex justify-between">
 		<SeaFilterComponent v-if="type === 'sea'" @search-sea="fetchSea" />
-
+		<SpaceFilterComponent v-if="type === 'space'" @search-space="fetchSpace" />
 		<div class="w-9/12 h-full p-3 flex flex-col">
 			<h2 class="text-2xl font-semibold">Results:</h2>
 
@@ -25,8 +25,9 @@
 	import Navbar from '../components/Navbar.vue';
 	import ResultComponent from '../components/ResultComponent.vue';
 	import SeaFilterComponent from '../components/SeaFilterComponent.vue';
+	import SpaceFilterComponent from '../components/SpaceFilterComponent.vue';
 	export default {
-		components: { Navbar, ResultComponent, SeaFilterComponent },
+		components: { Navbar, ResultComponent, SeaFilterComponent, SpaceFilterComponent },
 		data() {
 			return {
 				type: '',
@@ -47,6 +48,12 @@
 					params: { ...query },
 				});
 
+				this.results = response.data.data;
+			},
+			async fetchSpace(query) {
+				const response = await axios.get('/api/planet', {
+					params: { ...query },
+				});
 				this.results = response.data.data;
 			},
 		},
