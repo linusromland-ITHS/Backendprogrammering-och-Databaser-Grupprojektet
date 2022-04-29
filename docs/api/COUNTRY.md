@@ -185,13 +185,7 @@ Response:
 }
 ```
 
-Send a GET request to `/api/country/` with the following body:
-
-```json
-{
-	"religionID": 4
-}
-```
+Send a GET request to `/api/country/?religionID=4`:
 
 Response:
 

@@ -21,93 +21,87 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": [
-    {
-      "languageID": 1,
-      "languageName": "Standard Chinese",
-      "languageNativeSpeakers": 929000000,
-      "languageTotalSpeakers": 1118000000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    },
-    {
-      "languageID": 2,
-      "languageName": "Hindi",
-      "languageNativeSpeakers": 343900000,
-      "languageTotalSpeakers": 602200000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    },
-    {
-      "languageID": 3,
-      "languageName": "English",
-      "languageNativeSpeakers": 372900000,
-      "languageTotalSpeakers": 1452000000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    },
-    {
-      "languageID": 4,
-      "languageName": "Indonesian",
-      "languageNativeSpeakers": 43600000,
-      "languageTotalSpeakers": 199000000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    },
-    {
-      "languageID": 5,
-      "languageName": "Punjabi",
-      "languageNativeSpeakers": 12000000,
-      "languageTotalSpeakers": 32000000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    },
-    {
-      "languageID": 6,
-      "languageName": "Swedish",
-      "languageNativeSpeakers": 9000000,
-      "languageTotalSpeakers": 20000000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    }
-  ]
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"languageID": 1,
+			"languageName": "Standard Chinese",
+			"languageNativeSpeakers": 929000000,
+			"languageTotalSpeakers": 1118000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"languageID": 2,
+			"languageName": "Hindi",
+			"languageNativeSpeakers": 343900000,
+			"languageTotalSpeakers": 602200000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"languageID": 3,
+			"languageName": "English",
+			"languageNativeSpeakers": 372900000,
+			"languageTotalSpeakers": 1452000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"languageID": 4,
+			"languageName": "Indonesian",
+			"languageNativeSpeakers": 43600000,
+			"languageTotalSpeakers": 199000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"languageID": 5,
+			"languageName": "Punjabi",
+			"languageNativeSpeakers": 12000000,
+			"languageTotalSpeakers": 32000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"languageID": 6,
+			"languageName": "Swedish",
+			"languageNativeSpeakers": 9000000,
+			"languageTotalSpeakers": 20000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		}
+	]
 }
 ```
 
-Send a GET request to `/api/languges/` with the following body:
-
-```json
-{
-  "ids": [1, 4]
-}
-```
+Send a GET request to `/api/languges/?ids=1,4`:
 
 Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": [
-    {
-      "languageID": 1,
-      "languageName": "Standard Chinese",
-      "languageNativeSpeakers": 929000000,
-      "languageTotalSpeakers": 1118000000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    },
-    {
-      "languageID": 4,
-      "languageName": "Indonesian",
-      "languageNativeSpeakers": 43600000,
-      "languageTotalSpeakers": 199000000,
-      "createdAt": "1970-01-01T00:00:00.000Z",
-      "updatedAt": "1970-01-01T00:00:00.000Z"
-    }
-  ]
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"languageID": 1,
+			"languageName": "Standard Chinese",
+			"languageNativeSpeakers": 929000000,
+			"languageTotalSpeakers": 1118000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		},
+		{
+			"languageID": 4,
+			"languageName": "Indonesian",
+			"languageNativeSpeakers": 43600000,
+			"languageTotalSpeakers": 199000000,
+			"createdAt": "1970-01-01T00:00:00.000Z",
+			"updatedAt": "1970-01-01T00:00:00.000Z"
+		}
+	]
 }
 ```
 
@@ -131,9 +125,9 @@ Send a POST request to `/api/language/` with the following body:
 
 ```json
 {
-  "name": "Norwegian",
-  "nativeSpeakers": 5320000,
-  "totalSpeakers": 7000000
+	"name": "Norwegian",
+	"nativeSpeakers": 5320000,
+	"totalSpeakers": 7000000
 }
 ```
 
@@ -141,16 +135,16 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": {
-    "languageID": 1,
-    "languageName": "Norwegian",
-    "languageNativeSpeakers": 5320000,
-    "languageTotalSpeakers": 7000000,
-    "updatedAt": "1970-01-01T00:00:00.000Z",
-    "createdAt": "1970-01-01T00:00:00.000Z"
-  }
+	"success": true,
+	"error": "",
+	"data": {
+		"languageID": 1,
+		"languageName": "Norwegian",
+		"languageNativeSpeakers": 5320000,
+		"languageTotalSpeakers": 7000000,
+		"updatedAt": "1970-01-01T00:00:00.000Z",
+		"createdAt": "1970-01-01T00:00:00.000Z"
+	}
 }
 ```
 
@@ -175,9 +169,9 @@ Send a PUT request to `/api/language/` with the following body:
 
 ```json
 {
-  "id": 1,
-  "nativeSpeakers": 500000,
-  "totalSpeakers": 550000
+	"id": 1,
+	"nativeSpeakers": 500000,
+	"totalSpeakers": 550000
 }
 ```
 
@@ -185,16 +179,16 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": {
-    "languageID": 1,
-    "languageName": "Norwegian",
-    "languageNativeSpeakers": 500000,
-    "languageTotalSpeakers": 550000,
-    "updatedAt": "1970-01-01T00:00:00.000Z",
-    "createdAt": "1970-01-01T00:00:00.000Z"
-  }
+	"success": true,
+	"error": "",
+	"data": {
+		"languageID": 1,
+		"languageName": "Norwegian",
+		"languageNativeSpeakers": 500000,
+		"languageTotalSpeakers": 550000,
+		"updatedAt": "1970-01-01T00:00:00.000Z",
+		"createdAt": "1970-01-01T00:00:00.000Z"
+	}
 }
 ```
 
@@ -215,7 +209,7 @@ Send a DELETE request to `/api/language/` with the following body:
 
 ```json
 {
-  "id": 1
+	"id": 1
 }
 ```
 
@@ -223,9 +217,9 @@ Response:
 
 ```json
 {
-  "success": true,
-  "error": "",
-  "data": 1
+	"success": true,
+	"error": "",
+	"data": 1
 }
 ```
 
