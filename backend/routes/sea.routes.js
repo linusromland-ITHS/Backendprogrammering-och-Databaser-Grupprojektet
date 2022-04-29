@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
     try {
         let allSeas = await SeaModel.find(query);
 
-        if (allSeas.length < 1) {
+        if (allSeas.length < 1 && name && name.trim().length > 0) {
             allSeas = await SeaModel.find({ species: { $regex: name, $options: 'i' } });
         }
 
