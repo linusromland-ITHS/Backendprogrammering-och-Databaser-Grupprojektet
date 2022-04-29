@@ -67,14 +67,7 @@ Response:
 }
 ```
 
-Send a GET request to `/api/planet/` with the following body:
-
-```json
-{
-	"name": "Mars",
-	"radiusMin": 3300
-}
-```
+Send a GET request to `/api/planet/?name=Mars&radiusMin=3300`:
 
 Response:
 

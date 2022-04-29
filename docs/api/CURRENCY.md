@@ -63,13 +63,7 @@ Response:
 }
 ```
 
-Send a GET request to `/api/currency/` with the following body:
-
-```json
-{
-	"ids": [3, 6, 12]
-}
-```
+Send a GET request to `/api/currency/?ids=3,6,12`:
 
 Response:
 

@@ -52,14 +52,7 @@ Response:
 }
 ```
 
-Send a GET request to `/api/sea/` with the following body:
-
-```json
-{
-	"name": "Atlantic",
-	"sizeInSquareKmMin": 96500000
-}
-```
+Send a GET request to `/api/sea/?name=Atlantic&sizeInSquareKmMin=96500000`:
 
 Response:
 
