@@ -21,6 +21,12 @@ const router = createRouter({
 			component: () => import('./views/Result.vue'),
 			path: '/:type/result/:query',
 		},
+		{
+			// Detail Route
+			name: 'Detail',
+			component: () => import('./views/Detail.vue'),
+			path: '/:type/detail/:id',
+		},
 	],
 });
 
