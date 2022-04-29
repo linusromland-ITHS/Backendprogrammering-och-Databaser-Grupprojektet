@@ -1,22 +1,22 @@
 # Backendprogrammering-och-Databaser-Grupprojektet
 
-Grupprojektet i kursen `Backendprogrammering och Databaser`.
+The Group Project in the course `Backendprogramming and Databases`.
 
-## Gruppmedlemmar
+## Group Members
 
 -   Linus Romland
 -   Svante Jonsson
 -   Markus Simonsen
 -   Viktor Johansson
 
-## Köra projektet
+## Setup and running
 
-För att se hur man kör projektet, tryck [här](/docs/SETUPGUIDE.md)
+To see how you setup and run the project, click [here](/docs/SETUPGUIDE.md)
 
-## Stilguide
+## Style guide
 
-För att se stilguiden, tryck [här](/docs/STYLEGUIDE.md).
+To see our style guide, click [here](/docs/STYLEGUIDE.md).
 
-## Licens
+## License
 
-Distribueras under MIT-licensen. Se [`LICENSE`](LICENSE) för mer information.
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
