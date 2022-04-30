@@ -18,6 +18,7 @@
 </template>
 
 <script>
+	import { useToast } from 'vue-toastification';
 	import FormInput from './FormInput.vue';
 
 	export default {
@@ -40,21 +41,22 @@
 				required: true,
 				validator: (value) => value.every((field) => field.type && field.title && field.key),
 				/*
-					{
-						type: '',
-						title: '',
-						key: '',
-						value: '',
-						options: [],
-						max: '',
-						min: '',
-					},
-				*/
+						{
+							type: '',
+							title: '',
+							key: '',
+							value: '',
+							options: [],
+							max: '',
+							min: '',
+						},
+					*/
 			},
 		},
 		methods: {
-			submit() {
-				this.axios(
+			async submit() {
+				const toast = useToast();
+				const resonse = this.axios(
 					this.method,
 					this.endpoint,
 					this.fields.reduce((data, field) => {
@@ -62,6 +64,12 @@
 						return data;
 					}, {}),
 				);
+
+				if (resonse.success) {
+					toast.success('Success');
+				} else {
+					toast.error('Error');
+				}
 			},
 		},
 	};
