@@ -1,7 +1,7 @@
 <template>
 	<form @submit.prevent="submit">
 		<div v-for="(field, index) in fields" :key="index">
-			<div class="flex flex-col">
+			<div class="flex flex-col" v-show="field.key != 'id'">
 				<label class="">{{ field.title }}</label>
 				<FormInput
 					:type="field.type"
