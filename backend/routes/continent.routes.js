@@ -1,27 +1,27 @@
 //Dependencies import
 const express = require('express');
 const router = express.Router();
-const LanguageModel = require('../models/Language');
+const ContinentModel = require('../models/Continent');
 
 /**
- * @api {get} /api/language/ Returns all languages
+ * @api {get} /api/continent/ Returns all continents
  */
 router.get('/', async (req, res) => {
     try {
         const { ids } = req.query;
         if (ids) {
-            const languages = await LanguageModel.findAll({ where: { languageID: ids } });
+            const continents = await ContinentModel.findAll({ where: { continentID: ids } });
             res.status(200).json({
                 success: true,
                 error: '',
-                data: languages,
+                data: continents,
             });
         } else {
-            const languages = await LanguageModel.findAll();
+            const continents = await ContinentModel.findAll();
             res.status(200).json({
                 success: true,
                 error: '',
-                data: languages,
+                data: continents,
             });
         }
     } catch (error) {
@@ -33,35 +33,35 @@ router.get('/', async (req, res) => {
 });
 
 /**
- * @api {post} /api/language/ Create a new language
+ * @api {post} /api/continent/ Create a new continent
  */
 router.post('/', async (req, res) => {
-    const { name, nativeSpeakers, totalSpeakers } = req.body;
+    const { name, population, size } = req.body;
 
-    if (!name || name.trim().length < 1 || !nativeSpeakers || !totalSpeakers) {
+    if (!name || name.trim().length < 1 || !population || !size) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a valid name, nativeSpeakers and totalSpeakers.',
+            error: 'Please provide a valid name, population and size.',
         });
     }
 
     try {
-        const language = await LanguageModel.create({
-            languageName: name,
-            languageNativeSpeakers: nativeSpeakers,
-            languageTotalSpeakers: totalSpeakers,
+        const continent = await ContinentModel.create({
+            continentName: name,
+            continentPopulation: population,
+            continentSize: size,
         });
         res.status(201).json({
             success: true,
             error: '',
-            data: language,
+            data: continent,
         });
     } catch (error) {
         //If error is same name, return error
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `The language ${name} already exists.`,
+                error: `The continent ${name} already exists.`,
             });
         }
 
@@ -73,42 +73,42 @@ router.post('/', async (req, res) => {
 });
 
 /**
- * @api {put} /api/language/ Edits the language with the specified id
+ * @api {put} /api/continent/ Edits the continent with the specified id
  */
 router.put('/', async (req, res) => {
-    const { id, name, nativeSpeakers, totalSpeakers } = req.body;
+    const { id, name, population, size } = req.body;
 
-    const language = await LanguageModel.findByPk(id);
-    if (!language) {
+    const continent = await ContinentModel.findByPk(id);
+    if (!continent) {
         return res.status(404).json({
             success: false,
-            error: 'Language not found.',
+            error: 'Continent not found.',
         });
     }
 
-    if ((!name || name.trim().length < 1) && !nativeSpeakers && !totalSpeakers) {
+    if ((!name || name.trim().length < 1) && !population && !size) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a valid name, nativeSpeakers or totalSpeakers.',
+            error: 'Please provide a valid name, population or size.',
         });
     }
 
     try {
-        const updatedLanguage = await language.update({
-            languageName: name,
-            languageNativeSpeakers: nativeSpeakers,
-            languageTotalSpeakers: totalSpeakers,
+        const updatedContinent = await continent.update({
+            continentName: name,
+            continentPopulation: population,
+            continentSize: size,
         });
         res.status(200).json({
             success: true,
             error: '',
-            data: updatedLanguage,
+            data: updatedContinent,
         });
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(400).json({
                 success: false,
-                error: `The language ${name} already exists.`,
+                error: `The continent ${name} already exists.`,
             });
         }
 
@@ -120,7 +120,7 @@ router.put('/', async (req, res) => {
 });
 
 /**
- * @api {delete} /api/language/ Delete a language
+ * @api {delete} /api/continent/ Delete a continent
  */
 router.delete('/', async (req, res) => {
     const { id } = req.body;
@@ -128,26 +128,26 @@ router.delete('/', async (req, res) => {
     if (!id) {
         return res.status(400).json({
             success: false,
-            error: 'Please provide a language ID',
+            error: 'Please provide a continent ID',
         });
     }
 
     try {
-        // Delete language from database
-        const language = await LanguageModel.destroy({
-            where: { languageID: id },
+        // Delete continent from database
+        const continent = await ContinentModel.destroy({
+            where: { continentID: id },
         });
 
-        if (language === 0) {
+        if (continent === 0) {
             return res.status(404).json({
                 success: false,
-                error: 'Language not found',
+                error: 'Continent not found',
             });
         } else {
             return res.status(200).json({
                 success: true,
                 error: '',
-                data: language,
+                data: continent,
             });
         }
     } catch (error) {
