@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.use('/city', require('./city.routes'));
+router.use('/continent', require('./continent.routes'));
 router.use('/country', require('./country.routes'));
 router.use('/currency', require('./currency.routes'));
 router.use('/language', require('./language.routes'));
