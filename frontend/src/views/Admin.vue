@@ -24,9 +24,23 @@
 				return this.$route.params.tab;
 			},
 		},
+		watch: {
+			$route() {
+				this.getData();
+			},
+		},
+		created() {
+			this.getData();
+		},
 		methods: {
 			setActiveTab(tab) {
 				this.$router.push(`/admin/${tab.toLowerCase()}`);
+			},
+			async getData() {
+				await this.axios({
+					method: 'get',
+					url: this.activeTab.toLowerCase(),
+				});
 			},
 		},
 	};
