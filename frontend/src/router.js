@@ -10,10 +10,15 @@ const router = createRouter({
 			path: '/',
 		},
 		{
+			// Admin Redirect Route
+			path: '/admin',
+			redirect: '/admin/city',
+		},
+		{
 			// Admin Route
 			name: 'Admin',
 			component: () => import('./views/Admin.vue'),
-			path: '/admin',
+			path: '/admin/:tab',
 		},
 		{
 			// Search Route
