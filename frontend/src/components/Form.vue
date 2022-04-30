@@ -10,10 +10,17 @@
 					:max="field.max"
 					:min="field.min"
 					@input="(value) => (field.value = value)"
+					class="w-full p-2 border border-gray-300 rounded-md mb-2"
 				/>
 			</div>
 		</div>
-		<button type="submit">tjo</button>
+
+		<button
+			type="submit"
+			class="p-2 text-white bg-blue-500 hover:bg-blue-400 transition ease duration-150 rounded-md"
+		>
+			{{ submitText }}
+		</button>
 	</form>
 </template>
 
@@ -51,6 +58,14 @@
 							min: '',
 						},
 					*/
+			},
+		},
+		computed: {
+			submitText() {
+				if (this.method === 'post') {
+					return 'Create';
+				}
+				return 'Update';
 			},
 		},
 		methods: {
