@@ -17,6 +17,8 @@ const app = createApp(App);
 app.use(router);
 
 //Registers vue-axios
+axios.defaults.validateStatus = () => true;
+axios.defaults.baseURL = '/api/';
 app.use(VueAxios, axios);
 
 //Registers vue-toastification

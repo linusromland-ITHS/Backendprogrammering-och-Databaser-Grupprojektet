@@ -56,19 +56,21 @@
 		methods: {
 			async submit() {
 				const toast = useToast();
-				const resonse = this.axios(
-					this.method,
-					this.endpoint,
-					this.fields.reduce((data, field) => {
+				const request = await this.axios({
+					method: this.method,
+					url: this.endpoint,
+					data: this.fields.reduce((data, field) => {
 						data[field.key] = field.value;
 						return data;
 					}, {}),
-				);
+				});
 
-				if (resonse.success) {
-					toast.success('Success');
+				const response = await request.data;
+
+				if (response.success) {
+					toast.success(`Successfully updated ${response.data[this.endpoint + 'Name']}`);
 				} else {
-					toast.error('Error');
+					toast.error(`Error: ${response.error}`);
 				}
 			},
 		},

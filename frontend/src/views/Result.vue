@@ -44,19 +44,19 @@
 				this.$router.push(`/${this.type}/${resultItem.id ? resultItem.id : resultItem._id}`);
 			},
 			async fetchSea(query) {
-				const response = await this.axios.get('/api/sea', {
+				const response = await this.axios.get('sea', {
 					params: { ...query },
 				});
 				this.results = response.data.data;
 			},
 			async fetchSpace(query) {
-				const response = await this.axios.get('/api/planet', {
+				const response = await this.axios.get('planet', {
 					params: { ...query },
 				});
 				this.results = response.data.data;
 			},
 			async fetchLand(query) {
-				const response = await this.axios.get('/api/country', {
+				const response = await this.axios.get('country', {
 					params: { ...query },
 				});
 				this.results = response.data.data;
