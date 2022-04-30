@@ -10,6 +10,12 @@ const router = createRouter({
 			path: '/',
 		},
 		{
+			// Admin Route
+			name: 'Admin',
+			component: () => import('./views/Admin.vue'),
+			path: '/admin',
+		},
+		{
 			// Search Route
 			name: 'Search',
 			component: () => import('./views/Search.vue'),
