@@ -1,5 +1,5 @@
 <template>
-	<form @submit.prevent="">
+	<form @submit.prevent="submit">
 		<div v-for="(field, index) in fields" :key="index">
 			<div class="flex flex-col">
 				<label class="">{{ field.title }}</label>
@@ -13,6 +13,7 @@
 				/>
 			</div>
 		</div>
+		<button type="submit">tjo</button>
 	</form>
 </template>
 
@@ -25,6 +26,10 @@
 			FormInput,
 		},
 		props: {
+			endpoint: {
+				type: String,
+				required: true,
+			},
 			method: {
 				type: String,
 				required: true,
@@ -33,17 +38,30 @@
 			fields: {
 				type: Array,
 				required: true,
-				validator: (value) => value.every((field) => field.title && field.type),
+				validator: (value) => value.every((field) => field.type && field.title && field.key),
 				/*
 					{
 						type: '',
 						title: '',
+						key: '',
 						value: '',
 						options: [],
 						max: '',
 						min: '',
 					},
 				*/
+			},
+		},
+		methods: {
+			submit() {
+				this.axios(
+					this.method,
+					this.endpoint,
+					this.fields.reduce((data, field) => {
+						data[field.key] = field.value;
+						return data;
+					}, {}),
+				);
 			},
 		},
 	};
