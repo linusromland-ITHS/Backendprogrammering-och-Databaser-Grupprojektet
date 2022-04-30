@@ -1,0 +1,17 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "religionID",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Religion name",
+		"key": "name",
+		"dbKey": "religionName",
+		"value": ""
+	}
+]

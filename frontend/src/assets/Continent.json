@@ -1,0 +1,33 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "continentID",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Continent name",
+		"key": "name",
+		"dbKey": "continentName",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Continent population",
+		"key": "population",
+		"dbKey": "continentPopulation",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "number",
+		"title": "Continent size",
+		"key": "size",
+		"dbKey": "continentSize",
+		"value": "",
+		"min": 1
+	}
+]

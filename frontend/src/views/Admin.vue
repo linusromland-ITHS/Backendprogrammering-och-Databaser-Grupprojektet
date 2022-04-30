@@ -30,7 +30,7 @@
 			:endpoint="activeTab.value"
 			:method="formMethod"
 			:fields="fields"
-			@cancel="showModal = false"
+			@cancel="closeModal"
 			@success="success"
 		/>
 	</Modal>
@@ -41,6 +41,13 @@
 	import Modal from '../components/Modal.vue';
 
 	import cityFields from '../assets/City.json';
+	import continentFields from '../assets/Continent.json';
+	import countryFields from '../assets/Country.json';
+	import currencyFields from '../assets/Currency.json';
+	import languageFields from '../assets/Language.json';
+	import planetFields from '../assets/Planet.json';
+	import religionFields from '../assets/Religion.json';
+	import seaFields from '../assets/Sea.json';
 
 	export default {
 		name: 'Admin',
@@ -144,6 +151,7 @@
 				this.formMethod = 'put';
 				this.showModal = true;
 			},
+
 			createItem() {
 				this.updateFields();
 				this.formMethod = 'post';
@@ -155,7 +163,27 @@
 					case 'city':
 						this.fields = cityFields;
 						break;
-
+					case 'continent':
+						this.fields = continentFields;
+						break;
+					case 'country':
+						this.fields = countryFields;
+						break;
+					case 'currency':
+						this.fields = currencyFields;
+						break;
+					case 'language':
+						this.fields = languageFields;
+						break;
+					case 'planet':
+						this.fields = planetFields;
+						break;
+					case 'religion':
+						this.fields = religionFields;
+						break;
+					case 'sea':
+						this.fields = seaFields;
+						break;
 					default:
 						this.fields = [];
 						break;
@@ -164,6 +192,10 @@
 			success(success) {
 				if (success) this.getData();
 				this.showModal = false;
+			},
+			closeModal() {
+				this.showModal = false;
+				this.updateFields();
 			},
 		},
 	};

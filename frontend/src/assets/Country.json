@@ -1,0 +1,95 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "countryID",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Country name",
+		"key": "name",
+		"dbKey": "countryName",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Country population",
+		"key": "population",
+		"dbKey": "countryPopulation",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "number",
+		"title": "Country size",
+		"key": "size",
+		"dbKey": "countrySize",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "textarea",
+		"title": "Country description",
+		"key": "description",
+		"dbKey": "countryDescription",
+		"value": ""
+	},
+	{
+		"type": "text",
+		"title": "Country domain",
+		"key": "domain",
+		"dbKey": "countryDomain",
+		"value": "",
+		"max": 25
+	},
+	{
+		"type": "url",
+		"title": "Flag URL",
+		"key": "flagURL",
+		"dbKey": "countryFlagURL",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Capital ID",
+		"key": "capitalID",
+		"dbKey": "countryCapitalID",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Currency ID",
+		"key": "currencyID",
+		"dbKey": "countryCurrencyID",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Continent ID",
+		"key": "continentIDs",
+		"dbKey": "continentIDs",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Language ID",
+		"key": "languageIDs",
+		"dbKey": "languageIDs",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Religion ID",
+		"key": "religionIDs",
+		"dbKey": "religionIDs",
+		"value": "",
+		"min": 0
+	}
+]

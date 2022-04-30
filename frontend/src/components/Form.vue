@@ -1,6 +1,6 @@
 <template>
 	<form @submit.prevent="submit">
-		<div v-for="(field, index) in fields" :key="index">
+		<div v-for="field in fields" :key="field">
 			<div class="flex flex-col" v-show="field.key != 'id'">
 				<label class="">{{ field.title }}</label>
 				<FormInput
@@ -92,7 +92,9 @@
 				const response = await request.data;
 
 				if (response.success) {
-					toast.success(`Successfully updated ${response.data[this.endpoint + 'Name']}`);
+					if (this.method == 'put')
+						toast.success(`Successfully updated ${response.data[this.endpoint + 'Name']}`);
+					else toast.success(`Successfully created ${response.data[this.endpoint + 'Name']}`);
 					this.$emit('success', response.success);
 				} else {
 					toast.error(`Error: ${response.error}`);

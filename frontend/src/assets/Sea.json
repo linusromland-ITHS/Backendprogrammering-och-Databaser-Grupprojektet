@@ -1,0 +1,40 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "_id",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Sea name",
+		"key": "name",
+		"dbKey": "seaName",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Size in km²",
+		"key": "sizeInSquareKm",
+		"dbKey": "seaSizeInSquareKm",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Average depth in meters",
+		"key": "averageDepthInMeters",
+		"dbKey": "seaAverageDepthInMeters",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "text",
+		"title": "Species",
+		"key": "species",
+		"dbKey": "seaSpecies",
+		"value": ""
+	}
+]
