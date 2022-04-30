@@ -14,13 +14,20 @@
 				/>
 			</div>
 		</div>
-
-		<button
-			type="submit"
-			class="p-2 text-white bg-blue-500 hover:bg-blue-400 transition ease duration-150 rounded-md"
-		>
-			{{ submitText }}
-		</button>
+		<div class="flex justify-between">
+			<button
+				class="p-2 text-white bg-red-500 hover:bg-red-400 transition ease duration-150 rounded-md"
+				@click="$emit('cancel')"
+			>
+				Cancel
+			</button>
+			<button
+				type="submit"
+				class="p-2 text-white bg-blue-500 hover:bg-blue-400 transition ease duration-150 rounded-md"
+			>
+				{{ submitText }}
+			</button>
+		</div>
 	</form>
 </template>
 
@@ -33,6 +40,7 @@
 		components: {
 			FormInput,
 		},
+
 		props: {
 			endpoint: {
 				type: String,
@@ -46,7 +54,7 @@
 			fields: {
 				type: Array,
 				required: true,
-				validator: (value) => value.every((field) => field.type && field.title && field.key),
+				validator: (value) => value.every((field) => field.type && field.key),
 				/*
 						{
 							type: '',
@@ -60,6 +68,7 @@
 					*/
 			},
 		},
+		emits: ['cancel', 'success'],
 		computed: {
 			submitText() {
 				if (this.method === 'post') {
@@ -84,6 +93,7 @@
 
 				if (response.success) {
 					toast.success(`Successfully updated ${response.data[this.endpoint + 'Name']}`);
+					this.$emit('success', response.success);
 				} else {
 					toast.error(`Error: ${response.error}`);
 				}
