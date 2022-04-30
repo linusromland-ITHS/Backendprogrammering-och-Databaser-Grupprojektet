@@ -1,12 +1,12 @@
 <template>
 	<textarea v-if="type == 'textarea'" v-model="input" />
-	<select v-else-if="type == 'select'" class="border border-gray-400 p-2 w-full" v-model="input">
+	<select v-else-if="type == 'select'" class="" v-model="input">
 		<option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</option>
 	</select>
 	<input
 		v-else
 		:type="type"
-		class="border border-gray-400 p-2 w-full"
+		class=""
 		v-model="input"
 		:maxlength="maxlength"
 		:minlength="minlength"
@@ -46,10 +46,16 @@
 				validator: (value) => !isNaN(value),
 			},
 		},
+		emits: ['input'],
 		data() {
 			return {
 				input: this.value,
 			};
+		},
+		watch: {
+			input(value) {
+				this.$emit('input', value);
+			},
 		},
 	};
 </script>

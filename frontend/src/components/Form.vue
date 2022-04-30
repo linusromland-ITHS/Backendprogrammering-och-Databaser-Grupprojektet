@@ -2,13 +2,14 @@
 	<form @submit.prevent="">
 		<div v-for="(field, index) in fields" :key="index">
 			<div class="flex flex-col">
-				<label class="text-gray-700 text-sm font-bold mb-2">{{ field.title }}</label>
+				<label class="">{{ field.title }}</label>
 				<FormInput
 					:type="field.type"
 					:value="field.value"
 					:options="field.options"
 					:max="field.max"
 					:min="field.min"
+					@input="(value) => (field.value = value)"
 				/>
 			</div>
 		</div>
