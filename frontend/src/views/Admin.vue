@@ -1,5 +1,5 @@
 <template>
-	<h1 class="text-3xl text-red-400">Admin</h1>
+	<h2 class="text-3xl text-black m-5 font-semibold">Admin</h2>
 	<nav>
 		<button
 			v-for="(tab, index) in tabs"
@@ -11,23 +11,43 @@
 		</button>
 	</nav>
 	<div>
-		<button>Create {{ activeTab.label }}</button>
+		<button @click="createItem()">Create {{ activeTab.label }}</button>
 		<ul>
 			<li v-for="(item, index) in data" :key="index">
 				<p>{{ item[`${activeTab.value}Name`] }}</p>
-				<button :title="`Edit ${activeTab.label}`"><span class="material-icons"> edit </span></button>
+				<button @click="editItem(item)" :title="`Edit ${activeTab.label}`">
+					<span class="material-icons"> edit </span>
+				</button>
 				<button @click="deleteItem(item)" :title="`Delete ${activeTab.label}`">
 					<span class="material-icons"> delete </span>
 				</button>
 			</li>
 		</ul>
 	</div>
+
+	<Modal v-if="showModal">
+		<Form
+			:endpoint="activeTab.value"
+			:method="formMethod"
+			:fields="fields"
+			@cancel="showModal = false"
+			@success="success"
+		/>
+	</Modal>
 </template>
 <script>
 	import { useToast } from 'vue-toastification';
+	import Form from '../components/Form.vue';
+	import Modal from '../components/Modal.vue';
+
+	import cityFields from '../assets/City.json';
 
 	export default {
 		name: 'Admin',
+		components: {
+			Form,
+			Modal,
+		},
 		data() {
 			return {
 				tabs: ['City', 'Continent', 'Country', 'Currency', 'Language', 'Planet', 'Religion', 'Sea'],
@@ -35,10 +55,13 @@
 					label: '',
 					value: '',
 				},
+				fields: [],
 				data: [],
 				confirmDelete: '',
 				confirmDeleteTimeout: null,
 				confirmDeleteToast: null,
+				showModal: false,
+				formMethod: '',
 			};
 		},
 		watch: {
@@ -57,6 +80,8 @@
 				const tab = this.$route.params.tab.toLowerCase();
 				this.activeTab.label = tab.charAt(0).toUpperCase() + tab.slice(1);
 				this.activeTab.value = tab;
+
+				this.updateFields();
 
 				const request = await this.axios({
 					method: 'get',
@@ -107,6 +132,38 @@
 						toast.error(`Error: ${response.error}.`);
 					}
 				}
+			},
+			editItem(item) {
+				const id = item[item._id ? '_id' : `${this.activeTab.value}ID`];
+				this.fields[0].value = id;
+				this.updateFields();
+				this.fields.forEach((field) => {
+					field.value = item[field.dbKey];
+				});
+
+				this.formMethod = 'put';
+				this.showModal = true;
+			},
+			createItem() {
+				this.updateFields();
+				this.formMethod = 'post';
+				this.showModal = true;
+			},
+			updateFields() {
+				this.fields = [];
+				switch (this.activeTab.value) {
+					case 'city':
+						this.fields = cityFields;
+						break;
+
+					default:
+						this.fields = [];
+						break;
+				}
+			},
+			success(success) {
+				if (success) this.getData();
+				this.showModal = false;
 			},
 		},
 	};
