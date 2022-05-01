@@ -1,14 +1,17 @@
 <template>
 	<Navbar />
 	<h1 class="text-3xl text-red-400">Detail</h1>
+	<CountryDetail v-if="endpoint == 'country'" :country="detail" />
 </template>
 <script>
 	import Navbar from '../components/Navbar.vue';
+	import CountryDetail from '../components/CountryDetail.vue';
 
 	export default {
 		name: 'Detail',
 		components: {
 			Navbar,
+			CountryDetail,
 		},
 		data() {
 			return {
@@ -60,7 +63,7 @@
 				if (!response.success) {
 					this.$router.go(-1);
 				} else {
-					this.detail = response.data;
+					this.detail = response.data[0];
 				}
 			},
 		},
