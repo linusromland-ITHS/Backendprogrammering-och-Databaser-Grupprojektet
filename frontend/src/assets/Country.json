@@ -53,18 +53,20 @@
 		"value": ""
 	},
 	{
-		"type": "number",
+		"type": "select",
 		"title": "Capital ID",
 		"key": "capitalID",
 		"dbKey": "countryCapitalID",
+		"endpoint": "city",
 		"value": "",
 		"min": 0
 	},
 	{
-		"type": "number",
+		"type": "select",
 		"title": "Currency ID",
 		"key": "currencyID",
 		"dbKey": "countryCurrencyID",
+		"endpoint": "currency",
 		"value": "",
 		"min": 0
 	},

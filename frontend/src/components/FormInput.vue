@@ -1,7 +1,9 @@
 <template>
 	<textarea v-if="type == 'textarea'" v-model="input" />
 	<select v-else-if="type == 'select'" class="" v-model="input">
-		<option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</option>
+		<option v-for="(option, index) in options" :key="index" :value="option[endpoint + 'ID']">
+			{{ option[endpoint + 'Name'] }}
+		</option>
 	</select>
 	<input
 		v-else
@@ -28,11 +30,6 @@
 				type: String,
 				required: true,
 			},
-			options: {
-				type: Array,
-				required: false,
-				default: () => [],
-			},
 			max: {
 				type: Number,
 				required: false,
@@ -45,16 +42,41 @@
 				default: Number.MIN_SAFE_INTEGER,
 				validator: (value) => !isNaN(value),
 			},
+			endpoint: {
+				type: String,
+				required: false,
+				default: '',
+			},
 		},
 		emits: ['input'],
 		data() {
 			return {
 				input: this.value,
+				options: [],
 			};
 		},
 		watch: {
 			input(value) {
 				this.$emit('input', value);
+			},
+		},
+		created() {
+			if (this.type === 'select') {
+				this.getOptions();
+			}
+		},
+		methods: {
+			async getOptions() {
+				const request = await this.axios({
+					method: 'get',
+					url: this.endpoint,
+				});
+
+				const response = await request.data;
+
+				if (response.status) {
+					this.options = response.data;
+				}
 			},
 		},
 	};

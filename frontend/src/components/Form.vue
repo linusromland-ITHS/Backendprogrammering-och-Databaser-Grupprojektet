@@ -6,9 +6,9 @@
 				<FormInput
 					:type="field.type"
 					:value="field.value"
-					:options="field.options"
 					:max="field.max"
 					:min="field.min"
+					:endpoint="field.endpoint"
 					@input="(value) => (field.value = value)"
 					class="w-full p-2 border border-gray-300 rounded-md mb-2"
 				/>
