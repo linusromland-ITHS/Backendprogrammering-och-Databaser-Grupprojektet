@@ -1,37 +1,37 @@
 const mongoose = require('mongoose');
 
 const Planet = new mongoose.Schema({
-    name: {
+    planetName: {
         type: String,
         required: true,
         trim: true,
         unique: true,
     },
-    surfaceAreaInSquareKm: {
+    planetSurfaceAreaInSquareKm: {
         type: Number,
         required: true,
     },
-    distanceFromSunInKm: {
+    planetDistanceFromSunInKm: {
         type: Number,
         required: true,
     },
-    moons: {
+    planetMoons: {
         type: Array,
         required: true,
     },
-    averageTemperatureInCelsius: {
+    planetAverageTemperatureInCelsius: {
         type: Number,
         required: true,
     },
-    radiusInKm: {
+    planetRadiusInKm: {
         type: Number,
         required: true,
     },
-    massInKg: {
+    planetMassInKg: {
         type: Number,
         required: true,
     },
-    orbitalPeriodInDays: {
+    planetOrbitalPeriodInDays: {
         type: Number,
         required: true,
     },
