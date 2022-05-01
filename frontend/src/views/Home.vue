@@ -8,7 +8,7 @@
 					<router-link to="/land" class="bg-emerald-500 hover:bg-emerald-400">Search Countries!</router-link>
 				</section>
 			</li>
-			<li class="bg-sky-500" id="sea">
+			<li class="bg-sky-500 border-x-2 border-black" id="sea">
 				<section class="bg-black/50">
 					<h2>Sea Search</h2>
 					<p>Search for all the seas of the world!</p>
