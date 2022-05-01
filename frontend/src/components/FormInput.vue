@@ -15,16 +15,7 @@
 		:label="endpoint + 'Name'"
 		v-model="input"
 	/>
-	<input
-		v-else
-		:type="type"
-		class=""
-		v-model="input"
-		:maxlength="maxlength"
-		:minlength="minlength"
-		:max="maxlength"
-		:min="minlength"
-	/>
+	<input v-else :type="type" v-model="input" :maxlength="max" :minlength="min" :max="max" :min="min" />
 </template>
 
 <script>
@@ -34,10 +25,11 @@
 			type: {
 				type: String,
 				required: true,
-				validator: (value) => ['text', 'number', 'textarea', 'select'].includes(value),
+				validator: (value) =>
+					['text', 'textMany', 'number', 'textarea', 'select', 'selectMany'].includes(value),
 			},
+			// eslint-disable-next-line vue/require-prop-types
 			value: {
-				type: String,
 				required: true,
 			},
 			max: {

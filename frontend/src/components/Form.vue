@@ -3,7 +3,7 @@
 		<h2 class="mb-2 text-2xl font-semibold">{{ `${submitText} ${endpoint}` }}</h2>
 		<div v-for="field in fields" :key="field">
 			<div class="flex flex-col" v-show="field.key != 'id'">
-				<label class="">
+				<label>
 					{{ field.title
 					}}<span v-if="field.type == 'textMany'" class="help-text px-1">Separate entries by ","</span>
 				</label>

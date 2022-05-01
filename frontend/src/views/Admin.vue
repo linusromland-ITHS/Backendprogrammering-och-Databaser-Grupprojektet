@@ -137,6 +137,8 @@
 						{
 							timeout: 10000,
 							hideProgressBar: false,
+							pauseOnHover: false,
+							closeButton: false,
 						},
 					);
 

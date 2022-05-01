@@ -15,7 +15,7 @@
 					@on-click="goToResult"
 				/>
 			</ul>
-			<p class="">Showing 15 out of 196 results</p>
+			<p>Showing 15 out of 196 results</p>
 		</div>
 	</div>
 </template>
