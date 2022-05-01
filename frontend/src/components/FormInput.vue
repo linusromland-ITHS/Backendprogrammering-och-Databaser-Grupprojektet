@@ -74,8 +74,9 @@
 
 				const response = await request.data;
 
-				if (response.status) {
+				if (response.success) {
 					this.options = response.data;
+					console.log(this.options);
 				}
 			},
 		},

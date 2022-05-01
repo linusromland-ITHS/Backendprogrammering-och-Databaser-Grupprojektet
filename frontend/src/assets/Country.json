@@ -54,7 +54,7 @@
 	},
 	{
 		"type": "select",
-		"title": "Capital ID",
+		"title": "Capital",
 		"key": "capitalID",
 		"dbKey": "countryCapitalID",
 		"endpoint": "city",
@@ -63,7 +63,7 @@
 	},
 	{
 		"type": "select",
-		"title": "Currency ID",
+		"title": "Currency",
 		"key": "currencyID",
 		"dbKey": "countryCurrencyID",
 		"endpoint": "currency",
