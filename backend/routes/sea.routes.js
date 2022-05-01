@@ -12,15 +12,15 @@ router.get('/', async (req, res) => {
 
     let query = {};
     if (ids) query._id = ids;
-    if (name && name.trim()) query.name = { $regex: name, $options: 'i' };
-    if (sizeInSquareKmMin) query.sizeInSquareKm = { $gte: sizeInSquareKmMin };
+    if (name && name.trim()) query.seaName = { $regex: name, $options: 'i' };
+    if (sizeInSquareKmMin) query.seaSizeInSquareKm = { $gte: sizeInSquareKmMin };
     if (sizeInSquareKmMax)
-        query.sizeInSquareKm = query.sizeInSquareKm
+        query.seaSizeInSquareKm = query.sizeInSquareKm
             ? { $lte: sizeInSquareKmMax, ...query.sizeInSquareKm }
             : { $lte: sizeInSquareKmMax };
-    if (averageDepthInMetersMin) query.averageDepthInMeters = { $gte: averageDepthInMetersMin };
+    if (averageDepthInMetersMin) query.seaAverageDepthInMeters = { $gte: averageDepthInMetersMin };
     if (averageDepthInMetersMax)
-        query.averageDepthInMeters = query.averageDepthInMeters
+        query.seaAverageDepthInMeters = query.averageDepthInMeters
             ? { ...query.averageDepthInMeters, $lte: averageDepthInMetersMax }
             : { $lte: averageDepthInMetersMax };
 
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
         let allSeas = await SeaModel.find(query);
 
         if (allSeas.length < 1 && name && name.trim().length > 0) {
-            allSeas = await SeaModel.find({ species: { $regex: name, $options: 'i' } });
+            allSeas = await SeaModel.find({ seaSpecies: { $regex: name, $options: 'i' } });
         }
 
         res.status(200).json({
@@ -56,10 +56,10 @@ router.post('/', async (req, res) => {
 
     try {
         const sea = await new SeaModel({
-            name,
-            sizeInSquareKm,
-            averageDepthInMeters,
-            species,
+            seaName: name,
+            seaSizeInSquareKm: sizeInSquareKm,
+            seaAverageDepthInMeters: averageDepthInMeters,
+            seaSpecies: species,
         });
 
         const savedSea = await sea.save();
@@ -102,10 +102,10 @@ router.put('/', async (req, res) => {
             });
         }
 
-        if (name) sea.name = name;
-        if (sizeInSquareKm) sea.sizeInSquareKm = sizeInSquareKm;
-        if (averageDepthInMeters) sea.averageDepthInMeters = averageDepthInMeters;
-        if (species) sea.species = species;
+        if (name) sea.seaName = name;
+        if (sizeInSquareKm) sea.seaSizeInSquareKm = sizeInSquareKm;
+        if (averageDepthInMeters) sea.seaAverageDepthInMeters = averageDepthInMeters;
+        if (species) sea.seaSpecies = species;
 
         const savedSea = await sea.save();
 
