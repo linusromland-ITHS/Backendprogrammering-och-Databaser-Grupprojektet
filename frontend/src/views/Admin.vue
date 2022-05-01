@@ -152,7 +152,6 @@
 					} else {
 						field.value = item[field.dbKey];
 					}
-					console.log(field.value);
 				});
 
 				this.formMethod = 'put';

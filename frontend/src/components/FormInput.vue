@@ -67,7 +67,7 @@
 		},
 		watch: {
 			input(value) {
-				this.$emit('input', value[`${this.endpoint}ID`]);
+				this.$emit('input', value);
 			},
 		},
 		created() {
@@ -86,7 +86,6 @@
 
 				if (response.success) {
 					this.options = response.data;
-					console.log(this.options);
 				}
 			},
 		},
