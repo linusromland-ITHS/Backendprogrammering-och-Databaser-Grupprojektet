@@ -1,8 +1,15 @@
 <template>
 	<textarea v-if="type == 'textarea'" v-model="input" />
-	<!-- <VSelect v-else-if="type == 'select'" :options="options" :label="option[endpoint + 'Name']" /> -->
 	<VSelect
 		v-else-if="type == 'select'"
+		:options="options"
+		:reduce="(option) => option[`${this.endpoint}ID`]"
+		:label="endpoint + 'Name'"
+		v-model="input"
+	/>
+	<VSelect
+		multiple
+		v-else-if="type == 'selectMany'"
 		:options="options"
 		:reduce="(option) => option[`${this.endpoint}ID`]"
 		:label="endpoint + 'Name'"
@@ -60,12 +67,11 @@
 		},
 		watch: {
 			input(value) {
-				console.log(value[`${this.endpoint}ID`]);
-				this.$emit('input', value);
+				this.$emit('input', value[`${this.endpoint}ID`]);
 			},
 		},
 		created() {
-			if (this.type === 'select') {
+			if (this.type === 'select' || this.type === 'selectMany') {
 				this.getOptions();
 			}
 		},

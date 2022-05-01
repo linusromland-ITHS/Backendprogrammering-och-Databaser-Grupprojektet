@@ -54,18 +54,6 @@
 			fields: {
 				type: Array,
 				required: true,
-				validator: (value) => value.every((field) => field.type && field.key),
-				/*
-						{
-							type: '',
-							title: '',
-							key: '',
-							value: '',
-							options: [],
-							max: '',
-							min: '',
-						},
-					*/
 			},
 		},
 		emits: ['cancel', 'success'],

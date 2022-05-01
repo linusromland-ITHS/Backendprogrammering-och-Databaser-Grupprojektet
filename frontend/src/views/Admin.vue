@@ -145,7 +145,14 @@
 				this.fields[0].value = id;
 				this.updateFields();
 				this.fields.forEach((field) => {
-					field.value = item[field.dbKey];
+					if (typeof item[field.dbKey] == 'object') {
+						item[field.dbKey].forEach((value) => {
+							field.value.push(value[field.endpoint + 'ID']);
+						});
+					} else {
+						field.value = item[field.dbKey];
+					}
+					console.log(field.value);
 				});
 
 				this.formMethod = 'put';

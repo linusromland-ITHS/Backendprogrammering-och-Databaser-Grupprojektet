@@ -71,27 +71,30 @@
 		"min": 0
 	},
 	{
-		"type": "number",
-		"title": "Continent ID",
+		"type": "selectMany",
+		"title": "Continent",
 		"key": "continentIDs",
-		"dbKey": "continentIDs",
-		"value": "",
+		"dbKey": "continents",
+		"endpoint": "continent",
+		"value": [],
 		"min": 0
 	},
 	{
-		"type": "number",
-		"title": "Language ID",
+		"type": "selectMany",
+		"title": "Language",
 		"key": "languageIDs",
-		"dbKey": "languageIDs",
-		"value": "",
+		"dbKey": "languages",
+		"endpoint": "language",
+		"value": [],
 		"min": 0
 	},
 	{
-		"type": "number",
-		"title": "Religion ID",
+		"type": "selectMany",
+		"title": "Religion",
 		"key": "religionIDs",
-		"dbKey": "religionIDs",
-		"value": "",
+		"dbKey": "religions",
+		"endpoint": "religion",
+		"value": [],
 		"min": 0
 	}
 ]
