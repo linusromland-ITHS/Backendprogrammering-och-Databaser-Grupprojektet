@@ -1,10 +1,13 @@
 <template>
 	<textarea v-if="type == 'textarea'" v-model="input" />
-	<select v-else-if="type == 'select'" class="" v-model="input">
-		<option v-for="(option, index) in options" :key="index" :value="option[endpoint + 'ID']">
-			{{ option[endpoint + 'Name'] }}
-		</option>
-	</select>
+	<!-- <VSelect v-else-if="type == 'select'" :options="options" :label="option[endpoint + 'Name']" /> -->
+	<VSelect
+		v-else-if="type == 'select'"
+		:options="options"
+		:reduce="(option) => option[`${this.endpoint}ID`]"
+		:label="endpoint + 'Name'"
+		v-model="input"
+	/>
 	<input
 		v-else
 		:type="type"
@@ -57,6 +60,7 @@
 		},
 		watch: {
 			input(value) {
+				console.log(value[`${this.endpoint}ID`]);
 				this.$emit('input', value);
 			},
 		},

@@ -1,5 +1,5 @@
 <template>
-	<form @submit.prevent="submit">
+	<form @submit.prevent="submit" class="w-10/12">
 		<div v-for="field in fields" :key="field">
 			<div class="flex flex-col" v-show="field.key != 'id'">
 				<label class="">{{ field.title }}</label>

@@ -2,6 +2,8 @@
 import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 import Toast from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
 
@@ -20,6 +22,9 @@ app.use(router);
 axios.defaults.validateStatus = () => true;
 axios.defaults.baseURL = '/api/';
 app.use(VueAxios, axios);
+
+//Registers vue-select
+app.component('VSelect', vSelect);
 
 //Registers vue-toastification
 app.use(Toast, {
