@@ -1,5 +1,14 @@
 <template>
-	<h2 class="text-3xl text-black m-5 font-semibold">Admin</h2>
+	<header class="flex items-center">
+		<router-link
+			to="/"
+			class="max-w-fit m-5 flex items-center hover:bg-gray-400 transition duration-150 ease rounded-md p-2"
+		>
+			<span class="material-icons text-2xl">arrow_back</span>
+		</router-link>
+		<h2 class="text-3xl text-black m-5 ml-0 font-semibold max-w-fit">Admin</h2>
+	</header>
+
 	<nav>
 		<button
 			v-for="(tab, index) in tabs"
@@ -11,15 +20,32 @@
 		</button>
 	</nav>
 	<div>
-		<button @click="createItem()">Create {{ activeTab.label }}</button>
-		<ul>
-			<li v-for="(item, index) in data" :key="index">
-				<p>{{ item[`${activeTab.value}Name`] }}</p>
-				<button @click="editItem(item)" :title="`Edit ${activeTab.label}`">
-					<span class="material-icons"> edit </span>
+		<button
+			@click="createItem()"
+			class="m-2 p-2 text-white bg-blue-500 hover:bg-blue-400 transition ease duration-150 rounded-md"
+		>
+			Create {{ activeTab.label }}
+		</button>
+		<ul class="m-2">
+			<li
+				v-for="(item, index) in data"
+				:key="index"
+				class="w-4/5 md:w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md flex items-center"
+			>
+				<h3 class="mr-auto text-lg font-semibold">{{ item[`${activeTab.value}Name`] }}</h3>
+				<button
+					@click="editItem(item)"
+					:title="`Edit ${activeTab.label}`"
+					class="flex hover:bg-gray-400 transition duration-150 ease rounded-md"
+				>
+					<span class="material-icons text-2xl p-2"> edit </span>
 				</button>
-				<button @click="deleteItem(item)" :title="`Delete ${activeTab.label}`">
-					<span class="material-icons"> delete </span>
+				<button
+					@click="deleteItem(item)"
+					:title="`Delete ${activeTab.label}`"
+					class="flex hover:bg-gray-400 transition duration-150 ease rounded-md"
+				>
+					<span class="material-icons text-2xl p-2"> delete </span>
 				</button>
 			</li>
 		</ul>
