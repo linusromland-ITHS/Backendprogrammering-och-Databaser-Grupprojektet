@@ -34,18 +34,18 @@ Response:
 	"data": [
 		{
 			"_id": "6268440574fd7ab3f2cfeb8a",
-			"name": "Atlantic Ocean",
-			"sizeInSquareKm": 106500000,
-			"averageDepthInMeters": 3642,
-			"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
+			"seaName": "Atlantic Ocean",
+			"seaSizeInSquareKm": 106500000,
+			"seaAverageDepthInMeters": 3642,
+			"seaSpecies": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
 			"__v": 0
 		},
 		{
 			"_id": "62684a7e74fd7ab3f2cfeb90",
-			"name": "Pacific Ocean",
-			"sizeInSquareKm": 162500000,
-			"averageDepthInMeters": 4280,
-			"species": ["Humpback whale", "Orca"],
+			"seaName": "Pacific Ocean",
+			"seaSizeInSquareKm": 162500000,
+			"seaAverageDepthInMeters": 4280,
+			"seaSpecies": ["Humpback whale", "Orca"],
 			"__v": 0
 		}
 	]
@@ -63,10 +63,10 @@ Response:
 	"data": [
 		{
 			"_id": "6268440574fd7ab3f2cfeb8a",
-			"name": "Atlantic Ocean",
-			"sizeInSquareKm": 106500000,
-			"averageDepthInMeters": 3642,
-			"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
+			"seaName": "Atlantic Ocean",
+			"seaSizeInSquareKm": 106500000,
+			"seaAverageDepthInMeters": 3642,
+			"seaSpecies": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
 			"__v": 0
 		}
 	]
@@ -152,10 +152,10 @@ Response:
 	"success": true,
 	"error": "",
 	"data": {
-		"name": "Indian Ocean",
-		"sizeInSquareKm": 106500000,
-		"averageDepthInMeters": 3642,
-		"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
+		"seaName": "Indian Ocean",
+		"seaSizeInSquareKm": 106500000,
+		"seaAverageDepthInMeters": 3642,
+		"seaSpecies": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
 		"_id": "6268440574fd7ab3f2cfeb8a",
 		"__v": 0
 	}
@@ -189,14 +189,7 @@ Response:
 {
 	"success": true,
 	"error": "",
-	"data": {
-		"name": "Indian Ocean",
-		"sizeInSquareKm": 106500000,
-		"averageDepthInMeters": 3642,
-		"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
-		"_id": "6268440574fd7ab3f2cfeb8a",
-		"__v": 0
-	}
+	"data": 1
 }
 ```
 
