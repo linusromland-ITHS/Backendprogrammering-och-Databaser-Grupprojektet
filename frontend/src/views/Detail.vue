@@ -1,6 +1,5 @@
 <template>
 	<Navbar />
-	<h1 class="text-3xl text-red-400">Detail</h1>
 	<CountryDetail v-if="endpoint == 'country'" :countryOriginal="detail" />
 </template>
 <script>
