@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
 const Sea = new mongoose.Schema({
-    name: {
+    seaName: {
         type: String,
         required: true,
         trim: true,
         unique: true,
     },
-    sizeInSquareKm: {
+    seaSizeInSquareKm: {
         type: Number,
         required: true,
     },
-    averageDepthInMeters: {
+    seaAverageDepthInMeters: {
         type: Number,
         required: true,
     },
-    species: {
+    seaSpecies: {
         type: Array,
         required: true,
     },
