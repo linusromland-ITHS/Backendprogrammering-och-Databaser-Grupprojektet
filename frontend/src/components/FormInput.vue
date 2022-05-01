@@ -62,12 +62,18 @@
 		data() {
 			return {
 				input: this.value,
+				inputMany: '',
 				options: [],
 			};
 		},
 		watch: {
 			input(value) {
-				this.$emit('input', value);
+				if (this.type == 'textMany') {
+					this.$emit(
+						'input',
+						value.split(',').map((v) => v.trim()),
+					);
+				} else this.$emit('input', value);
 			},
 		},
 		created() {

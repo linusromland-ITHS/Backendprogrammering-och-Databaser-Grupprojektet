@@ -1,9 +1,12 @@
 <template>
-	<form @submit.prevent="submit" class="w-10/12">
+	<form class="w-10/12">
 		<h2 class="mb-2 text-2xl font-semibold">{{ `${submitText} ${endpoint}` }}</h2>
 		<div v-for="field in fields" :key="field">
 			<div class="flex flex-col" v-show="field.key != 'id'">
-				<label class="">{{ field.title }}</label>
+				<label class="">
+					{{ field.title
+					}}<span v-if="field.type == 'textMany'" class="help-text px-1">Separate entries by ","</span>
+				</label>
 				<FormInput
 					:type="field.type"
 					:value="field.value"
@@ -23,7 +26,7 @@
 				Cancel
 			</button>
 			<button
-				type="submit"
+				@click="submit"
 				class="p-2 text-white bg-blue-500 hover:bg-blue-400 transition ease duration-150 rounded-md"
 			>
 				{{ submitText }}
@@ -67,8 +70,11 @@
 			},
 		},
 		methods: {
-			async submit() {
+			async submit(event) {
+				event.preventDefault();
+
 				const toast = useToast();
+
 				const request = await this.axios({
 					method: this.method,
 					url: this.endpoint,

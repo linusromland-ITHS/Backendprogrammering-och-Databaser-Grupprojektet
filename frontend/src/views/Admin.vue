@@ -172,9 +172,13 @@
 				this.updateFields();
 				this.fields.forEach((field) => {
 					if (typeof item[field.dbKey] == 'object') {
-						item[field.dbKey].forEach((value) => {
-							field.value.push(value[field.endpoint + 'ID']);
-						});
+						if (field.type == 'textMany') {
+							field.value = item[field.dbKey].toString();
+						} else {
+							item[field.dbKey].forEach((value) => {
+								field.value.push(value[field.endpoint + 'ID']);
+							});
+						}
 					} else {
 						field.value = item[field.dbKey];
 					}
