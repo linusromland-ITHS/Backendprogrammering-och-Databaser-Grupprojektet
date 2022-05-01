@@ -48,6 +48,7 @@ If _`status`_ is `false`, `error` contains the error message. Data is not return
 Click on the links below to see the available endpoints.
 
 -   [City](./CITY.md) - `/api/city`
+-   [Continent](./CONTINENT.md) - `/api/continent`
 -   [Country](./COUNTRY.md) - `/api/country`
 -   [Currency](./CURRENCY.md) - `/api/currency`
 -   [Language](./LANGUAGE.md) - `/api/language`
