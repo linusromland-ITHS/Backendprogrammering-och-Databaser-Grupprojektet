@@ -9,10 +9,10 @@ This needs to be installed separately before the Project can be started.
 
 ```bash
 # Clone the repo:
-git clone https://github.com/linusromland-ITHS/JavaScript-med-Ramverk-Laboration-3.git
+git clone https://github.com/linusromland-ITHS/Backendprogrammering-och-Databaser-Grupprojektet.git
 
 # Navigate to folder:
-cd JavaScript-med-Ramverk-Laboration-3/
+cd Backendprogrammering-och-Databaser-Grupprojektet/
 ```
 
 ### Frontend
