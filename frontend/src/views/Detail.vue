@@ -15,6 +15,7 @@
 				type: '',
 				endpoint: '',
 				id: '',
+				detail: {},
 			};
 		},
 		watch: {
@@ -40,11 +41,27 @@
 		},
 		created() {
 			this.setParameters();
+			this.getDetail();
 		},
 		methods: {
 			setParameters() {
 				this.type = this.$route.params.type;
 				this.id = this.$route.params.id;
+			},
+			async getDetail() {
+				const request = await this.axios.get(`${this.endpoint}`, {
+					params: {
+						ids: this.id,
+					},
+				});
+
+				const response = request.data;
+
+				if (!response.success) {
+					this.$router.go(-1);
+				} else {
+					this.detail = response.data;
+				}
 			},
 		},
 	};
