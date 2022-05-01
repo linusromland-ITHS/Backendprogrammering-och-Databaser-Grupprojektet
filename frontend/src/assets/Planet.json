@@ -39,7 +39,7 @@
 	},
 	{
 		"type": "number",
-		"title": "Average temperature in celcius",
+		"title": "Average temperature in celsius",
 		"key": "averageTemperatureInCelsius",
 		"dbKey": "planetAverageTemperatureInCelcius",
 		"value": ""
