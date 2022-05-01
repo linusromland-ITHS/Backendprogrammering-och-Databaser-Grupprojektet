@@ -22,6 +22,11 @@ const router = createRouter({
 			path: '/:type/result/:query',
 		},
 		{
+			// Detail Redirect Route
+			path: '/:type/detail',
+			redirect: '/',
+		},
+		{
 			// Detail Route
 			name: 'Detail',
 			component: () => import('./views/Detail.vue'),
