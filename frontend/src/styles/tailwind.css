@@ -13,3 +13,7 @@
 .bg-space {
 	@apply bg-purple-500;
 }
+
+.help-text {
+	@apply text-gray-400 text-xs inline;
+}

@@ -15,14 +15,12 @@
 					@on-click="goToResult"
 				/>
 			</ul>
-			<p class="">Showing 15 out of 196 results</p>
+			<p>Showing 15 out of 196 results</p>
 		</div>
 	</div>
 </template>
 
 <script>
-	import axios from 'axios';
-
 	import Navbar from '../components/Navbar.vue';
 	import ResultComponent from '../components/ResultComponent.vue';
 	import SeaFilterComponent from '../components/SeaFilterComponent.vue';
@@ -46,19 +44,19 @@
 				this.$router.push(`/${this.type}/${resultItem.id ? resultItem.id : resultItem._id}`);
 			},
 			async fetchSea(query) {
-				const response = await axios.get('/api/sea', {
+				const response = await this.axios.get('sea', {
 					params: { ...query },
 				});
 				this.results = response.data.data;
 			},
 			async fetchSpace(query) {
-				const response = await axios.get('/api/planet', {
+				const response = await this.axios.get('planet', {
 					params: { ...query },
 				});
 				this.results = response.data.data;
 			},
 			async fetchLand(query) {
-				const response = await axios.get('/api/country', {
+				const response = await this.axios.get('country', {
 					params: { ...query },
 				});
 				this.results = response.data.data;

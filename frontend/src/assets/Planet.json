@@ -1,0 +1,71 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "_id",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Planet name",
+		"key": "name",
+		"dbKey": "planetName",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Surface area in km²",
+		"key": "surfaceAreaInSquareKm",
+		"dbKey": "planetSurfaceAreaInSquareKm",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Distance from sun in km",
+		"key": "distanceFromSunInKm",
+		"dbKey": "planetDistanceFromSunInKm",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "textMany",
+		"title": "Moons",
+		"key": "moons",
+		"dbKey": "planetMoons",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Average temperature in celcius",
+		"key": "averageTemperatureInCelsius",
+		"dbKey": "planetAverageTemperatureInCelcius",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Radius in km",
+		"key": "radiusInKm",
+		"dbKey": "planetRadiusInKm",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Mass in kg",
+		"key": "massInKg",
+		"dbKey": "planetMassInKg",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Orbital period in days",
+		"key": "orbitalPeriodInDays",
+		"dbKey": "planetOrbitalPeriodInDays",
+		"value": "",
+		"min": 0
+	}
+]

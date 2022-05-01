@@ -1,0 +1,33 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "languageID",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Language name",
+		"key": "name",
+		"dbKey": "languageName",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Language native speakers",
+		"key": "nativeSpeakers",
+		"dbKey": "languageNativeSpeakers",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "number",
+		"title": "Language total speakers",
+		"key": "totalSpeakers",
+		"dbKey": "languageTotalSpeakers",
+		"value": "",
+		"min": 0
+	}
+]
