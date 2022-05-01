@@ -52,13 +52,7 @@ Response:
 }
 ```
 
-Send a GET request to `/api/religion/` with the following body:
-
-```json
-{
-	"ids": [3, 4]
-}
-```
+Send a GET request to `/api/religion/?ids=3,4`:
 
 Response:
 

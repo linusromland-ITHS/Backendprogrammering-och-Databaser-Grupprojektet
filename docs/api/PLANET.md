@@ -41,25 +41,25 @@ Response:
 	"data": [
 		{
 			"_id": "6268481074fd7ab3f2cfeb8d",
-			"name": "Earth",
-			"surfaceAreaInSquareKm": 510100000,
-			"distanceFromSunInKm": 150550000,
-			"moons": ["Luna"],
-			"averageTemperatureInCelsius": 15,
-			"radiusInKm": 6378,
-			"massInKg": 5.9722e24,
-			"orbitalPeriodInDays": 365,
+			"planetName": "Earth",
+			"planetSurfaceAreaInSquareKm": 510100000,
+			"planetDistanceFromSunInKm": 150550000,
+			"planetMoons": ["Luna"],
+			"planetAverageTemperatureInCelsius": 15,
+			"planetRadiusInKm": 6378,
+			"planetMassInKg": 5.9722e24,
+			"planetOrbitalPeriodInDays": 365,
 			"__v": 0
 		},
 		{
-			"name": "Mars",
-			"surfaceAreaInSquareKm": 1448000000,
-			"distanceFromSunInKm": 211130000,
-			"moons": ["Phobos", "Deimos"],
-			"averageTemperatureInCelsius": -60,
-			"radiusInKm": 3389,
-			"massInKg": 6.39e23,
-			"orbitalPeriodInDays": 686,
+			"planetName": "Mars",
+			"planetSurfaceAreaInSquareKm": 1448000000,
+			"planetDistanceFromSunInKm": 211130000,
+			"planetMoons": ["Phobos", "Deimos"],
+			"planetAverageTemperatureInCelsius": -60,
+			"planetRadiusInKm": 3389,
+			"planetMassInKg": 6.39e23,
+			"planetOrbitalPeriodInDays": 686,
 			"_id": "6268416474fd7ab3f2cfeb85",
 			"__v": 0
 		}
@@ -67,14 +67,7 @@ Response:
 }
 ```
 
-Send a GET request to `/api/planet/` with the following body:
-
-```json
-{
-	"name": "Mars",
-	"radiusMin": 3300
-}
-```
+Send a GET request to `/api/planet/?name=Mars&radiusMin=3300`:
 
 Response:
 
@@ -85,14 +78,14 @@ Response:
 	"data": [
 		{
 			"_id": "6268416474fd7ab3f2cfeb85",
-			"name": "Mars",
-			"surfaceAreaInSquareKm": 6787,
-			"distanceFromSunInKm": 22794,
-			"moons": ["Phobos", "Deimos"],
-			"averageTemperatureInCelsius": -88,
-			"radiusInKm": 3389,
-			"massInKg": 32,
-			"orbitalPeriodInDays": 686,
+			"planetName": "Mars",
+			"planetSurfaceAreaInSquareKm": 6787,
+			"planetDistanceFromSunInKm": 22794,
+			"planetMoons": ["Phobos", "Deimos"],
+			"planetAverageTemperatureInCelsius": -88,
+			"planetRadiusInKm": 3389,
+			"planetMassInKg": 32,
+			"planetOrbitalPeriodInDays": 686,
 			"__v": 0
 		}
 	]
@@ -142,14 +135,14 @@ Response:
 	"success": true,
 	"error": "",
 	"data": {
-		"name": "Mars",
-		"surfaceAreaInSquareKm": 1448000000,
-		"distanceFromSunInKm": 211130000,
-		"moons": ["Phobos", "Deimos"],
-		"averageTemperatureInCelsius": -60,
-		"radiusInKm": 3389,
-		"massInKg": 6.39e23,
-		"orbitalPeriodInDays": 686,
+		"planetName": "Mars",
+		"planetSurfaceAreaInSquareKm": 1448000000,
+		"planetDistanceFromSunInKm": 211130000,
+		"planetMoons": ["Phobos", "Deimos"],
+		"planetAverageTemperatureInCelsius": -60,
+		"planetRadiusInKm": 3389,
+		"planetMassInKg": 6.39e23,
+		"planetOrbitalPeriodInDays": 686,
 		"_id": "6268416474fd7ab3f2cfeb85",
 		"__v": 0
 	}
@@ -195,14 +188,14 @@ Response:
 	"success": true,
 	"error": "",
 	"data": {
-		"name": "Mars",
-		"surfaceAreaInSquareKm": 1448000000,
-		"distanceFromSunInKm": 211130000,
-		"moons": ["Phobos", "Deimos"],
-		"averageTemperatureInCelsius": -60,
-		"radiusInKm": 3389,
-		"massInKg": 32,
-		"orbitalPeriodInDays": 1,
+		"planetName": "Mars",
+		"planetSurfaceAreaInSquareKm": 1448000000,
+		"planetDistanceFromSunInKm": 211130000,
+		"planetMoons": ["Phobos", "Deimos"],
+		"planetAverageTemperatureInCelsius": -60,
+		"planetRadiusInKm": 3389,
+		"planetMassInKg": 32,
+		"planetOrbitalPeriodInDays": 1,
 		"_id": "6268416474fd7ab3f2cfeb85",
 		"__v": 0
 	}
@@ -236,18 +229,7 @@ Response:
 {
 	"success": true,
 	"error": "",
-	"data": {
-		"_id": "6268481074fd7ab3f2cfeb8d",
-		"name": "Earth",
-		"surfaceAreaInSquareKm": 510100000,
-		"distanceFromSunInKm": 150550000,
-		"moons": ["Luna"],
-		"averageTemperatureInCelsius": 15,
-		"radiusInKm": 6378,
-		"massInKg": 5.9722e24,
-		"orbitalPeriodInDays": 365,
-		"__v": 0
-	}
+	"data": 1
 }
 ```
 
