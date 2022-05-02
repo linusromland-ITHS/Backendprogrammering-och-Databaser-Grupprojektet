@@ -81,7 +81,7 @@
 				if (!response.success) {
 					this.$router.go(-1);
 				} else {
-					this.detail = response.data[0];
+					this.detail = response.data.result[0];
 				}
 			},
 			prepareDetail() {
