@@ -46,7 +46,7 @@ The planet collection contains information about the planets in our solar system
 
 ## Sea
 
-The sea collection contains information about the seas on our planet.
+The sea collection contains information about the seas and oceans on our planet.
 
 ```json
 {
