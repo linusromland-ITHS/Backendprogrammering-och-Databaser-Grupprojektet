@@ -43,3 +43,30 @@ The planet collection contains information about the planets in our solar system
 	}
 }
 ```
+
+## Sea
+
+The sea collection contains information about the seas on our planet.
+
+```json
+{
+	"seaName": {
+		"type": "String",
+		"required": true,
+		"trim": true,
+		"unique": true
+	},
+	"seaSizeInSquareKm": {
+		"type": "Number",
+		"required": true
+	},
+	"seaAverageDepthInMeters": {
+		"type": "Number",
+		"required": true
+	},
+	"seaSpecies": {
+		"type": "Array",
+		"required": true
+	}
+}
+```
