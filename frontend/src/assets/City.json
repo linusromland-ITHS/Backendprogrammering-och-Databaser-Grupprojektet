@@ -1,0 +1,25 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "cityID",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "City Name",
+		"key": "name",
+		"dbKey": "cityName",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "City Population",
+		"key": "population",
+		"dbKey": "cityPopulation",
+		"value": 0,
+		"min": 0
+	}
+]
