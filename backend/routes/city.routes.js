@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
         if (ids) {
             // Find all cities matching array of IDs
-            const cities = await CityModel.findAll({ where: { cityID: ids } });
+            const cities = await CityModel.findAll({ where: { cityID: ids.split(',') } });
             res.status(200).json({
                 success: true,
                 error: '',
