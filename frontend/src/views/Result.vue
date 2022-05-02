@@ -26,7 +26,7 @@
 					</p>
 				</li>
 			</ul>
-			<p>Showing 15 out of 196 results</p>
+			<p>Showing {{ results.length }} out of {{ totalCount }} results</p>
 		</div>
 	</div>
 </template>
@@ -43,6 +43,7 @@
 			return {
 				type: '',
 				results: [],
+				totalCount: null,
 			};
 		},
 		created() {
@@ -66,19 +67,23 @@
 				const response = await this.axios.get('sea', {
 					params: { ...query },
 				});
-				this.results = response.data.data;
+				this.results = response.data.data.result;
+				this.totalCount = response.data.data.count;
 			},
 			async fetchSpace(query) {
 				const response = await this.axios.get('planet', {
 					params: { ...query },
 				});
 				this.results = response.data.data;
+				this.results = response.data.data.result;
+				this.totalCount = response.data.data.count;
 			},
 			async fetchLand(query) {
 				const response = await this.axios.get('country', {
 					params: { ...query },
 				});
-				this.results = response.data.data;
+				this.results = response.data.data.result;
+				this.totalCount = response.data.data.count;
 			},
 		},
 	};

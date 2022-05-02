@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
     try {
         let allSeas = await SeaModel.find(query);
-
+        const seasCount = await SeaModel.count();
         if (allSeas.length < 1 && name && name.trim().length > 0) {
             allSeas = await SeaModel.find({ seaSpecies: { $regex: name, $options: 'i' } });
         }
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
         res.status(200).json({
             success: true,
             error: '',
-            data: allSeas,
+            data: { result: allSeas, count: seasCount },
         });
     } catch (error) {
         res.status(500).json({
