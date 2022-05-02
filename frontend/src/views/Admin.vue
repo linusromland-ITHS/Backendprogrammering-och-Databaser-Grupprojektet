@@ -119,7 +119,9 @@
 					url: this.activeTab.value,
 				});
 
-				this.data = (await request.data).data;
+				const response = await request.data;
+
+				this.data = response.data.result ? response.data.result : response.data;
 			},
 			async deleteItem(item) {
 				const toast = useToast();
