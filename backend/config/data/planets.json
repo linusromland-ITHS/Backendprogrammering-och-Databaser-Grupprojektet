@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Mercury",
+        "surfaceAreaInSquareKm": 74800000,
+        "distanceFromSunInKm": 58000000,
+        "moons": [],
+        "averageTemperatureInCelsius": 178.89,
+        "radiusInKm": 2440,
+        "massInKg": 328500000000000000000000,
+        "orbitalPeriodInDays": 88
+    },
+    {
+        "name": "Venus",
+        "surfaceAreaInSquareKm": 460200000,
+        "distanceFromSunInKm": 108890000,
+        "moons": [],
+        "averageTemperatureInCelsius": 475.0,
+        "radiusInKm": 6051.8,
+        "massInKg": 4867000000000000000000000,
+        "orbitalPeriodInDays": 225
+    },
+    {
+        "name": "Earth",
+        "surfaceAreaInSquareKm": 510100000,
+        "distanceFromSunInKm": 150760000,
+        "moons": ["Luna"],
+        "averageTemperatureInCelsius": 13.9,
+        "radiusInKm": 6378,
+        "massInKg": 5972000000000000000,
+        "orbitalPeriodInDays": 365
+    },
+    {
+        "name": "Mars",
+        "surfaceAreaInSquareKm": 144800000,
+        "distanceFromSunInKm": 210530000,
+        "moons": ["Phobos", "Deimos"],
+        "averageTemperatureInCelsius": -62.78,
+        "radiusInKm": 3390,
+        "massInKg": 639000000000000000000000,
+        "orbitalPeriodInDays": 687
+    },
+    {
+        "name": "Jupiter",
+        "surfaceAreaInSquareKm": 61420000000,
+        "distanceFromSunInKm": 743890000,
+        "moons": ["Europa", "Ganymede", "Io", "Callisto"],
+        "averageTemperatureInCelsius": 114.45,
+        "radiusInKm": 69911,
+        "massInKg": 1898000000000000000000000000,
+        "orbitalPeriodInDays": 4380
+    },
+    {
+        "name": "Saturn",
+        "surfaceAreaInSquareKm": 42700000000,
+        "distanceFromSunInKm": 1477800000,
+        "moons": ["Titan", "Rhea", "Iapetus", "Dione", "Tethys", "Enceladus"],
+        "averageTemperatureInCelsius": -140,
+        "radiusInKm": 58232,
+        "massInKg": 568300000000000000000000000,
+        "orbitalPeriodInDays": 10585
+    },
+    {
+        "name": "Uranus",
+        "surfaceAreaInSquareKm": 8083000000,
+        "distanceFromSunInKm": 2947000000,
+        "moons": ["Titania", "Oberon", "Umbriel", "Ariel"],
+        "averageTemperatureInCelsius": -195,
+        "radiusInKm": 25362,
+        "massInKg": 86810000000000000000000000,
+        "orbitalPeriodInDays": 30660
+    },
+    {
+        "name": "Neptune",
+        "surfaceAreaInSquareKm": 7618000000,
+        "distanceFromSunInKm": 4474000000,
+        "moons": ["Triton"],
+        "averageTemperatureInCelsius": -200,
+        "radiusInKm": 24764,
+        "massInKg": 10240000000000000000000000,
+        "orbitalPeriodInDays": 59800
+    }
+]

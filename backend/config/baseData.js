@@ -5,6 +5,8 @@ const LanguageModel = require('../models/Language');
 const ReligionModel = require('../models/Religion');
 const CityModel = require('../models/City');
 const CountryModel = require('../models/Country');
+const seaModel = require('../models/Sea');
+const planetModel = require('../models/Planet');
 
 // JSON import
 const continentsJSON = require('./data/continents.json');
@@ -13,6 +15,8 @@ const languagesJSON = require('./data/languages.json');
 const religionsJSON = require('./data/religions.json');
 const citiesJSON = require('./data/cities.json');
 const countriesJSON = require('./data/countries.json');
+const seaJSON = require('./data/seas.json');
+const planetJSON = require('./data/planets.json');
 
 exports.createBaseData = async () => {
     await addContinents();
@@ -21,6 +25,8 @@ exports.createBaseData = async () => {
     await addReligions();
     await addCities();
     await addCountries();
+    await addSeas();
+    await addPlanets();
 };
 
 const addContinents = async () => {
@@ -101,5 +107,23 @@ const addCountries = async () => {
                 }),
             );
         });
+    }
+};
+
+const addSeas = async () => {
+    const seas = await seaModel.find();
+
+    if (seas.length === 0) {
+        // Import seas to mongoose
+        seaModel.insertMany(seaJSON);
+    }
+};
+
+const addPlanets = async () => {
+    const planets = await planetModel.find();
+
+    if (planets.length === 0) {
+        // Import planets to mongoose
+        planetModel.insertMany(planetJSON);
     }
 };

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Atlantic Ocean",
+        "sizeInSquareKm": 106460000,
+        "averageDepthInMeters": 3926,
+        "species": ["Walrus", "Spinner dolphin", "Manatee", "Spotted eagle ray"]
+    },
+    {
+        "name": "Indian Ocean",
+        "sizeInSquareKm": 70560000,
+        "averageDepthInMeters": 3890,
+        "species": ["African Penguin", "Albatross", "Angelfish", "Blue Whale"]
+    },
+    {
+        "name": "Pacific Ocean",
+        "sizeInSquareKm": 165250000,
+        "averageDepthInMeters": 4280,
+        "species": ["Dugong", "Killer whale", "Humpback whale", "Fur seal"]
+    },
+    {
+        "name": "Southern Ocean",
+        "sizeInSquareKm": 21960000,
+        "averageDepthInMeters": 13100,
+        "species": ["Gentoo Penguin", "King Crab", "King Penguin"]
+    },
+    {
+        "name": "Arctic Ocean",
+        "sizeInSquareKm": 14060000,
+        "averageDepthInMeters": 1225,
+        "species": ["Ringed Seal", "Bowhead Whale", "Humpback Whale", "Orca"]
+    }
+]
