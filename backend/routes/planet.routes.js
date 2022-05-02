@@ -8,6 +8,7 @@ const PlanetModel = require('../models/Planet');
  */
 router.get('/', async (req, res) => {
     const {
+        ids,
         name,
         surfaceAreaMin,
         surfaceAreaMax,
@@ -24,6 +25,12 @@ router.get('/', async (req, res) => {
     } = req.query;
 
     const conditions = {};
+
+    if (ids) {
+        conditions._id = {
+            $in: ids.split(','),
+        };
+    }
 
     if (name && name.trim().length > 0) {
         conditions.planetName = {
