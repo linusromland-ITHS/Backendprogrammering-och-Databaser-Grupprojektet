@@ -87,7 +87,7 @@ router.get('/', async (req, res) => {
 
     try {
         let planets = await PlanetModel.find(conditions);
-
+        const planetsCount = await PlanetModel.count();
         if (planets.length === 0 && name && name.trim().length > 0) {
             planets = await PlanetModel.find({ planetMoons: new RegExp(name.trim(), 'i') });
         }
@@ -95,7 +95,7 @@ router.get('/', async (req, res) => {
         res.status(200).json({
             success: true,
             error: '',
-            data: planets,
+            data: { result: planets, count: planetsCount },
         });
     } catch (error) {
         res.status(500).json({
