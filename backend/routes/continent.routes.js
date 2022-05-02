@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     try {
         const { ids } = req.query;
         if (ids) {
-            const continents = await ContinentModel.findAll({ where: { continentID: ids } });
+            const continents = await ContinentModel.findAll({ where: { continentID: ids.split(',') } });
             res.status(200).json({
                 success: true,
                 error: '',

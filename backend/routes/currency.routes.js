@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
         if (ids) {
             const currencies = await CurrencyModel.findAll({
-                where: { currencyID: ids },
+                where: { currencyID: ids.split(',') },
             });
             res.status(200).json({
                 success: true,
