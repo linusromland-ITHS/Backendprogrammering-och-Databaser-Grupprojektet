@@ -1,0 +1,24 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "currencyID",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Currency name",
+		"key": "name",
+		"dbKey": "currencyName",
+		"value": ""
+	},
+	{
+		"type": "text",
+		"title": "Currency symbol",
+		"key": "symbol",
+		"dbKey": "currencySymbol",
+		"value": ""
+	}
+]

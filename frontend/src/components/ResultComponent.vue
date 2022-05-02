@@ -9,7 +9,9 @@
 			:src="resultItem.countryFlagURL"
 			:alt="resultItem.name"
 		/>
-		<h3 class="inline ml-2 text-lg font-bold align-middle">{{ resultItem.name }}</h3>
+		<h3 class="inline ml-2 text-lg font-bold align-middle">
+			{{ resultItem.name ? resultItem.name : resultItem.countryName }}
+		</h3>
 	</li>
 </template>
 

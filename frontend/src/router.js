@@ -10,6 +10,17 @@ const router = createRouter({
 			path: '/',
 		},
 		{
+			// Admin Redirect Route
+			path: '/admin',
+			redirect: '/admin/city',
+		},
+		{
+			// Admin Route
+			name: 'Admin',
+			component: () => import('./views/Admin.vue'),
+			path: '/admin/:tab',
+		},
+		{
 			// Search Route
 			name: 'Search',
 			component: () => import('./views/Search.vue'),
@@ -20,6 +31,17 @@ const router = createRouter({
 			name: 'Result',
 			component: () => import('./views/Result.vue'),
 			path: '/:type/result/:query',
+		},
+		{
+			// Detail Redirect Route
+			path: '/:type/detail',
+			redirect: '/',
+		},
+		{
+			// Detail Route
+			name: 'Detail',
+			component: () => import('./views/Detail.vue'),
+			path: '/:type/detail/:id',
 		},
 	],
 });

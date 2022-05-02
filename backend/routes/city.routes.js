@@ -7,12 +7,12 @@ const CityModel = require('../models/City');
  * @api {get} /api/city/ Returns all cities
  */
 router.get('/', async (req, res) => {
-    const { ids } = req.body;
+    const { ids } = req.query;
 
     try {
         if (ids) {
             // Find all cities matching array of IDs
-            const cities = await CityModel.findAll({ where: { cityID: ids } });
+            const cities = await CityModel.findAll({ where: { cityID: ids.split(',') } });
             res.status(200).json({
                 success: true,
                 error: '',

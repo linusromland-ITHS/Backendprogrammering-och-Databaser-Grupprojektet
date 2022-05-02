@@ -21,12 +21,12 @@ router.get('/', async (req, res) => {
         massMax,
         orbitalPeriodMin,
         orbitalPeriodMax,
-    } = req.body;
+    } = req.query;
 
     const conditions = {};
 
     if (name && name.trim().length > 0) {
-        conditions.name = {
+        conditions.planetName = {
             $regex: new RegExp(name.trim(), 'i'),
         };
     }
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
     if (isFinite(surfaceAreaMin) || isFinite(surfaceAreaMax)) {
         const min = isFinite(surfaceAreaMin) && surfaceAreaMin > 0 ? surfaceAreaMin : 0;
         const max = isFinite(surfaceAreaMax) ? surfaceAreaMax : Number.MAX_SAFE_INTEGER;
-        conditions.surfaceAreaInSquareKm = {
+        conditions.planetSurfaceAreaInSquareKm = {
             $gte: min,
             $lte: max,
         };
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
     if (isFinite(distanceFromSunMin) || isFinite(distanceFromSunMax)) {
         const min = isFinite(distanceFromSunMin) && distanceFromSunMin > 0 ? distanceFromSunMin : 0;
         const max = isFinite(distanceFromSunMax) ? distanceFromSunMax : Number.MAX_SAFE_INTEGER;
-        conditions.distanceFromSunInKm = {
+        conditions.planetDistanceFromSunInKm = {
             $gte: min,
             $lte: max,
         };
@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
     if (isFinite(averageTemperatureMin) || isFinite(averageTemperatureMax)) {
         const min = isFinite(averageTemperatureMin) ? averageTemperatureMin : Number.MIN_SAFE_INTEGER;
         const max = isFinite(averageTemperatureMax) ? averageTemperatureMax : Number.MAX_SAFE_INTEGER;
-        conditions.averageTemperatureInCelsius = {
+        conditions.planetAverageTemperatureInCelsius = {
             $gte: min,
             $lte: max,
         };
@@ -61,7 +61,7 @@ router.get('/', async (req, res) => {
     if (isFinite(radiusMin) || isFinite(radiusMax)) {
         const min = isFinite(radiusMin) ? radiusMin : 0;
         const max = isFinite(radiusMax) ? radiusMax : Number.MAX_SAFE_INTEGER;
-        conditions.radiusInKm = {
+        conditions.planetRadiusInKm = {
             $gte: min,
             $lte: max,
         };
@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
     if (isFinite(massMin) || isFinite(massMax)) {
         const min = isFinite(massMin) ? massMin : 0;
         const max = isFinite(massMax) ? massMax : Number.MAX_SAFE_INTEGER;
-        conditions.massInKg = {
+        conditions.planetMassInKg = {
             $gte: min,
             $lte: max,
         };
@@ -79,7 +79,7 @@ router.get('/', async (req, res) => {
     if (isFinite(orbitalPeriodMin) || isFinite(orbitalPeriodMax)) {
         const min = isFinite(orbitalPeriodMin) ? orbitalPeriodMin : 0;
         const max = isFinite(orbitalPeriodMax) ? orbitalPeriodMax : Number.MAX_SAFE_INTEGER;
-        conditions.orbitalPeriodInDays = {
+        conditions.planetOrbitalPeriodInDays = {
             $gte: min,
             $lte: max,
         };
@@ -89,7 +89,7 @@ router.get('/', async (req, res) => {
         let planets = await PlanetModel.find(conditions);
 
         if (planets.length === 0 && name && name.trim().length > 0) {
-            planets = await PlanetModel.find({ moons: new RegExp(name.trim(), 'i') });
+            planets = await PlanetModel.find({ planetMoons: new RegExp(name.trim(), 'i') });
         }
 
         res.status(200).json({
@@ -133,20 +133,20 @@ router.post('/', async (req, res) => {
     ) {
         return res.status(400).json({
             success: false,
-            message: 'Please provide all required fields',
+            error: 'Please provide all required fields',
         });
     }
 
     try {
         const planet = await new PlanetModel({
-            name,
-            surfaceAreaInSquareKm,
-            distanceFromSunInKm,
-            moons,
-            averageTemperatureInCelsius,
-            radiusInKm,
-            massInKg,
-            orbitalPeriodInDays,
+            planetName: name,
+            planetSurfaceAreaInSquareKm: surfaceAreaInSquareKm,
+            planetDistanceFromSunInKm: distanceFromSunInKm,
+            planetMoons: moons,
+            planetAverageTemperatureInCelsius: averageTemperatureInCelsius,
+            planetRadiusInKm: radiusInKm,
+            planetMassInKg: massInKg,
+            planetOrbitalPeriodInDays: orbitalPeriodInDays,
         });
 
         const savedPlanet = await planet.save();
@@ -217,14 +217,14 @@ router.put('/', async (req, res) => {
             });
         }
 
-        if (name) planet.name = name;
-        if (surfaceAreaInSquareKm) planet.surfaceAreaInSquareKm = surfaceAreaInSquareKm;
-        if (distanceFromSunInKm) planet.distanceFromSunInKm = distanceFromSunInKm;
-        if (moons) planet.moons = moons;
-        if (averageTemperatureInCelsius) planet.averageTemperatureInCelsius = averageTemperatureInCelsius;
-        if (radiusInKm) planet.radiusInKm = radiusInKm;
-        if (massInKg) planet.massInKg = massInKg;
-        if (orbitalPeriodInDays) planet.orbitalPeriodInDays = orbitalPeriodInDays;
+        if (name) planet.planetName = name;
+        if (surfaceAreaInSquareKm) planet.planetSurfaceAreaInSquareKm = surfaceAreaInSquareKm;
+        if (distanceFromSunInKm) planet.planetDistanceFromSunInKm = distanceFromSunInKm;
+        if (moons) planet.planetMoons = moons;
+        if (averageTemperatureInCelsius) planet.planetAverageTemperatureInCelsius = averageTemperatureInCelsius;
+        if (radiusInKm) planet.planetRadiusInKm = radiusInKm;
+        if (massInKg) planet.planetMassInKg = massInKg;
+        if (orbitalPeriodInDays) planet.planetOrbitalPeriodInDays = orbitalPeriodInDays;
 
         planet = await planet.save();
 

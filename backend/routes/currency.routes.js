@@ -7,12 +7,12 @@ const CurrencyModel = require('../models/Currency');
  * @api {get} /api/currency Gets all currencies
  */
 router.get('/', async (req, res) => {
-    const { ids } = req.body;
+    const { ids } = req.query;
 
     try {
         if (ids) {
             const currencies = await CurrencyModel.findAll({
-                where: { currencyID: ids },
+                where: { currencyID: ids.split(',') },
             });
             res.status(200).json({
                 success: true,

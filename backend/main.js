@@ -14,6 +14,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 //Models Import
+const CityModel = require('./models/City');
+const CurrencyModel = require('./models/Currency');
 const ReligionModel = require('./models/Religion');
 const ContinentModel = require('./models/Continent');
 const LanguageModel = require('./models/Language');
@@ -51,17 +53,23 @@ app.use('/', express.static(path.join(path.resolve(), '../frontend/dist')));
         console.log('Connection has been established successfully to MySQL.');
 
         // Establish relations
-        CountryModel.belongsToMany(ReligionModel, { through: 'country_religion' });
-        ReligionModel.belongsToMany(CountryModel, { through: 'country_religion' });
+        CountryModel.belongsToMany(ReligionModel, { through: 'countryReligion' });
+        ReligionModel.belongsToMany(CountryModel, { through: 'countryReligion' });
 
-        CountryModel.belongsToMany(ContinentModel, { through: 'country_continent' });
-        ContinentModel.belongsToMany(CountryModel, { through: 'country_continent' });
+        CountryModel.belongsToMany(ContinentModel, { through: 'countryContinent' });
+        ContinentModel.belongsToMany(CountryModel, { through: 'countryContinent' });
 
-        CountryModel.belongsToMany(LanguageModel, { through: 'country_language' });
-        LanguageModel.belongsToMany(CountryModel, { through: 'country_language' });
+        CountryModel.belongsToMany(LanguageModel, { through: 'countryLanguage' });
+        LanguageModel.belongsToMany(CountryModel, { through: 'countryLanguage' });
+
+        CurrencyModel.hasOne(CountryModel, { foreignKey: 'countryCurrencyID' });
+        CountryModel.belongsTo(CurrencyModel, { foreignKey: 'countryCurrencyID' });
+
+        CityModel.hasOne(CountryModel, { foreignKey: 'countryCapitalID' });
+        CountryModel.belongsTo(CityModel, { foreignKey: 'countryCapitalID' });
 
         // Sync models
-        await sequelize.sync({ alter: true });
+        await sequelize.sync();
 
         await createBaseData();
 

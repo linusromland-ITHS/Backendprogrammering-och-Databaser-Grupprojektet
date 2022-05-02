@@ -1,0 +1,100 @@
+[
+	{
+		"type": "number",
+		"title": "id",
+		"key": "id",
+		"dbKey": "countryID",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "text",
+		"title": "Country name",
+		"key": "name",
+		"dbKey": "countryName",
+		"value": ""
+	},
+	{
+		"type": "number",
+		"title": "Country population",
+		"key": "population",
+		"dbKey": "countryPopulation",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "number",
+		"title": "Country size",
+		"key": "size",
+		"dbKey": "countrySize",
+		"value": "",
+		"min": 1
+	},
+	{
+		"type": "textarea",
+		"title": "Country description",
+		"key": "description",
+		"dbKey": "countryDescription",
+		"value": ""
+	},
+	{
+		"type": "text",
+		"title": "Country domain",
+		"key": "domain",
+		"dbKey": "countryDomain",
+		"value": "",
+		"max": 25
+	},
+	{
+		"type": "url",
+		"title": "Flag URL",
+		"key": "flagURL",
+		"dbKey": "countryFlagURL",
+		"value": ""
+	},
+	{
+		"type": "select",
+		"title": "Capital",
+		"key": "capitalID",
+		"dbKey": "countryCapitalID",
+		"endpoint": "city",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "select",
+		"title": "Currency",
+		"key": "currencyID",
+		"dbKey": "countryCurrencyID",
+		"endpoint": "currency",
+		"value": "",
+		"min": 0
+	},
+	{
+		"type": "selectMany",
+		"title": "Continent",
+		"key": "continentIDs",
+		"dbKey": "continents",
+		"endpoint": "continent",
+		"value": [],
+		"min": 0
+	},
+	{
+		"type": "selectMany",
+		"title": "Language",
+		"key": "languageIDs",
+		"dbKey": "languages",
+		"endpoint": "language",
+		"value": [],
+		"min": 0
+	},
+	{
+		"type": "selectMany",
+		"title": "Religion",
+		"key": "religionIDs",
+		"dbKey": "religions",
+		"endpoint": "religion",
+		"value": [],
+		"min": 0
+	}
+]

@@ -1,10 +1,144 @@
 // Dependencies
 const express = require('express');
+const { Op } = require('sequelize');
 const router = express.Router();
+const CityModel = require('../models/City');
+const CurrencyModel = require('../models/Currency');
 const CountryModel = require('../models/Country');
 const ContinentModel = require('../models/Continent');
 const LanguageModel = require('../models/Language');
 const ReligionModel = require('../models/Religion');
+
+/**
+ * @api {get} /countries Get all countries
+ */
+router.get('/', async (req, res) => {
+    const {
+        ids,
+        name,
+        populationMin,
+        populationMax,
+        sizeMin,
+        sizeMax,
+        religionID,
+        continentID,
+        languageID,
+        currencyID,
+    } = req.query;
+
+    const conditions = {};
+    const associationsConditions = [];
+
+    if (ids) {
+        conditions.countryID = { [Op.in]: ids.split(',') };
+    }
+
+    if (name && name.trim().length > 0) {
+        conditions.countryName = {
+            [Op.substring]: name.trim(),
+        };
+    }
+
+    if (isFinite(populationMin) || isFinite(populationMax)) {
+        const min = isFinite(populationMin) && populationMin > 0 ? populationMin : 0;
+        const max = isFinite(populationMax) ? populationMax : Number.MAX_SAFE_INTEGER;
+        conditions.countryPopulation = {
+            [Op.between]: [min, max],
+        };
+    }
+
+    if (isFinite(sizeMin) || isFinite(sizeMax)) {
+        const min = isFinite(sizeMin) && sizeMin > 0 ? sizeMin : 0;
+        const max = isFinite(sizeMax) ? sizeMax : Number.MAX_SAFE_INTEGER;
+        conditions.countrySize = {
+            [Op.between]: [min, max],
+        };
+    }
+
+    if (languageID) {
+        associationsConditions.push({
+            model: LanguageModel,
+            where: {
+                languageID,
+            },
+        });
+    }
+
+    if (religionID) {
+        associationsConditions.push({
+            model: ReligionModel,
+            where: {
+                religionID,
+            },
+        });
+    }
+
+    if (continentID) {
+        associationsConditions.push({
+            model: ContinentModel,
+            where: {
+                continentID,
+            },
+        });
+    }
+
+    if (currencyID) conditions.countryCurrencyID = currencyID;
+
+    try {
+        let countries = await CountryModel.findAll({
+            where: conditions,
+            include: [
+                CityModel,
+                CurrencyModel,
+                ContinentModel,
+                ReligionModel,
+                LanguageModel,
+                ...associationsConditions,
+            ],
+        });
+
+        if (countries.length === 0 && name && name.trim().length > 0) {
+            countries = await CountryModel.findAll({
+                include: [
+                    {
+                        model: CityModel,
+                        where: {
+                            cityName: {
+                                [Op.substring]: name.trim(),
+                            },
+                        },
+                    },
+                ],
+            });
+        }
+
+        if (countries.length === 0 && name && name.trim().length > 0) {
+            countries = await CountryModel.findAll({
+                include: [
+                    {
+                        model: ReligionModel,
+                        where: {
+                            religionName: {
+                                [Op.substring]: name.trim(),
+                            },
+                        },
+                    },
+                ],
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            error: '',
+            data: countries,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message,
+        });
+    }
+});
 
 /**
  * @api {post} /api/country Create a new country
@@ -43,7 +177,7 @@ router.post('/', async (req, res) => {
     ) {
         return res.status(400).json({
             success: false,
-            message: 'Please provide all required fields',
+            error: 'Please provide all required fields',
         });
     }
 

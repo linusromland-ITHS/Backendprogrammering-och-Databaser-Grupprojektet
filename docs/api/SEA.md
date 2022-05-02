@@ -6,21 +6,24 @@
 
 Get all seas from the database.
 
+| Required | Parameter               | Description                                                                | Datatype  |
+| -------- | ----------------------- | -------------------------------------------------------------------------- | --------- |
+|          | ids                     | The id of the sea(s) you want to fetch.                                    | String[ ] |
+|          | name                    | The name of the sea or species you want to fetch.                          | String    |
+|          | sizeInSquareKmMin       | The minimum size of the sea you want to fetch. In square kilometers (km²). | Number    |
+|          | sizeInSquareKmMax       | The maximum size of the sea you want to fetch. In square kilometers (km²). | Number    |
+|          | averageDepthInMetersMin | The minimum average depth of the sea you want to fetch. In meters (m).     | Number    |
+|          | averageDepthInMetersMax | The maximum average depth of the sea you want to fetch. In meters (m).     | Number    |
+
+**Note**:
+
+-   If you don't include any parameters in your request, all seas will be returned.
+-   When using any of the interval parameters, you **do not** need to include both the minimum and maximum value.
+
 <details>
 <summary>Show/Hide Example</summary>
 
 Send a GET request to `/api/sea/`:
-
-| Required | Parameter               | Description                                                                | Datatype  |
-| -------- | --------------------    | -------------------------------------------------------------------------- | --------- |
-|          | ids                     | The id of the sea(s) you want to fetch.                                    | String[]  |
-|          | name                    | The name of the sea or species you want to fetch.                          | String    |
-|          | minSizeInSquareKm       | The minimum size of the sea you want to fetch. In square kilometers (km²). | Number    |
-|          | maxSizeInSquareKm       | The maximum size of the sea you want to fetch. In square kilometers (km²). | Number    |
-|          | minAverageDepthInMeters | The minimum average depth of the sea you want to fetch. In meters (m).     | Number    |
-|          | maxAverageDepthInMeters | The maximum average depth of the sea you want to fetch. In meters (m).     | Number    |
-
-If no parameters are present, all existing seas are returned.
 
 Response:
 
@@ -31,18 +34,39 @@ Response:
 	"data": [
 		{
 			"_id": "6268440574fd7ab3f2cfeb8a",
-			"name": "Atlantic Ocean",
-			"sizeInSquareKm": 106500000,
-			"averageDepthInMeters": 3642,
-			"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
+			"seaName": "Atlantic Ocean",
+			"seaSizeInSquareKm": 106500000,
+			"seaAverageDepthInMeters": 3642,
+			"seaSpecies": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
 			"__v": 0
 		},
 		{
 			"_id": "62684a7e74fd7ab3f2cfeb90",
-			"name": "Pacific Ocean",
-			"sizeInSquareKm": 162500000,
-			"averageDepthInMeters": 4280,
-			"species": ["Humpback whale", "Orca"],
+			"seaName": "Pacific Ocean",
+			"seaSizeInSquareKm": 162500000,
+			"seaAverageDepthInMeters": 4280,
+			"seaSpecies": ["Humpback whale", "Orca"],
+			"__v": 0
+		}
+	]
+}
+```
+
+Send a GET request to `/api/sea/?name=Atlantic&sizeInSquareKmMin=96500000`:
+
+Response:
+
+```json
+{
+	"success": true,
+	"error": "",
+	"data": [
+		{
+			"_id": "6268440574fd7ab3f2cfeb8a",
+			"seaName": "Atlantic Ocean",
+			"seaSizeInSquareKm": 106500000,
+			"seaAverageDepthInMeters": 3642,
+			"seaSpecies": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
 			"__v": 0
 		}
 	]
@@ -128,10 +152,10 @@ Response:
 	"success": true,
 	"error": "",
 	"data": {
-		"name": "Indian Ocean",
-		"sizeInSquareKm": 106500000,
-		"averageDepthInMeters": 3642,
-		"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
+		"seaName": "Indian Ocean",
+		"seaSizeInSquareKm": 106500000,
+		"seaAverageDepthInMeters": 3642,
+		"seaSpecies": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
 		"_id": "6268440574fd7ab3f2cfeb8a",
 		"__v": 0
 	}
@@ -165,14 +189,7 @@ Response:
 {
 	"success": true,
 	"error": "",
-	"data": {
-		"name": "Indian Ocean",
-		"sizeInSquareKm": 106500000,
-		"averageDepthInMeters": 3642,
-		"species": ["Great White Shark", "Sperm Whale", "Beluga Whale"],
-		"_id": "6268440574fd7ab3f2cfeb8a",
-		"__v": 0
-	}
+	"data": 1
 }
 ```
 

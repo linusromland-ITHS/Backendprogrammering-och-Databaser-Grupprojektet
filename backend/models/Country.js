@@ -1,9 +1,6 @@
 const { sequelize } = require('../config/mysqlConnection');
 const { DataTypes } = require('sequelize');
 
-const City = require('./City');
-const Currency = require('./Currency');
-
 const Country = sequelize.define('country', {
     countryID: {
         type: DataTypes.INTEGER,
@@ -34,20 +31,6 @@ const Country = sequelize.define('country', {
     countryFlagURL: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    countryCapitalID: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: City,
-            key: 'cityID',
-        },
-    },
-    countryCurrencyID: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Currency,
-            key: 'currencyID',
-        },
     },
 });
 
