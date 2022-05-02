@@ -33,6 +33,7 @@
 		data() {
 			return {
 				type: '',
+				results: [],
 			};
 		},
 		created() {
