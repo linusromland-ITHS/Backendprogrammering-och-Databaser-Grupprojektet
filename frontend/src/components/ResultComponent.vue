@@ -7,10 +7,10 @@
 			v-if="resultItem.countryFlagURL"
 			class="inline w-14 rounded-sm"
 			:src="resultItem.countryFlagURL"
-			:alt="resultItem.name"
+			:alt="resultItem[`${endpoint}Name`]"
 		/>
 		<h3 class="inline ml-2 text-lg font-bold align-middle">
-			{{ resultItem.name ? resultItem.name : resultItem.countryName }}
+			{{ resultItem[`${endpoint}Name`] }}
 		</h3>
 	</li>
 </template>
@@ -24,6 +24,20 @@
 			},
 		},
 		emits: ['onClick'],
+		computed: {
+			endpoint() {
+				switch (this.$route.params.type) {
+					case 'land':
+						return 'country';
+					case 'sea':
+						return 'sea';
+					case 'space':
+						return 'planet';
+					default:
+						return 'country';
+				}
+			},
+		},
 		methods: {
 			onClick() {
 				this.$emit('onClick', this.resultItem);

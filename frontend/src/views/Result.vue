@@ -58,7 +58,9 @@
 		},
 		methods: {
 			goToResult(resultItem) {
-				this.$router.push(`/${this.type}/${resultItem.id ? resultItem.id : resultItem._id}`);
+				this.$router.push(
+					`/${this.type}/detail/${resultItem.countryID ? resultItem.countryID : resultItem._id}`,
+				);
 			},
 			async fetchSea(query) {
 				const response = await this.axios.get('sea', {
