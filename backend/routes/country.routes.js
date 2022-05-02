@@ -98,6 +98,21 @@ router.get('/', async (req, res) => {
             });
         }
 
+        if (countries.length === 0 && name && name.trim().length > 0) {
+            countries = await CountryModel.findAll({
+                include: [
+                    {
+                        model: ReligionModel,
+                        where: {
+                            religionName: {
+                                [Op.substring]: name.trim(),
+                            },
+                        },
+                    },
+                ],
+            });
+        }
+
         res.status(200).json({
             success: true,
             error: '',
