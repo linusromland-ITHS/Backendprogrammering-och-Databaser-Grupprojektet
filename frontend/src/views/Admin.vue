@@ -114,8 +114,6 @@
 				this.activeTab.label = tab.charAt(0).toUpperCase() + tab.slice(1);
 				this.activeTab.value = tab;
 
-				this.updateFields();
-
 				const request = await this.axios({
 					method: 'get',
 					url: this.activeTab.value,
@@ -169,9 +167,10 @@
 				}
 			},
 			editItem(item) {
+				this.updateFields();
+
 				const id = item[item._id ? '_id' : `${this.activeTab.value}ID`];
 				this.fields[0].value = id;
-				this.updateFields();
 				this.fields.forEach((field) => {
 					if (typeof item[field.dbKey] == 'object') {
 						if (field.type == 'textMany') {
@@ -199,28 +198,28 @@
 				this.fields = [];
 				switch (this.activeTab.value) {
 					case 'city':
-						this.fields = cityFields;
+						this.fields = JSON.parse(JSON.stringify(cityFields));
 						break;
 					case 'continent':
-						this.fields = continentFields;
+						this.fields = JSON.parse(JSON.stringify(continentFields));
 						break;
 					case 'country':
-						this.fields = countryFields;
+						this.fields = JSON.parse(JSON.stringify(countryFields));
 						break;
 					case 'currency':
-						this.fields = currencyFields;
+						this.fields = JSON.parse(JSON.stringify(currencyFields));
 						break;
 					case 'language':
-						this.fields = languageFields;
+						this.fields = JSON.parse(JSON.stringify(languageFields));
 						break;
 					case 'planet':
-						this.fields = planetFields;
+						this.fields = JSON.parse(JSON.stringify(planetFields));
 						break;
 					case 'religion':
-						this.fields = religionFields;
+						this.fields = JSON.parse(JSON.stringify(religionFields));
 						break;
 					case 'sea':
-						this.fields = seaFields;
+						this.fields = JSON.parse(JSON.stringify(seaFields));
 						break;
 					default:
 						this.fields = [];
@@ -233,7 +232,6 @@
 			},
 			closeModal() {
 				this.showModal = false;
-				this.updateFields();
 			},
 		},
 	};
