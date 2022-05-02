@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
         if (ids) {
             const religions = await ReligionModel.findAll({
-                where: { religionID: ids },
+                where: { religionID: ids.split(',') },
             });
             res.status(200).json({
                 success: true,
