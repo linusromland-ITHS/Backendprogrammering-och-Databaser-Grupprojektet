@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         req.query;
 
     let query = {};
-    if (ids) query._id = ids;
+    if (ids) query._id = ids.split(',');
     if (name && name.trim()) query.seaName = { $regex: name, $options: 'i' };
     if (sizeInSquareKmMin) query.seaSizeInSquareKm = { $gte: sizeInSquareKmMin };
     if (sizeInSquareKmMax)
