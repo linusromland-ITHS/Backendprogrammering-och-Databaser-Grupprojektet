@@ -8,12 +8,23 @@
 			<h2 class="text-2xl font-semibold">Results:</h2>
 
 			<ul class="grow overflow-y-scroll my-3">
-				<ResultComponent
-					v-for="result in results"
-					:key="result.id ? result.id : result._id"
-					:result-item="result"
-					@on-click="goToResult"
-				/>
+				<template v-if="results.length > 0">
+					<ResultComponent
+						v-for="result in results"
+						:key="result.id ? result.id : result._id"
+						:result-item="result"
+						@on-click="goToResult"
+					/>
+				</template>
+				<li
+					v-else
+					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
+					@click="onClick"
+				>
+					<p class="inline text-lg font-bold align-middle">
+						Your search ended with no results. Try searching for something else!
+					</p>
+				</li>
 			</ul>
 			<p>Showing 15 out of 196 results</p>
 		</div>
