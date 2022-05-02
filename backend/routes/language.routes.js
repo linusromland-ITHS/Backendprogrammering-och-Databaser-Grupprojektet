@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     try {
         const { ids } = req.query;
         if (ids) {
-            const languages = await LanguageModel.findAll({ where: { languageID: ids } });
+            const languages = await LanguageModel.findAll({ where: { languageID: ids.split(',') } });
             res.status(200).json({
                 success: true,
                 error: '',
