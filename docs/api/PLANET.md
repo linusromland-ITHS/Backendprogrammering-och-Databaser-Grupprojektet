@@ -8,6 +8,7 @@ Get all planets from the database.
 
 | Required | Parameter             | Description                                                                                                                            | Datatype |
 | -------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+|          | ids                   | The id(s) of the planet(s) you want to retrieve. Format your string as follows "PLANET_ID,PLANET_ID,...".                              | String   |
 |          | name                  | The name of the planet(s) you want to retrieve. If the name do not match any planets, a search of all planets moons will be performed. | String   |
 |          | surfaceAreaMin        | The minimum surface area of the planet(s) you want to retrieve. In square kilometers (km²).                                            | Number   |
 |          | surfaceAreaMax        | The maximum surface area of the planet(s) you want to retrieve. In square kilometers (km²).                                            | Number   |
