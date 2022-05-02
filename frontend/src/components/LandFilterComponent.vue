@@ -1,5 +1,5 @@
 <template>
-	<form class="w-1/6" @submit.prevent="search">
+	<form class="w-5/6 lg:w-1/6" @submit.prevent="search">
 		<formset class="block my-5">
 			<div class="relative text-gray-600 focus-within:text-gray-400 w-full">
 				<span class="absolute inset-y-0 left-0 flex items-center pl-2">

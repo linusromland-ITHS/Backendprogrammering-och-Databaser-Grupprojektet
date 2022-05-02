@@ -1,6 +1,6 @@
 <template>
 	<li
-		class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
+		class="w-full lg:w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
 		@click="onClick"
 	>
 		<img

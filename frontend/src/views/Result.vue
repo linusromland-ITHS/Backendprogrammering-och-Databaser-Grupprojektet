@@ -1,13 +1,15 @@
 <template>
 	<Navbar />
-	<div class="w-2/3 site-height mx-auto flex justify-between">
+	<div
+		class="w-full lg:w-2/3 site-height mx-auto flex flex-col lg:flex-row justify-between items-center lg:items-start"
+	>
 		<SeaFilterComponent v-if="type === 'sea'" @search-sea="fetchSea" />
 		<SpaceFilterComponent v-if="type === 'space'" @search-space="fetchSpace" />
 		<LandFilterComponent v-if="type === 'land'" @search-land="fetchLand" />
-		<div class="w-9/12 h-full p-3 flex flex-col">
+		<div class="w-full lg:w-9/12 h-full p-3 flex flex-col">
 			<h2 class="text-2xl font-semibold">Results:</h2>
 
-			<ul class="grow overflow-y-scroll my-3">
+			<ul class="grow lg:overflow-y-scroll my-3">
 				<template v-if="results.length > 0">
 					<ResultComponent
 						v-for="result in results"
@@ -18,7 +20,7 @@
 				</template>
 				<li
 					v-else
-					class="w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
+					class="w-full lg:w-3/5 bg-gray-200 rounded-md p-2 hover:bg-gray-300 transition ease-in duration-150 cursor-pointer mb-4 hover:drop-shadow-md"
 					@click="onClick"
 				>
 					<p class="inline text-lg font-bold align-middle">
