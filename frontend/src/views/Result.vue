@@ -33,13 +33,18 @@
 		data() {
 			return {
 				type: '',
-				// Mock data
-				results: [{ name: 'Sweden', countryFlagURL: 'https://countryflagsapi.com/svg/se' }],
 			};
 		},
 		created() {
 			this.type = this.$route.params.type;
-			// Fetch and place in this.results
+			const query = { name: this.$route.params.query };
+			if (this.type === 'land') {
+				this.fetchLand(query);
+			} else if (this.type === 'sea') {
+				this.fetchSea(query);
+			} else if (this.type === 'space') {
+				this.fetchSpace(query);
+			}
 		},
 		methods: {
 			goToResult(resultItem) {
