@@ -13,11 +13,25 @@ const ReligionModel = require('../models/Religion');
  * @api {get} /countries Get all countries
  */
 router.get('/', async (req, res) => {
-    const { name, populationMin, populationMax, sizeMin, sizeMax, religionID, continentID, languageID, currencyID } =
-        req.query;
+    const {
+        ids,
+        name,
+        populationMin,
+        populationMax,
+        sizeMin,
+        sizeMax,
+        religionID,
+        continentID,
+        languageID,
+        currencyID,
+    } = req.query;
 
     const conditions = {};
     const associationsConditions = [];
+
+    if (ids) {
+        conditions.countryID = { [Op.in]: ids.split(',') };
+    }
 
     if (name && name.trim().length > 0) {
         conditions.countryName = {
