@@ -1,0 +1,82 @@
+[
+    {
+        "planetName": "Mercury",
+        "planetSurfaceAreaInSquareKm": 74800000,
+        "planetDistanceFromSunInKm": 58000000,
+        "planetMoons": [],
+        "planetAverageTemperatureInCelsius": 178.89,
+        "planetRadiusInKm": 2440,
+        "planetMassInKg": 328500000000000000000000,
+        "planetOrbitalPeriodInDays": 88
+    },
+    {
+        "planetName": "Venus",
+        "planetSurfaceAreaInSquareKm": 460200000,
+        "planetDistanceFromSunInKm": 108890000,
+        "planetMoons": [],
+        "planetAverageTemperatureInCelsius": 475.0,
+        "planetRadiusInKm": 6051.8,
+        "planetMassInKg": 4867000000000000000000000,
+        "planetOrbitalPeriodInDays": 225
+    },
+    {
+        "planetName": "Earth",
+        "planetSurfaceAreaInSquareKm": 510100000,
+        "planetDistanceFromSunInKm": 150760000,
+        "planetMoons": ["Luna"],
+        "planetAverageTemperatureInCelsius": 13.9,
+        "planetRadiusInKm": 6378,
+        "planetMassInKg": 5972000000000000000,
+        "planetOrbitalPeriodInDays": 365
+    },
+    {
+        "planetName": "Mars",
+        "planetSurfaceAreaInSquareKm": 144800000,
+        "planetDistanceFromSunInKm": 210530000,
+        "planetMoons": ["Phobos", "Deimos"],
+        "planetAverageTemperatureInCelsius": -62.78,
+        "planetRadiusInKm": 3390,
+        "planetMassInKg": 639000000000000000000000,
+        "planetOrbitalPeriodInDays": 687
+    },
+    {
+        "planetName": "Jupiter",
+        "planetSurfaceAreaInSquareKm": 61420000000,
+        "planetDistanceFromSunInKm": 743890000,
+        "planetMoons": ["Europa", "Ganymede", "Io", "Callisto"],
+        "planetAverageTemperatureInCelsius": 114.45,
+        "planetRadiusInKm": 69911,
+        "planetMassInKg": 1898000000000000000000000000,
+        "planetOrbitalPeriodInDays": 4380
+    },
+    {
+        "planetName": "Saturn",
+        "planetSurfaceAreaInSquareKm": 42700000000,
+        "planetDistanceFromSunInKm": 1477800000,
+        "planetMoons": ["Titan", "Rhea", "Iapetus", "Dione", "Tethys", "Enceladus"],
+        "planetAverageTemperatureInCelsius": -140,
+        "planetRadiusInKm": 58232,
+        "planetMassInKg": 568300000000000000000000000,
+        "planetOrbitalPeriodInDays": 10585
+    },
+    {
+        "planetName": "Uranus",
+        "planetSurfaceAreaInSquareKm": 8083000000,
+        "planetDistanceFromSunInKm": 2947000000,
+        "planetMoons": ["Titania", "Oberon", "Umbriel", "Ariel"],
+        "planetAverageTemperatureInCelsius": -195,
+        "planetRadiusInKm": 25362,
+        "planetMassInKg": 86810000000000000000000000,
+        "planetOrbitalPeriodInDays": 30660
+    },
+    {
+        "planetName": "Neptune",
+        "planetSurfaceAreaInSquareKm": 7618000000,
+        "planetDistanceFromSunInKm": 4474000000,
+        "planetMoons": ["Triton"],
+        "planetAverageTemperatureInCelsius": -200,
+        "planetRadiusInKm": 24764,
+        "planetMassInKg": 10240000000000000000000000,
+        "planetOrbitalPeriodInDays": 59800
+    }
+]
