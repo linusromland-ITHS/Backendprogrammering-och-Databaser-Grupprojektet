@@ -135,7 +135,10 @@
 						label: 'Internet TLD',
 						value: '.' + this.countryOriginal.countryDomain,
 					},
-					{
+				];
+
+				if (this.countryOriginal.city) {
+					country.push({
 						label: 'Capital',
 						value: [
 							{
@@ -147,8 +150,11 @@
 								value: this.countryOriginal.city.cityPopulation,
 							},
 						],
-					},
-					{
+					});
+				}
+
+				if (this.countryOriginal.currency) {
+					country.push({
 						label: 'Currency',
 						value: [
 							{
@@ -160,24 +166,32 @@
 								value: this.countryOriginal.currency.currencySymbol,
 							},
 						],
-					},
-					{
+					});
+				}
+
+				if (this.countryOriginal.continents) {
+					country.push({
 						label: 'Continents',
 						multi: true,
 						value: this.prepareArrays(this.countryOriginal.continents, 'continents'),
-					},
-					{
+					});
+				}
+
+				if (this.countryOriginal.languages) {
+					country.push({
 						label: 'Languages',
 						multi: true,
-
 						value: this.prepareArrays(this.countryOriginal.languages, 'languages'),
-					},
-					{
+					});
+				}
+
+				if (this.countryOriginal.religions) {
+					country.push({
 						label: 'Religions',
 						multi: true,
 						value: this.prepareArrays(this.countryOriginal.religions, 'religions'),
-					},
-				];
+					});
+				}
 
 				return country;
 			},
