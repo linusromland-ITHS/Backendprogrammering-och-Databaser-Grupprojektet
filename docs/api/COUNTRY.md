@@ -17,7 +17,8 @@ Get all countries from the database.
 |          | currencyID  | The id of the country's currency.                                          | Number    |
 |          | religionID  | The id of the religion id that you want to fetch.                          | Number    |
 |          | languageID  | The id of the language id that you want to fetch.                          | Number    |
-|          | continentID | The id of thef continent id that you want to fetch.                        | Number    |
+|          | continentID | The id of the continent id that you want to fetch.                         | Number    |
+
 
 **Note**:
 
