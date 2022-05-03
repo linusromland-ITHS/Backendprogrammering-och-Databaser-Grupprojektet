@@ -43,7 +43,7 @@
 					/></label>
 				</label>
 			</div>
-			<formset class="w-full inline-block mb-4">
+			<div class="w-full inline-block mb-4">
 				<label class="font-bold flex flex-col">
 					<p>Average temperature <span class="help-text">(°C)</span></p>
 					<label class="font-semibold flex justify-between my-1"
@@ -55,7 +55,7 @@
 						<input v-model="averageTemperatureMax" type="number" min="0" class="w-3/4"
 					/></label>
 				</label>
-			</formset>
+			</div>
 			<div class="w-full inline-block mb-4">
 				<label class="font-bold flex flex-col">
 					<p>Radius <span class="help-text">(km)</span></p>
