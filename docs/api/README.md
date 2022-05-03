@@ -31,17 +31,17 @@ The format of the response is as follows:
 
 ```json
 {
-	"status": true,
+	"success": true,
 	"error": "",
 	"data": ["DATA_TO_BE_RETURNED"]
 }
 ```
 
-Here, _`status`_ is either `true` or `false`.
+Here, _`success`_ is either `true` or `false`.
 <br>
-If _`status`_ is `true`, `error` is empty and the request was successful. Data is returned in `data`.
+If _`success`_ is `true`, `error` is empty and the request was successful. Data is returned in `data`.
 <br>
-If _`status`_ is `false`, `error` contains the error message. Data is not returned.
+If _`success`_ is `false`, `error` contains the error message. Data is not returned.
 
 ## Available endpoints
 
