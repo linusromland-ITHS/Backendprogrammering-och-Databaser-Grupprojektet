@@ -1,6 +1,6 @@
 <template>
 	<form class="w-5/6 lg:w-1/6" @submit.prevent="search">
-		<formset class="block my-5">
+		<div class="block my-5">
 			<div class="relative text-gray-600 focus-within:text-gray-400 w-full">
 				<span class="absolute inset-y-0 left-0 flex items-center pl-2">
 					<button type="submit" class="p-1 grid place-content-center">
@@ -15,9 +15,9 @@
 					v-model="nameInput"
 				/>
 			</div>
-		</formset>
+		</div>
 		<div class="my-5">
-			<formset class="w-full inline-block mb-4">
+			<div class="w-full inline-block mb-4">
 				<label class="font-bold flex flex-col">
 					Size (km²):
 					<label class="font-semibold flex justify-between my-1"
@@ -29,8 +29,8 @@
 						<input v-model="maxSizeInSquareKm" type="number" min="0" class="w-3/4"
 					/></label>
 				</label>
-			</formset>
-			<formset class="w-full inline-block mb-4">
+			</div>
+			<div class="w-full inline-block mb-4">
 				<label class="font-bold flex flex-col">
 					<p>Average Depth <span class="help-text">(m)</span></p>
 					<label class="font-semibold flex justify-between my-1"
@@ -42,7 +42,7 @@
 						<input v-model="maxAverageDepthInMeters" type="number" min="0" class="w-3/4"
 					/></label>
 				</label>
-			</formset>
+			</div>
 		</div>
 	</form>
 </template>
