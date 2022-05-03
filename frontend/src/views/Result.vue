@@ -84,7 +84,7 @@
 					params: { ...query },
 				});
 				this.results = response.data.data.result;
-				this.totalCount = response.data.data.count - 1; // -1 since SQL returns 1 more than the actual count
+				this.totalCount = response.data.data.count;
 			},
 		},
 	};
