@@ -15,7 +15,7 @@ Project setup and running instructions are available [here](/docs/SETUPGUIDE.md)
 
 ## API Documentation
 
-The API documentation is available [here](/docs/api/README.md)
+The API documentation is available [here](/docs/api/README.md).
 
 ## Database Schemas
 
