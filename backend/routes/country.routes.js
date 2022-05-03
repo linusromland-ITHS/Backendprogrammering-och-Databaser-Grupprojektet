@@ -273,7 +273,8 @@ router.delete('/', async (req, res) => {
         } else {
             return res.status(200).json({
                 success: true,
-                error: 'Country deleted',
+                error: '',
+                message: 'Country deleted',
             });
         }
     } catch (error) {
