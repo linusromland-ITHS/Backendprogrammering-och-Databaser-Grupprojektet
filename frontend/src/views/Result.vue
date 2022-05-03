@@ -76,7 +76,6 @@
 				const response = await this.axios.get('planet', {
 					params: { ...query },
 				});
-				this.results = response.data.data;
 				this.results = response.data.data.result;
 				this.totalCount = response.data.data.count;
 			},
