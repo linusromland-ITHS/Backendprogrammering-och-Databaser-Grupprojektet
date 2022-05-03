@@ -8,15 +8,15 @@ Get all countries from the database.
 
 | Required | Parameter   | Description                                                                | Datatype |
 | -------- | ----------- | -------------------------------------------------------------------------- | -------- |
-| ✓        | name        | The name of the country you want to fetch.                                 | String   |
-| ✓        | population  | The population number of the country you want to fetch.                    | Number   |
-| ✓        | population  | The population number of the country you want to fetch.                    | Number   |
-| ✓        | sizeMin     | The min size of the country you want to fetch. In square kilometers (km²). | Number   |
-| ✓        | sizeMax     | The max size of the country you want to fetch. In square kilometers (km²). | Number   |
-| ✓        | currencyID  | The id of the country's currency.                                          | Number   |
-| ✓        | religionID  | The id of the religion id that you want to fetch.                          | Number   |
-| ✓        | languageID  | The id of the language id that you want to fetch.                          | Number   |
-| ✓        | continentID | The id of thef continent id that you want to fetch.                        | Number   |
+|          | name        | The name of the country you want to fetch.                                 | String   |
+|          | population  | The population number of the country you want to fetch.                    | Number   |
+|          | population  | The population number of the country you want to fetch.                    | Number   |
+|          | sizeMin     | The min size of the country you want to fetch. In square kilometers (km²). | Number   |
+|          | sizeMax     | The max size of the country you want to fetch. In square kilometers (km²). | Number   |
+|          | currencyID  | The id of the country's currency.                                          | Number   |
+|          | religionID  | The id of the religion id that you want to fetch.                          | Number   |
+|          | languageID  | The id of the language id that you want to fetch.                          | Number   |
+|          | continentID | The id of thef continent id that you want to fetch.                        | Number   |
 
 **Note**:
 
