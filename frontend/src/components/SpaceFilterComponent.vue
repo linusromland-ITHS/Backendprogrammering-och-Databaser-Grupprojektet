@@ -161,6 +161,9 @@
 				this.timerHandler();
 			},
 		},
+		created() {
+			this.nameInput = this.$route.params.query;
+		},
 		methods: {
 			search() {
 				let query = {};
