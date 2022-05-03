@@ -6,9 +6,9 @@
 
 Get all continents from the database.
 
-| Required | Parameter | Description                                     | Datatype  |
-| -------- | --------- | ----------------------------------------------- | --------- |
-|          | ids       | The ids of the continents you want to retrieve. | Number[ ] |
+| Required | Parameter | Description                                                                                                    | Datatype |
+| -------- | --------- | -------------------------------------------------------------------------------------------------------------- | -------- |
+|          | ids       | The ids of the continents you want to retrieve. Format your string as follows "CONTINENT_ID,CONTINENT_ID,...". | String   |
 
 **Note**: If you don't specify any ids, all continents will be returned.
 

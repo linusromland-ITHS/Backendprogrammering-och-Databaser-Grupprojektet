@@ -6,9 +6,9 @@
 
 Get all religions from the database.
 
-| Required | Parameter | Description                                    | Datatype  |
-| -------- | --------- | ---------------------------------------------- | --------- |
-|          | ids       | The ids of the religions you want to retrieve. | Number[ ] |
+| Required | Parameter | Description                                                                                                 | Datatype |
+| -------- | --------- | ----------------------------------------------------------------------------------------------------------- | -------- |
+|          | ids       | The ids of the religions you want to retrieve. Format your string as follows "RELIGION_ID,RELIGION_ID,...". | String   |
 
 **Note**: If you don't specify any ids, all religions will be returned.
 

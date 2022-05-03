@@ -6,14 +6,14 @@
 
 Get all seas from the database.
 
-| Required | Parameter               | Description                                                                | Datatype  |
-| -------- | ----------------------- | -------------------------------------------------------------------------- | --------- |
-|          | ids                     | The id of the sea(s) you want to fetch.                                    | String[ ] |
-|          | name                    | The name of the sea or species you want to fetch.                          | String    |
-|          | sizeInSquareKmMin       | The minimum size of the sea you want to fetch. In square kilometers (km²). | Number    |
-|          | sizeInSquareKmMax       | The maximum size of the sea you want to fetch. In square kilometers (km²). | Number    |
-|          | averageDepthInMetersMin | The minimum average depth of the sea you want to fetch. In meters (m).     | Number    |
-|          | averageDepthInMetersMax | The maximum average depth of the sea you want to fetch. In meters (m).     | Number    |
+| Required | Parameter               | Description                                                                                | Datatype |
+| -------- | ----------------------- | ------------------------------------------------------------------------------------------ | -------- |
+|          | ids                     | The id of the sea(s) you want to fetch. Format your string as follows "SEA_ID,SEA_ID,...". | String   |
+|          | name                    | The name of the sea or species you want to fetch.                                          | String   |
+|          | sizeInSquareKmMin       | The minimum size of the sea you want to fetch. In square kilometers (km²).                 | Number   |
+|          | sizeInSquareKmMax       | The maximum size of the sea you want to fetch. In square kilometers (km²).                 | Number   |
+|          | averageDepthInMetersMin | The minimum average depth of the sea you want to fetch. In meters (m).                     | Number   |
+|          | averageDepthInMetersMax | The maximum average depth of the sea you want to fetch. In meters (m).                     | Number   |
 
 **Note**:
 

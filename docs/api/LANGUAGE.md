@@ -6,9 +6,9 @@
 
 Get all languages from the database.
 
-| Required | Parameter | Description                                    | Datatype  |
-| -------- | --------- | ---------------------------------------------- | --------- |
-|          | ids       | The ids of the languages you want to retrieve. | Number[ ] |
+| Required | Parameter | Description                                                                                                 | Datatype |
+| -------- | --------- | ----------------------------------------------------------------------------------------------------------- | -------- |
+|          | ids       | The ids of the languages you want to retrieve. Format your string as follows "LANGUAGE_ID,LANGUAGE_ID,...". | String   |
 
 **Note**: If you don't specify any ids, all languges will be returned.
 

@@ -6,9 +6,9 @@
 
 Get all currencies from the database.
 
-| Required | Parameter | Description                                     | Datatype  |
-| -------- | --------- | ----------------------------------------------- | --------- |
-|          | ids       | The ids of the currencies you want to retrieve. | Number[ ] |
+| Required | Parameter | Description                                                                                                  | Datatype |
+| -------- | --------- | ------------------------------------------------------------------------------------------------------------ | -------- |
+|          | ids       | The ids of the currencies you want to retrieve. Format your string as follows "CURRENCY_ID,CURRENCY_ID,...". | String   |
 
 **Note**: If you don't specify any ids, all currencies will be returned.
 
