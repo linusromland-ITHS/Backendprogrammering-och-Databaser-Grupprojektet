@@ -99,7 +99,7 @@
 		},
 		watch: {
 			$route() {
-				this.getData();
+				if (this.$route.params.tab) this.getData();
 			},
 		},
 		created() {
