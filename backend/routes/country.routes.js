@@ -346,7 +346,7 @@ router.put('/', async (req, res) => {
         if (religionIDs) {
             // Remove country's religions (M:N relationship)
             const religions = await updatedCountry.getReligions();
-            updatedCountry.removeReligion(religions);
+            await updatedCountry.removeReligion(religions);
 
             // Add country's religions (M:N relationship)
             await updatedCountry.addReligion(
