@@ -359,7 +359,7 @@ router.put('/', async (req, res) => {
         if (languageIDs) {
             // Remove country's languages (M:N relationship)
             const languages = await updatedCountry.getLanguages();
-            updatedCountry.removeLanguage(languages);
+            await updatedCountry.removeLanguage(languages);
 
             // Add country's languages (M:N relationship)
             await updatedCountry.addLanguage(
@@ -372,7 +372,7 @@ router.put('/', async (req, res) => {
         if (continentIDs) {
             // Remove country's continents (M:N relationship)
             const continents = await updatedCountry.getContinents();
-            updatedCountry.removeContinent(continents);
+            await updatedCountry.removeContinent(continents);
 
             // Add country's continents (M:N relationship)
             await updatedCountry.addContinent(
