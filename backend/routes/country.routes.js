@@ -97,16 +97,7 @@ router.get('/', async (req, res) => {
             ],
         });
 
-        const countriesCount = await CountryModel.count({
-            include: [
-                CityModel,
-                CurrencyModel,
-                ContinentModel,
-                ReligionModel,
-                LanguageModel,
-                ...associationsConditions,
-            ],
-        });
+        const countriesCount = await CountryModel.count();
 
         if (countries.length === 0 && name && name.trim().length > 0) {
             countries = await CountryModel.findAll({
