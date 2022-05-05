@@ -19,7 +19,7 @@
 		<div class="my-5">
 			<div class="w-full inline-block mb-4">
 				<label class="font-bold flex flex-col">
-					Surface Area (km²):
+					<p>Surface Area <span class="help-text">(km²)</span></p>
 					<label class="font-semibold flex justify-between my-1"
 						><p>Min:</p>
 						<input v-model="surfaceAreaMin" type="number" min="0" class="w-3/4"
